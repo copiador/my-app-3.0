@@ -1,0 +1,24 @@
+
+
+    <div class="col-md-10">
+    	<div class="responsive">
+			<table class="table table-striped">
+				<th>C/ Barras</th>
+				<th>Nome</th>
+				<th>Preço</th>
+				<th>Quantidade</th>
+					<tr *ngFor="let produto of produtos" class="success">
+						<td>{{produto.codigoBarras}}</td>
+						<td>{{produto.nome}}</td>
+						<td>{{produto.valor}}</td>
+						<td>{{produto.quantidade}}</td>
+						<td><a routerLink="produto-editar" class="btn btn-warning">Editar</a>
+						    <button (click)="delete(produto)" class="btn btn-danger">Excluir</button></td>
+					</tr>
+			</table>
+		</div>
+	</div>
+
+	<router-outlet></router-outlet>
+
+	

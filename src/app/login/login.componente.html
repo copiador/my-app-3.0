@@ -1,0 +1,21 @@
+
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" [(ngModel)]="usuarioPrepararLogar.email"  placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" [(ngModel)]="usuarioPrepararLogar.senha" placeholder="Senha">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+
+        <p>{{menssagem}}</p><p>{{menssagemLogar}}</p>
+      <button (click)="entrar()" *ngIf="!loginService.estadoLogin" class="btn btn-default">Entrar</button>
+      <button (click)="sair()" *ngIf="loginService.estadoLogin" class="btn btn-default">Sair</button>
+    </div>
+  </div>

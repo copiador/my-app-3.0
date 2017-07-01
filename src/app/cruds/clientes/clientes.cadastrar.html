@@ -1,0 +1,72 @@
+<div class="col-md-8">
+    <p></p>
+	
+	    <form class="form-horizontal" [formGroup]="clienteForm">
+		    <div class="form-group">
+				<input type="hidden" class="form-control" formControlName="_id"/>
+			    <label for="inputCadastro" class="col-sm-1">Nome</label>
+					<div class="col-sm-7">
+					
+				    	<input type="text" class="form-control" formControlName="nome"   id="form-nome" placeholder="Nome" />
+					</div>
+					<div class="col-sm-4">
+				    	<input type="text" class="form-control" formControlName="cpf" id="form-cpf" placeholder="Cpf" />
+					</div>
+			</div>
+			<div class="form-group">
+				<label for="inputCadastro" class="col-sm-2">Endereço</label>
+    				<div class="col-sm-5">
+	    				<input type="text" class="form-control"  id="form-rua" placeholder="Rua" />
+					</div>
+			        <div class="col-sm-3">
+		    	        <input type="text" class="form-control"   id="form-bairro" placeholder="Bairro" />
+			        </div>
+			        <div class="col-sm-2">
+				        <input type="text" class="form-control"   id="form-numero" placeholder="Numero" />
+			        </div>
+			</div>
+			<div class="form-group">
+				<label for="inputCadastro" class="col-sm-2">Cidade e Estado</label>
+					 <div class="col-sm-4">
+				        <input type="text" class="form-control"   id="form-cidade" placeholder="Cidade" />
+			        </div>
+					<div class="col-sm-2">
+				        <input type="text" class="form-control"   id="form-estado" placeholder="Estado" />
+			        </div>
+					 <div class="col-sm-3">
+				        <input type="text" class="form-control"  id="form-cep" placeholder="Cep" />
+			        </div>
+			</div>
+					
+		   
+			<div class="form-group">
+				<label for="inputCadastro" class="col-sm-1">Contato</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="form-email" placeholder="Email" />
+					</div>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="form-telFixo" placeholder="Telefone Fixo" />
+					</div>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" id="form-Celular" placeholder="Telefone Celular" />
+					</div>
+			</div>
+			<div class="form-group">
+				<label for="comment">Informações adicionais do cliente:</label>
+      				<textarea class="form-control" rows="4" id="comentario"></textarea>
+							
+			</div>
+				<p class="text-right"> 
+				<button type="button" class="btn btn-default " (click)="onSubmit()">Salvar</button>
+				<button type="reset" class="btn btn-default">Limpar</button>
+				
+				</p>
+		</form>
+
+
+
+		<p>Valores: {{ clienteForm.value | json }} Cliente editado: {{clienteForm.controls.nome.value}}</p>
+
+		
+
+</div>
