@@ -3,7 +3,10 @@ var mongoose = require('mongoose');
 module.exports = function(uri){
 
 
-	mongoose.connect(uri);
+	mongoose.connect(uri, {
+		useMongoClient: true
+	})
+	
 
 	mongoose.connection.on('connected', function(){
 		mongoose.set('debug',true);

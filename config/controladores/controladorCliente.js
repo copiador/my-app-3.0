@@ -17,11 +17,11 @@ module.exports = function() {
 	//contato2.nextCount()
 
 
-	//modeloClienteSchema.find(function(err, clientes) {
-	//	if (err)
-	//		return console.error(err);
-	//	console.log(clientes);
-//	});
+modeloClienteSchema.find(function(err, clientes) {
+		if (err)
+			return console.error(err);
+		console.log(clientes);
+	});
 
 
 
