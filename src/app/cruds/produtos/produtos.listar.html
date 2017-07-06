@@ -12,7 +12,7 @@
 						<td>{{produto.nome}}</td>
 						<td>{{produto.valor}}</td>
 						<td>{{produto.quantidade}}</td>
-						<td><a routerLink="produto-editar" class="btn btn-warning">Editar</a>
+						<td><a (click)="editar(produto)" class="btn btn-warning">Editar</a>
 						    <button (click)="delete(produto)" class="btn btn-danger">Excluir</button></td>
 					</tr>
 			</table>
