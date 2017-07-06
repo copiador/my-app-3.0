@@ -28,9 +28,10 @@ const CrudNav: Routes = [{
       },{
         path: 'produtos-listar',
         component: ProdutosListar,
-      },{
-        path: 'produto-editar/:id',
-        component: ProdutosCadastrar,
+        children:[{
+          path: ':id',
+          component: ProdutosCadastrar,
+        }]
       }]
   },{
       path: 'crud-nav-cadastrar',

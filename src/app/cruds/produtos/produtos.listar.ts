@@ -40,8 +40,8 @@ delete(produto: ProdutoModel){
     }
 
     editar(produto:ProdutoModel){
-       this.router.navigate(['/cruds-nav-module/crud-nav-listar/produto-editar', produto._id]);
-       
+     //  this.router.navigate(['/cruds-nav-module/crud-nav-listar/produto-editar', produto._id]);
+      this.router.navigate([produto._id],{relativeTo: this.route});
     }
 
 }
