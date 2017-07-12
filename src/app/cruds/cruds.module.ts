@@ -15,6 +15,7 @@ import {ClientesTeste} from './clientes/clientes.teste';
 //Crud Produtos
 import {ProdutosListar} from './produtos/produtos.listar';
 import {ProdutosCadastrar} from './produtos/produtos.cadastrar';
+import {ProdutoEditar} from './produtos/produto.editar';
 //serviços
 import {ClienteService} from './../service/cliente.service';
 import {ProdutoService} from './../service/produto.service';
@@ -39,6 +40,7 @@ import {CustomerEmailFilter} from './crud.filter.pipe';
     ClientesCadastrar, // Crud cadastar clientes
     ProdutosListar,//Produtos Listar
     ProdutosCadastrar,//Produtos Cadastrar
+    ProdutoEditar,//produto editar
     CustomerEmailFilter, // pipe filtros para procurar na lista
     ClientesTeste
  

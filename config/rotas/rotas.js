@@ -16,6 +16,7 @@ module.exports = function(app) {
 	app.get('/api/produtos', controllerProduto.listarProdutos);
 	app.post('/api/produtos', controllerProduto.adicionarProduto);
 	app.delete('/api/produtos/:id', controllerProduto.deleteProduto);
+	app.get('/api/produtos/:id', controllerProduto.buscarProduto);
 
 	
 	

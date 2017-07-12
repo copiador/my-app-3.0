@@ -1,7 +1,6 @@
 <div class="col-md-8">
-    <p></p>
+ 
 	    <form class="form-horizontal" [formGroup]="produtoForm">
-			<input type="hidden" class="form-control" formControlName="_id"/>
 		    <div class="form-group">
 			    <label for="inputCadastro" class="col-sm-1">Codigo Barras</label>
 					<div class="col-sm-6">
@@ -30,7 +29,7 @@
 				<button type="reset" class="btn btn-default text-right">Limpar</button>
 			</p>
 
-				<p>Valores: {{ produtoForm.value | json }} Cliente editado: {{produtoForm.controls.nome.value}}</p>
+				<p>Valores: {{ produtoForm.value | json }} Cliente editado: </p>
 		</form>
 
 		

@@ -13,6 +13,7 @@ import {ClientesCadastrar} from './clientes/clientes.cadastrar';
 import {ProdutosListar} from './produtos/produtos.listar';
 import {ProdutosCadastrar} from './produtos/produtos.cadastrar';
 import {ClientesTeste} from './clientes/clientes.teste';
+import {ProdutoEditar} from './produtos/produto.editar';
 
 
 const CrudNav: Routes = [{
@@ -30,7 +31,7 @@ const CrudNav: Routes = [{
         component: ProdutosListar,
         children:[{
           path: ':id',
-          component: ProdutosCadastrar,
+          component: ProdutoEditar,
         }]
       }]
   },{

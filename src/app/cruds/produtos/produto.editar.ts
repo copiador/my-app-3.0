@@ -1,6 +1,8 @@
-import { Component, Input, OnChanges} from '@angular/core';
+import { Component, Input, OnChanges, OnInit} from '@angular/core';
 import { NgModule }       from '@angular/core';
 import { FormsModule, FormBuilder, FormControl,FormGroup  }    from '@angular/forms';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 //cliente serviço
 import {ProdutoService} from './../../service/produto.service';
@@ -9,26 +11,36 @@ import {ProdutoModel} from './../../model/produto.model';
 
 @Component({
 
-    selector: 'produto-cadastrar',
-    templateUrl: './produtos.cadastrar.html'
+    selector: '',
+    templateUrl: './produto.editar.html'
 
 
 })
 
-export class ProdutosCadastrar implements OnChanges {
+export class ProdutoEditar implements OnInit, OnChanges {
 
 
     produtoForm : FormGroup;
     produto = new ProdutoModel(); // cliente para um novo cadastro
-    @Input() produtoEditar : ProdutoModel; // cliente para um cadastro para editar
+    produtoEditar = new ProdutoModel(); // cliente para um cadastro para editar
+    produtoEditar2 : ProdutoModel;
 
-    constructor(private produtoService: ProdutoService, private fb: FormBuilder){
+    constructor(private produtoService: ProdutoService, private fb: FormBuilder,
+     private route: ActivatedRoute, private router: Router){
         this.createFormBuild();
         this.editar();
 
     }
    
 
+ngOnInit(){
+this.route.paramMap.switchMap((params: ParamMap) =>
+        this.produtoService.getProduto(params.get('id')))
+        .subscribe((produto: ProdutoModel) => this.produtoEditar = produto);
+  
+     
+
+}
 
 
 createFormBuild(){
@@ -46,7 +58,7 @@ createFormBuild(){
 
 
 editar(){
- 
+  
 };
 prepararValores(): ProdutoModel{
     let valores = this.produtoForm.value;

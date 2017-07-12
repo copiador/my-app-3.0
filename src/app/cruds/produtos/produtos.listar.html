@@ -16,9 +16,11 @@
 						    <button (click)="delete(produto)" class="btn btn-danger">Excluir</button></td>
 					</tr>
 			</table>
+
+			<div *ngIf="produtoEditarBollean">
+				<produto-cadastrar [produtoEditar]="produtoParaEditar"></produto-cadastrar>
+			</div>
 		</div>
 	</div>
-
-	<router-outlet></router-outlet>
-
 	
+

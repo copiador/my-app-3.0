@@ -26,8 +26,8 @@ export class ProdutoService {
    
   }
 
-  getProduto(_id: number): Observable<ProdutoModel[]>{
-    var url = '${this.clientesUrl}/${_id}';
+  getProduto(_id: number | string): Observable<ProdutoModel>{
+    var url = this.produtosUrl + "/" + _id;
     return this.http.get(url).map(res => res.json());
   }
 

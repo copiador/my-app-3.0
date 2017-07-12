@@ -60,16 +60,14 @@ ShemaProdutos.find(function(err, produtos) {
 				
 	controller.buscarProduto = function (req, res){
 		//pega o cliente vendo da pagina
-		var _idCliente = req.params.id;
+		var _idProduto = req.params.id;
+		console.log(_idProduto);
 		//função para procurar o cliente e devolver para pagina
-		modeloClienteSchema.findById(_idCliente).then(function(contato){
-			if(!contato) throw new Error("Cliente não encontrado");
-			//manda o cliente pra pagina
-			res.json(cliente);
-		})
-
-
-	};
+		modeloProdutoSchema.findById(_idProduto, function (err, produto){
+			if(err) console.log(err);
+				return res.json(produto);
+			});
+		};
 	controller.deleteProduto = function (req, res) {
 		//pega o id do cliente
 		var _idProduto = req.params.id;

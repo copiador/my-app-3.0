@@ -32,7 +32,7 @@ export class ClienteService {
     // res => res.json()
   }
 
-  getCliente(_id: number): Observable<ClienteModel[]>{
+  getCliente(_id: number): Observable<ClienteModel>{
     var url = '${this.clientesUrl}/${_id}';
     return this.http.get(url).map(res => res.json());
   }
