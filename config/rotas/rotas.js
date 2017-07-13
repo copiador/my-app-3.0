@@ -1,6 +1,7 @@
 var controller = require('../controladores/controladorCliente.js')();
 var controllerUsuario = require('../controladores/controladorUsuario.js')();
 var controllerProduto = require('../controladores/controladorProduto.js')();
+var controllerVendasAvista = require('../controladores/controladorVendasAvista.js')();
 
 module.exports = function(app) {
 	//app.get('/index', controller.index);
@@ -18,6 +19,8 @@ module.exports = function(app) {
 	app.delete('/api/produtos/:id', controllerProduto.deleteProduto);
 	app.get('/api/produtos/:id', controllerProduto.buscarProduto);
 
+	//vendas
+	app.get('/api/vendas', controllerVendasAvista.vendas);
 	
 	
 };

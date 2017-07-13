@@ -14,6 +14,7 @@ import {LoginRouterModule} from './login/login.router';
 
 //Modulos
 import {CrudsModule} from './cruds/cruds.module'; //crud
+import {VendasModule} from './vendas/vendas.module';
 
 //Serviços
 import {ClienteService} from './service/cliente.service';
@@ -28,17 +29,14 @@ import {ClienteService} from './service/cliente.service';
     HttpModule,
     AppRotasModule, //Rotas
     CrudsModule, // Modulo Cruds
-    LoginRouterModule // login modulo
-   
+    LoginRouterModule, // login modulo
+    VendasModule
+
   ],
   declarations: [
     AppComponent,
-    VendasComponente, // componente vendas
     RelatoriosComponente, // relatorios componente
     LoginComponente // login componente
-
- 
-
   ],
  
   providers: [ClienteService],

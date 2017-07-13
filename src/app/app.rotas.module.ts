@@ -16,7 +16,7 @@ const routes: Routes = [
    },
    {
     path: 'vendas-module', 
-    component: VendasComponente,
+    loadChildren: './vendas/vendas.module#VendasModule',
    },
    {
     path: 'relatorios-module', 
