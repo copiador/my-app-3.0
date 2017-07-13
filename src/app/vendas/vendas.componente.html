@@ -1,7 +1,13 @@
 <div class="row">
 	<div class="col-md-4">
 		<h4>Nome da Imagem</h4>
-			<p>Essa é uma discrição da imagem</p>
+		<div class="input-group">
+			  <input #codigoBarras type="text" (keyup.enter)="venda(codigoBarras.value); codigoBarras.value=''"
+				  class="form-control" placeholder="Codigo de Barras">
+			  <button (click)="venda(codigoBarras.value); codigoBarras.value=''">Add</button>
+		</div>
+		<p>Essa é uma discrição da imagem</p>
+	
 	</div>
 		<div class="col-md-4">
 			<h4>Lista de Produtos</h4>
@@ -11,13 +17,9 @@
 							<th>NOME ITEM</th>
 							<th>VALOR ITEM</th>
 						</tr>
-						<tr>
-							<td>case hd</td>
-							<td>45,00</td>
-						</tr>
-						<tr>
-							<td>monitor</td>
-							<td>400,00</td>
+						<tr *ngFor="let produtoVendido of produtosVendidos">
+							<td>{{produtoVendido.nome}}</td>
+							<td>{{produtoVendido.valor}}</td>
 						</tr>
 					</table>
 				</div>

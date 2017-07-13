@@ -11,13 +11,13 @@ module.exports = function() {
 
 	var produto = new ShemaProdutos(dados);
  //   produto.save();
-/*
+
 ShemaProdutos.find(function(err, produtos) {
 		if (err)
 			return console.error(err);
 		console.log(produtos);
 	});
-*/
+
 	//listar de funções
 	var controller = {};
 	//função listar
