@@ -1,10 +1,13 @@
 <div class="row">
 	<div class="col-md-4">
 		<h4>Nome da Imagem</h4>
+		<p></p>
 		<div class="input-group">
 			  <input #codigoBarras type="text" (keyup.enter)="venda(codigoBarras.value); codigoBarras.value=''"
 				  class="form-control" placeholder="Codigo de Barras">
-			  <button (click)="venda(codigoBarras.value); codigoBarras.value=''">Add</button>
+					
+			  <button (click)="venda(codigoBarras.value); codigoBarras.value=''"
+				 class="btn btn-primary btn-lg btn-block">Add</button>
 		</div>
 		<p>Essa é uma discrição da imagem</p>
 	
@@ -25,8 +28,9 @@
 				</div>
 		</div>
 		<div class="col-md-4">
-			<h4> VALOR FINAL</h4>
-				<p>valor final</p>
+			<h4>Valor Total da Compra</h4>
+			<h3><p>{{valorTotalFinal}}</p></h3>
+			<button class="btn btn-primary btn-lg btn-block">Finalizar Venda</button>
 		</div>
 </div>
 		
