@@ -3,8 +3,13 @@ import {ProdutoModel} from './produto.model';
 export class VendasAvistaModel{
 
     _id?:number;
-    data: string;
+    data: Date;
     cod: number;
-    venda: ProdutoModel[];
+    momento: string;
+    produtos: ProdutoModel[] = [];
+
+    add(produto: ProdutoModel){
+        this.produtos.push(produto);
+    }
     
 }

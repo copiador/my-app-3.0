@@ -5,6 +5,12 @@ import {VendasAvistaService} from '../service/vendas-a-vista.service';
 import {VendasAvistaModel} from '../model/vendas-a-vista.model';
 import {ProdutoModel} from '../model/produto.model';
 
+import * as moment from 'moment';
+import 'moment/locale/pt-br';
+
+
+
+
 @Component({
 
     selector: '',
@@ -16,15 +22,25 @@ import {ProdutoModel} from '../model/produto.model';
 export class VendasComponente implements OnInit {
 
     produtos: ProdutoModel[];
-    vendas : VendasAvistaModel;
+    vendaAvista = new VendasAvistaModel();
     produtosVendidos = [];
-    valorTotalFinal : Number;
    
+    valorTotalFinal : Number;
+    
 
 
 
     constructor(private serviceVendas: VendasAvistaService){
 
+
+        console.log(moment.locale()); // en
+
+moment.locale('pt-BR');
+console.log(moment.locale());
+console.log("momento " + moment().format("MM,DD,YYYY , "));
+console.log("momento " + moment().format("MMMM,DD,YYYY , HH:M:Ss"));
+console.log(moment().format("dddd, MMMM Do YYYY, hh:mm:ss a")); // pt-BR
+let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
     }
     //pega a lista do servidor
     ngOnInit(){
@@ -52,16 +68,35 @@ export class VendasComponente implements OnInit {
     venda(codigoDeBarras : Number){
      let produtoFilter = this.produtos.findIndex(produto => produto.codigoBarras == codigoDeBarras) ;
      let produtoVendido = this.produtos[produtoFilter];
+     
     // this.produtosVendidos.push(produtoVendido);
     //console.log(produtoVendido.valor);
    
      this.produtosVendidos.push(produtoVendido);
-     //chama a função de somar todos os produtos da venda   
+    //prepara a venda para ser registrada no bando de dados
+     this.vendaAvista.add(produtoVendido);
+     //chama a função de somar todos os produtos da venda   e apresenta na tela
      this.valorTotal();
+   
+    
      
      //    this.clienteService.deleteCliente(cliente._id).subscribe
         //  (() => {this.clientes = this.clientes.filter(c => c !== cliente)});
     }
+
+
+    finalizarVenda(){
+        let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
+        let data = new Date();
+      //  this.vendaAvista.momento = momento;
+       // this.vendaAvista.data = data;
+        
+        console.log(this.vendaAvista.momento);
+        console.log(this.vendaAvista.data);
+        this.serviceVendas.adicionarVenda(this.vendaAvista).subscribe();
+       
+    }
+
 
     
 

@@ -43,7 +43,7 @@ export class VendasAvistaService {
 
   
  
- adicionarProduto(venda: VendasAvistaModel): Observable<VendasAvistaModel>{
+ adicionarVenda(venda: VendasAvistaModel): Observable<VendasAvistaModel>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
     
     let options = new RequestOptions({ headers: headers });

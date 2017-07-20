@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+require('mongoose-moment')(mongoose);
 
 //autoIncrement.initialize(mongoose.connection);
 
@@ -8,12 +9,15 @@ var schema = new mongoose.Schema({
         type: Number
     },
     data: {
-        type: String
+        type: Date
     },
-    venda:{
+    venda:[{
         type: mongoose.Schema.ObjectId,
         ref: 'Produto'
-    }
+    }],
+    momento:{
+        type: 'Moment'
+    } 
 	
 		
 });

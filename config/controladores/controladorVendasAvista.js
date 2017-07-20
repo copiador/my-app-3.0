@@ -1,4 +1,5 @@
 var modeloVendasAvistaSchema = require('../modelVendasAvista.js');
+var moment = require('moment');
 
 
 module.exports = function() {
@@ -6,17 +7,21 @@ module.exports = function() {
 	var ShemaVendasAvista = modeloVendasAvistaSchema.model('VendasAvista');
 	
 	
-	var dados = {codigo: 154574861, data: "15/01/2017"};
+
+	var data2 = new Date();
+	var dados = {codigo: 11, data: data2 };
 //	var dados = {codigo:2, nome: "guidinha", endereco: {rua: "chove pau", bairro: "beira rio", numero: 95,
 //	cidade: "taquaritinga",cep: 55790}};
+
+console.log("momento " + moment().format("MMMM,DD,YYYY , HH:M:Ss"));
 	var vendas = new ShemaVendasAvista(dados);
-//	usuario.save();
+//	vendas.save();
 //	var contato = new ShemaCliente({"nome":"guidinha"});
 	//contato2.save();
 	//contato2.nextCount()
 	
 
-	ShemaVendasAvista.find(function(err, Vendas) {
+	ShemaVendasAvista.find(function(err, vendas) {
 		if (err)return console.error(err);
 		console.log(vendas);
 	});
@@ -24,10 +29,34 @@ module.exports = function() {
 //listar de funções
 	var controller = {};
 
-	controller.vendas = function(req, res){
+	controller.adicionarVendas = function(req, res){
+		//coloca pega dos valores do servidor
+		valores = req.body;
+		//cria dos valores das dates e do momento
+		var data = new Date();
+		valores.data = data;
+		console.log(valores);
+	//	valores.momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a");
+		var vendas = new ShemaVendasAvista(valores);
+		
+		/*
+		
+		vendas.save(function(err, venda){
+			if (err) return handleError(err);
+			return res.json(venda);
+		})
 
+
+	*/
 	
 
+	};
+
+
+	controller.listarVendas = function(req, res){
+
+	console.log(req.body);
+		return res.json(req.body)
 	};
 
 

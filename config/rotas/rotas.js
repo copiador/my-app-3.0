@@ -20,7 +20,7 @@ module.exports = function(app) {
 	app.get('/api/produtos/:id', controllerProduto.buscarProduto);
 
 	//vendas
-	app.get('/api/vendas', controllerVendasAvista.vendas);
-	
+	app.get('/api/vendas', controllerVendasAvista.listarVendas);
+	app.post('/api/vendas', controllerVendasAvista.adicionarVendas);
 	
 };
