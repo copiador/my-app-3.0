@@ -1,0 +1,35 @@
+import { NgModule }       from '@angular/core';
+import { FormsModule }    from '@angular/forms';
+import { CommonModule }   from '@angular/common';
+// Componentes Vendas
+import {RelatoriosComponente} from './relatorios.componente';
+import {EstoqueComponente} from './resumos/estoque.componente';
+import {ResumoDoDiaComponente} from './resumos/resumo-do-dia.componente';
+import {VendasComponente} from './resumos/vendas.componente';
+// serviço
+import {RelatoriosService} from  '../service/relatorios.services';
+
+//rotas
+import{RelatoriosRouter} from './relatorios.router'
+
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    RelatoriosRouter
+   
+    
+  ],
+  declarations: [
+    RelatoriosComponente,// Relatorios componente
+    ResumoDoDiaComponente,
+    EstoqueComponente,
+    VendasComponente
+    
+    
+  ],
+  providers: [RelatoriosService]
+})
+
+export class RelatoriosModule { }

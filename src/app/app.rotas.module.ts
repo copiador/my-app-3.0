@@ -1,9 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//modulos
-import {VendasComponente} from './vendas/vendas.componente';
-import {LoginComponente} from './login/login.componente';
-import {RelatoriosComponente} from './relatorios/relatorios.componente';
+
+
 //guardas serviço
 import {LoginGuardaService} from './service/login.guarda.service';
 const routes: Routes = [
@@ -20,8 +18,8 @@ const routes: Routes = [
    },
    {
     path: 'relatorios-module', 
-    component: RelatoriosComponente,
-    canActivate: [LoginGuardaService]
+    loadChildren: './relatorios/relatorios.module#RelatoriosModule',
+    //canActivate: [LoginGuardaService]
 
 
    }

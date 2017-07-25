@@ -1,0 +1,54 @@
+<div class="col-md-10">
+    <h3>RESUMO DO DIA</h3>
+    	<div class="responsive">
+	    	<div class="col-md-10" class="panel panel-primary">
+                <div class="panel-heading">
+                     <h3 class="panel-title">Vendidos</h3>
+                </div>
+                
+	        	<div class="panel-body">
+
+                    <div class="col-md-6">
+          	        <table class="table table-striped">
+                    
+                    <th>Codigo</th>
+				    <th>Data</th>
+				    <th>VALOR</th>
+			        <tr *ngFor="let vendas of vendasAvista "  class="success">
+                       
+						<td>{{vendas.codigo}}</td>
+						<td>{{vendas.data}}</td>
+						<td>50,00</td>
+                    </tr>
+                     </table>
+                    <p>Valor TOTAL DE PRODUTOS: 100,00</p>
+                </div>
+                    <div class="col-md-4">grafico vendidos</div>
+
+                </div>
+                <div class="panel-heading">
+                     <h3 class="panel-title">Recebidos</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="col-md-6"> 
+               	    <table class="table table-striped">
+                    <th>CPF</th>
+                    <th>NOME</th>
+				    <th>VALOR</th>
+				        <tr class="success">
+						    <td>1</td>
+						    <td>JOSÉ ARRUDA</td>
+						    <td>20,00</td>
+                        </tr>
+                    </table>
+                    <p>Valor TOTAL RECEBIDOS: 100,00</p>
+                    </div>
+                    <div class="col-md-4">Grafico Recebido</div>
+                </div>
+
+
+            </div>
+          </div>
+	    <div class="panel panel-primary"><h4> VALOR FINAL: 250,00</h4></div>
+    </div> 

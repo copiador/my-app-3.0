@@ -88,11 +88,13 @@ let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
     finalizarVenda(){
         let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
         let data = new Date();
+        this.vendaAvista.valorTotalVenda = this.valorTotalFinal;
+        
       //  this.vendaAvista.momento = momento;
        // this.vendaAvista.data = data;
         
-        console.log(this.vendaAvista.momento);
-        console.log(this.vendaAvista.data);
+     
+        console.log(this.vendaAvista.valorTotalVenda);
         this.serviceVendas.adicionarVenda(this.vendaAvista).subscribe();
        
     }

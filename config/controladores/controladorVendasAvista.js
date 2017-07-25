@@ -19,12 +19,13 @@ console.log("momento " + moment().format("MMMM,DD,YYYY , HH:M:Ss"));
 //	var contato = new ShemaCliente({"nome":"guidinha"});
 	//contato2.save();
 	//contato2.nextCount()
-	
 
 	ShemaVendasAvista.find(function(err, vendas) {
-		if (err)return console.error(err);
-		console.log(vendas);
-	});
+			if (err)return console.error(err);
+			console.log(vendas);
+		});
+	
+
 
 //listar de funções
 	var controller = {};
@@ -34,29 +35,28 @@ console.log("momento " + moment().format("MMMM,DD,YYYY , HH:M:Ss"));
 		valores = req.body;
 		//cria dos valores das dates e do momento
 		var data = new Date();
+		//cria uma data
 		valores.data = data;
 		console.log(valores);
 	//	valores.momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a");
-		var vendas = new ShemaVendasAvista(valores);
-		
-		/*
-		
+		var vendas = new ShemaVendasAvista({data: data,
+	produtos: valores.produtos, valorTotalVenda: valores.valorTotalVenda});
 		vendas.save(function(err, venda){
-			if (err) return handleError(err);
-			return res.json(venda);
+			if(err){
+				return res.json(err);
+			}else{
+				return res.json(venda);
+			}
 		})
-
-
-	*/
 	
-
 	};
 
 
 	controller.listarVendas = function(req, res){
-
-	console.log(req.body);
-		return res.json(req.body)
+		ShemaVendasAvista.find(function(err, vendas) {
+			if (err)return console.error(err);
+			return res.json(vendas);
+		});
 	};
 
 

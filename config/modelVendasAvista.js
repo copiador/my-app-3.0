@@ -11,13 +11,16 @@ var schema = new mongoose.Schema({
     data: {
         type: Date
     },
-    venda:[{
+    produtos:[{
         type: mongoose.Schema.ObjectId,
         ref: 'Produto'
     }],
     momento:{
         type: 'Moment'
-    } 
+    }, 
+    valorTotalVenda:{
+        type: Number
+    }
 	
 		
 });
