@@ -10,7 +10,9 @@ export class VendasAvistaModel{
     valorTotalVenda : Number;
 
     add(produto: ProdutoModel){
-        this.produtos.push(produto);
+        let produto2 = new ProdutoModel();
+        produto2 = produto;
+        this.produtos.push(produto2);
     }
     
 }

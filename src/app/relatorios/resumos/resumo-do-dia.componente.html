@@ -9,22 +9,27 @@
 	        	<div class="panel-body">
 
                     <div class="col-md-6">
-          	        <table class="table table-striped">
-                    
-                    <th>Codigo</th>
-				    <th>Data</th>
-				    <th>VALOR</th>
-			        <tr *ngFor="let vendas of vendasAvista "  class="success">
-                       
-						<td>{{vendas.codigo}}</td>
-						<td>{{vendas.data}}</td>
-						<td>50,00</td>
-                    </tr>
-                     </table>
-                    <p>Valor TOTAL DE PRODUTOS: 100,00</p>
-                </div>
-                    <div class="col-md-4">grafico vendidos</div>
+                        <div *ngFor="let vendas of vendasAvista" class="list-group">
+                            <a class="list-group-item" 
+                            (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
+                               <h4 class="list-group-item-heading">{{vendas.codigo}}</h4>
+                                <p class="list-group-item-text">{{vendas.data}} 
+                                Valor Total: {{vendas.valorTotalVenda}} </p>
 
+                            </a>
+                        </div>
+          	            <p>Valor TOTAL DE PRODUTOS: 100,00</p>
+                    </div>
+                        <div *ngIf="produtosFiltrados" class="col-md-4">
+                            <table  class="table table-striped">
+				                <th>Nome</th>
+				                <th>Valor</th>
+				                    <tr class="success" *ngFor="let produtoFiltrado of produtosFiltrados">
+                                        <td>{{produtoFiltrado.nome}}</td>
+                                        <td>{{produtoFiltrado.valor}}</td>
+						            </tr>
+			                </table>
+                        </div>
                 </div>
                 <div class="panel-heading">
                      <h3 class="panel-title">Recebidos</h3>

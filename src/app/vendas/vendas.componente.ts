@@ -66,7 +66,11 @@ let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
    
     //coloca o codigo de barrras vindo e cadastra na tela
     venda(codigoDeBarras : Number){
+
+     //pega a lista vinda do servidor, e filtra o produto de acordo com o codigo de barras  
+     //essa variavel produtoFilter anexa o codigo de barras do produto vendido 
      let produtoFilter = this.produtos.findIndex(produto => produto.codigoBarras == codigoDeBarras) ;
+     //coloca o produto vendido em um modelo de produto
      let produtoVendido = this.produtos[produtoFilter];
      
     // this.produtosVendidos.push(produtoVendido);

@@ -32,6 +32,8 @@ export class RelatoriosService {
    
   }
 
+  
+
 
 private extractData(res: Response) {
     let body = res.json();

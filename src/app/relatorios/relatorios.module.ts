@@ -8,9 +8,10 @@ import {ResumoDoDiaComponente} from './resumos/resumo-do-dia.componente';
 import {VendasComponente} from './resumos/vendas.componente';
 // serviço
 import {RelatoriosService} from  '../service/relatorios.services';
+import {ProdutoService} from '../service/produto.service';
 
 //rotas
-import{RelatoriosRouter} from './relatorios.router'
+import{RelatoriosRouter} from './relatorios.router';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import{RelatoriosRouter} from './relatorios.router'
     
     
   ],
-  providers: [RelatoriosService]
+  providers: [RelatoriosService, ProdutoService]
 })
 
 export class RelatoriosModule { }
