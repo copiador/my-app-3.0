@@ -1,5 +1,5 @@
 <div class="col-md-10">
-    <h3>RESUMO DAS VENDAS</h3>
+    <h3>Vendas</h3>
     	<div class="responsive">
 	    	<div class="col-md-10" class="panel panel-primary">
                 <div class="panel-heading">
@@ -9,22 +9,31 @@
 	        	<div class="panel-body">
 
                     <div class="col-md-6">
-          	        <table class="table table-striped">
-                    
-                    <th>CODIGO</th>
-				    <th>NOME</th>
-				    <th>VALOR</th>
-			        <tr class="success">
-                       
-						<td>1123</td>
-						<td>hd externo</td>
-						<td>50,00</td>
-                    </tr>
-                     </table>
-                    <p>Valor TOTAL DE PRODUTOS: 100,00</p>
-                </div>
-                    <div class="col-md-4">grafico vendidos</div>
-
+                        <div *ngFor="let vendas of vendasAvista" class="list-group">
+                            <a class="list-group-item" 
+                            (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
+                               <h4 class="list-group-item-heading">{{vendas.codigo}}
+                                    <div class="pull-right">
+                                        <button class="btn btn-danger btn-xs" (click)="deleteVenda(vendas)">X</button>
+                                    </div>
+                                </h4>
+                                <p class="list-group-item-text">{{vendas.momento}} 
+                                Valor Total: {{vendas.valorTotalVenda}} </p>
+                                      
+                            </a>
+                        </div>
+          	           
+                    </div>
+                        <div *ngIf="produtosFiltrados" class="col-md-4">
+                            <table  class="table table-striped">
+				                <th>Nome</th>
+				                <th>Valor</th>
+				                    <tr  *ngFor="let produtoFiltrado of produtosFiltrados">
+                                        <td>{{produtoFiltrado.nome}}</td>
+                                        <td>{{produtoFiltrado.valor}}</td>
+						            </tr>
+			                </table>
+                        </div>
                 </div>
                 <div class="panel-heading">
                      <h3 class="panel-title">Recebidos</h3>

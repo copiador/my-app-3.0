@@ -8,7 +8,7 @@ module.exports = function() {
 	
 	
 	//	valores.momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a");
-	var valoresMomento = moment().format("YYYY-MM-DD, hh:mm:ss");
+	var valoresMomento = moment().format("DD-MM-YYYY, HH:mm:ss");
 	console.log("momento valores", valoresMomento);
 	var data2 = new Date();
 	var dados = {codigo: 11, data: valoresMomento };
@@ -36,7 +36,7 @@ module.exports = function() {
 		//coloca pega dos valores do servidor
 		valores = req.body;
 		//cria dos valores das dates e do momento
-		var dataMomento = moment().format("YYYY-MM-DD, hh:mm:ss");
+		var dataMomento = moment().format("DD-MM-YYYY, HH:mm:ss");
 		//var data = new Date();
 		//cria uma data
 		

@@ -24,6 +24,8 @@ module.exports = function(app) {
 	app.get('/api/vendas', controllerVendasAvista.listarVendas);
 	app.post('/api/vendas', controllerVendasAvista.adicionarVendas);
 	//relatorios
-	app.get('/api/relatorios/listarVendas', controllerRelatorios.listarVendasDoDia);	
+	app.get('/api/relatorios/listarVendasDoDia', controllerRelatorios.listarVendasDoDia);
+	app.get('/api/relatorios/listarVendas', controllerRelatorios.listarVendas);	
+	app.delete('/api/relatorios/listarVendas/:id', controllerRelatorios.deleteVenda);	
 			  
 };

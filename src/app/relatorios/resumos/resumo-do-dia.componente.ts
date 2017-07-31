@@ -29,6 +29,7 @@ export class ResumoDoDiaComponente implements OnInit {
     //lista de todos produtos filtrados pela venda
     //Quando o usuario clica na lista de vendas, cada lista de vendas tem uma lista de produtos
     produtosFiltrados: ProdutoModel[] = [];
+    //variavel que soma todos os valores das vendas do dia e posta da tela
     valorTotalVendasDoDia : number = 0;
 
 
@@ -43,11 +44,12 @@ export class ResumoDoDiaComponente implements OnInit {
 
     ngOnInit(){
         //pega a lista de vendas vinda do servidor
-        this.relatoriosService.getRelatorioVendas()
+        this.relatoriosService.getRelatorioVendasDoDia()
         .subscribe(vendasAVista => this.vendasAvista = vendasAVista,Error,()=>{
+            //codigo que pega as vendas do db e posta a soma de todas as vendas
             this.vendasAvista.forEach((venda)=>{
                 this.valorTotalVendasDoDia += venda.valorTotalVenda;
-                console.log(this.valorTotalVendasDoDia);
+                
             })
         });
         //pega a lista de produtos do servidor
@@ -57,14 +59,15 @@ export class ResumoDoDiaComponente implements OnInit {
     }
 
     onSelect(vendasAvista: VendasAvistaModel){
+        //iniciaza as variaveis das lista com 0, para que quando o usuario clicar 2 vezes zerar tudo
        this.produtosSelected.length = 0;
         this.produtosFiltrados.length = 0;
        
-        //pega a lista de vendas
+        //pega a lista de venda clica do usuario
       
        this.vendasSelected = vendasAvista;
       
-       //coloca a lista de produtos selecionados e coloca dentro de um array de produtos selecionados
+       //coloca a lista de vendas selecionados e coloca dentro de um array de produtos selecionados
         this.vendasSelected.produtos.forEach((value, index)=>{
          // console.log(_id._id);
             this.produtosSelected.push(value);
@@ -72,7 +75,8 @@ export class ResumoDoDiaComponente implements OnInit {
        });
 
       
-
+       //pega a lista de venda clicada pelo usuario, junto da lista de vendas vindas do bd
+       //e compara os produtos clicados pelo usuario com a lista de produtos vindo do bd
       this.produtosSelected.forEach((value2, index)=>{
             console.log(value2);
             this.produtos.forEach((value,index)=>{
