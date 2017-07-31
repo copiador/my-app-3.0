@@ -13,18 +13,18 @@
                             <a class="list-group-item" 
                             (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
                                <h4 class="list-group-item-heading">{{vendas.codigo}}</h4>
-                                <p class="list-group-item-text">{{vendas.data}} 
+                                <p class="list-group-item-text">{{vendas.momento}} 
                                 Valor Total: {{vendas.valorTotalVenda}} </p>
 
                             </a>
                         </div>
-          	            <p>Valor TOTAL DE PRODUTOS: 100,00</p>
+          	            <p>Valor TOTAL DE PRODUTOS: {{valorTotalVendasDoDia}}</p>
                     </div>
                         <div *ngIf="produtosFiltrados" class="col-md-4">
                             <table  class="table table-striped">
 				                <th>Nome</th>
 				                <th>Valor</th>
-				                    <tr class="success" *ngFor="let produtoFiltrado of produtosFiltrados">
+				                    <tr  *ngFor="let produtoFiltrado of produtosFiltrados">
                                         <td>{{produtoFiltrado.nome}}</td>
                                         <td>{{produtoFiltrado.valor}}</td>
 						            </tr>

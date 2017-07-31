@@ -16,7 +16,7 @@ var schema = new mongoose.Schema({
         ref: 'Produto'
     }],
     momento:{
-        type: 'Moment'
+        type: String
     }, 
     valorTotalVenda:{
         type: Number

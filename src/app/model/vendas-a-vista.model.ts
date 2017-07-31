@@ -7,7 +7,7 @@ export class VendasAvistaModel{
     cod: Number;
     momento: String;
     produtos: ProdutoModel[] = [];
-    valorTotalVenda : Number;
+    valorTotalVenda : number;
 
     add(produto: ProdutoModel){
         let produto2 = new ProdutoModel();

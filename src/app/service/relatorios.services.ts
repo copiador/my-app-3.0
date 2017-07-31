@@ -26,7 +26,7 @@ export class RelatoriosService {
     }
 
 
-  getRelatorioVendas(): Observable<VendasAvistaModel> {
+  getRelatorioVendas(): Observable<VendasAvistaModel[]> {
     
     return this.http.get(this.relatoriosVendasUrl).map(res => res.json()) ;
    

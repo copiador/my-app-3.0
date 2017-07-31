@@ -25,7 +25,7 @@ export class VendasComponente implements OnInit {
     vendaAvista = new VendasAvistaModel();
     produtosVendidos = [];
    
-    valorTotalFinal : Number;
+    valorTotalFinal : number;
     
 
 

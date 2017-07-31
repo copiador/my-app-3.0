@@ -9,14 +9,34 @@ var moment = require('moment');
 module.exports = function() {
 
 
+	
+
+	
+	
+	//var valoresMomento = moment().format("2017-07-27");
+	//console.log(valoresMomento);
+
+
+		
+        
+
 
 	var controller = {};
 
 	controller.listarVendasDoDia = function(req, res){
+
+		var valoresMomento = moment().format("YYYY-MM-DD");
+		console.log(valoresMomento);
+
+		ShemaVendasAvista.find({ "momento" : { "$gte" : valoresMomento } },
+		  function(err, vendas) {
+			if (err)return console.error(err);
+			return res.json(vendas);
+		});
 		
         ShemaVendasAvista.find(function(err, vendas) {
 			if (err)return console.error(err);
-			return res.json(vendas);
+			return console.log(vendas);
 		});
         
 

@@ -19,30 +19,40 @@ import {ProdutoModel} from './../../model/produto.model';
 export class ResumoDoDiaComponente implements OnInit {
 
     //lista todas as vendas
-    vendasAvista: VendasAvistaModel;
+    vendasAvista: VendasAvistaModel[];
     //lista de vendas selecionadas
     vendasSelected : VendasAvistaModel;
     //produtos selecionados
-   produtosSelected: any[] = [];
+    produtosSelected: any[] = [];
     //lista de todos os produtos
     produtos: ProdutoModel[];
     //lista de todos produtos filtrados pela venda
     //Quando o usuario clica na lista de vendas, cada lista de vendas tem uma lista de produtos
     produtosFiltrados: ProdutoModel[] = [];
+    valorTotalVendasDoDia : number = 0;
+
+
 
 
 
     constructor(private relatoriosService : RelatoriosService, 
         private produtoService: ProdutoService){
 
+           
     }
 
     ngOnInit(){
         //pega a lista de vendas vinda do servidor
         this.relatoriosService.getRelatorioVendas()
-        .subscribe(vendasAVista => this.vendasAvista = vendasAVista);
+        .subscribe(vendasAVista => this.vendasAvista = vendasAVista,Error,()=>{
+            this.vendasAvista.forEach((venda)=>{
+                this.valorTotalVendasDoDia += venda.valorTotalVenda;
+                console.log(this.valorTotalVendasDoDia);
+            })
+        });
         //pega a lista de produtos do servidor
         this.produtoService.getProdutos().subscribe(produtos => this.produtos = produtos);
+        
 
     }
 
@@ -72,10 +82,13 @@ export class ResumoDoDiaComponente implements OnInit {
                 }
             })
       })
-        
-       
+     }
+     
+    
 
-       /*pega a lista de produtos vindos do servidor, e compara a lista os _ids lista da venda 
+}
+
+  /*pega a lista de produtos vindos do servidor, e compara a lista os _ids lista da venda 
        clicada pelo usuario 
        this.produtosFiltrados = this.produtos.
        filter(produto=>this.vendasSelected.produtos.
@@ -104,8 +117,4 @@ export class ResumoDoDiaComponente implements OnInit {
             */
           
 
-    }
-
-
-}
-
+   
