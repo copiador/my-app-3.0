@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
   pure: false
 })
 
-export class CustomerEmailFilter implements PipeTransform {
+export class CrudFilterClientePipe implements PipeTransform {
   transform(clientes: ClienteModel[], args: any){
     if(!clientes || !args ){
            return clientes;

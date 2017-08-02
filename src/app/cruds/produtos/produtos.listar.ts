@@ -6,7 +6,7 @@ import {ProdutoService} from './../../service/produto.service';
 import {ProdutoModel} from './../../model/produto.model';
 //rotas
 import {Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {CustomerEmailFilter} from './../crud.filter.pipe';
+
 
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';

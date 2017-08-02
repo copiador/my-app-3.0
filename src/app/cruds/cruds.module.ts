@@ -20,7 +20,7 @@ import {ProdutoEditar} from './produtos/produto.editar';
 import {ClienteService} from './../service/cliente.service';
 import {ProdutoService} from './../service/produto.service';
 //pipe
-import {CustomerEmailFilter} from './crud.filter.pipe';
+import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
 
 
 @NgModule({
@@ -41,7 +41,7 @@ import {CustomerEmailFilter} from './crud.filter.pipe';
     ProdutosListar,//Produtos Listar
     ProdutosCadastrar,//Produtos Cadastrar
     ProdutoEditar,//produto editar
-    CustomerEmailFilter, // pipe filtros para procurar na lista
+    CrudFilterClientePipe, // pipe filtros para procurar na lista
     ClientesTeste
  
     

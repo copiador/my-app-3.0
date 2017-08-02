@@ -15,14 +15,14 @@ module.exports = function() {
 //	var contato = new ShemaCliente({"nome":"guidinha"});
 	//contato2.save();
 	//contato2.nextCount()
-/*
+
 
 modeloClienteSchema.find(function(err, clientes) {
 		if (err)
 			return console.error(err);
 		console.log(clientes);
 	});
-*/
+
 
 
 	//listar de funções

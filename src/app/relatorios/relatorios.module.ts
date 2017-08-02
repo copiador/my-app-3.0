@@ -12,6 +12,8 @@ import {ProdutoService} from '../service/produto.service';
 
 //rotas
 import{RelatoriosRouter} from './relatorios.router';
+//pipe estoque
+import {EstoquePipe} from './resumos/estoque.pipe'
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import{RelatoriosRouter} from './relatorios.router';
     RelatoriosComponente,// Relatorios componente
     ResumoDoDiaComponente,
     EstoqueComponente,
-    VendasComponente
+    VendasComponente,
+    EstoquePipe
     
     
   ],

@@ -6,7 +6,7 @@ import {ClienteService} from './../../service/cliente.service';
 import {ClienteModel} from './../../model/cliente.model';
 //rotas
 import {Router, ActivatedRoute, Params } from '@angular/router';
-import {CustomerEmailFilter} from './../crud.filter.pipe';
+
 
 
 @Component({

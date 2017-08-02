@@ -6,3 +6,11 @@ export class ProdutoModel{
     quantidade: number;
 
 }
+
+export const constRelatorioProdutos = [
+    
+    {id: 1, relatorioProdutos: 'Todos os produtos'},
+    {id: 2, relatorioProdutos: 'Produtos com menor quantidade'},
+    {id: 3, relatorioProdutos: 'Produtos em falta'}
+
+];

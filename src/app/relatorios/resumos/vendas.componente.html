@@ -9,7 +9,8 @@
 	        	<div class="panel-body">
 
                     <div class="col-md-6">
-                        <div *ngFor="let vendas of vendasAvista" class="list-group">
+                        <div *ngFor="let vendas of vendasAvista" 
+                        class="list-group">
                             <a class="list-group-item" 
                             (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
                                <h4 class="list-group-item-heading">{{vendas.codigo}}
