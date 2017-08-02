@@ -9,12 +9,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="sel1">Select list:</label>
-                                <select [(ngModel)]="valueVariavel" >
-                                    <option *ngFor="let relatorio of arrayRelatorioProdutos" [ngValue]="relatorio.id">
+                                <select [(ngModel)]="valueSelect" >
+                                    <option *ngFor="let relatorio of arrayRelatorioProdutos" 
+                                    [ngValue]="relatorio.id">
                                     {{relatorio.relatorioProdutos}}
                                     </option>
                                 </select>
-                                {{valueVariavel}}
+                                {{valueSelect}}
 
                         </div>
           	        <table class="table table-striped">
@@ -22,7 +23,7 @@
 				        <th>Nome</th>
                         <th>Quantidade</th>
                         <th>Valor</th>
-			                <tr *ngFor="let produto of listaProdutos" class="success">
+			                <tr *ngFor="let produto of listaProdutos | filterEstoque: valueSelect" class="success">
                         	    <td>{{produto.codigo}}</td>
                                 <td>{{produto.nome}}</td>
                                 <td>{{produto.quantidade}}</td>

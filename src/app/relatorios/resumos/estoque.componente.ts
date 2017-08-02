@@ -17,7 +17,7 @@ export class EstoqueComponente implements OnInit {
     listaProdutos: ProdutoModel[];
     arrayRelatorioProdutos = constRelatorioProdutos;
     //pega o valor o id do select
-    valueVariavel: any;
+    valueSelect: any;
 
     constructor(private produtoService: ProdutoService){
 
