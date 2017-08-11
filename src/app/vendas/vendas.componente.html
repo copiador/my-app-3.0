@@ -22,14 +22,26 @@
 						</tr>
 						<tr *ngFor="let produtoVendido of produtosVendidos">
 							<td>{{produtoVendido.nome}}</td>
-							<td>{{produtoVendido.valor}}</td>
+							<td>{{produtoVendido.valor}}<div class="pull-right">
+                            	<button class="btn btn-danger btn-xs" (click)="deleteVenda(produtoVendido)">X</button>
+                            </div></td>
+							
 						</tr>
+					</table>
+					<table>
+						<tr *ngFor="let produto of produtos">
+							<td>{{produto.nome}}</td>
+							<td>{{produto.quantidade}}</td>
+							
+						</tr>
+						
 					</table>
 				</div>
 		</div>
 		<div class="col-md-4">
 			<h4>Valor Total da Compra</h4>
 			<h3><p>{{valorTotalFinal}}</p></h3>
+			<button class="btn btn-primary btn-lg btn-block" (click)="atualizarEstoque()">Estoque</button>
 			<button class="btn btn-primary btn-lg btn-block" (click)="finalizarVenda()">Finalizar Venda</button>
 		</div>
 </div>

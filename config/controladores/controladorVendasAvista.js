@@ -1,15 +1,18 @@
 var modeloVendasAvistaSchema = require('../modelVendasAvista.js');
+var modeloProdutoSchema = require('../modelProduto.js');
+
 var moment = require('moment');
 
 
 module.exports = function() {
 
 	var ShemaVendasAvista = modeloVendasAvistaSchema.model('VendasAvista');
+	var ShemaProdutos = modeloProdutoSchema.model('Produto');
 	
 	
 	//	valores.momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a");
 	var valoresMomento = moment().format("DD-MM-YYYY, HH:mm:ss");
-	console.log("momento valores", valoresMomento);
+	
 	var data2 = new Date();
 	var dados = {codigo: 11, data: valoresMomento };
 //	var dados = {codigo:2, nome: "guidinha", endereco: {rua: "chove pau", bairro: "beira rio", numero: 95,
@@ -28,8 +31,15 @@ module.exports = function() {
 		});
 	
 
+
+		
 */
 //listar de funções
+
+
+	
+
+
 	var controller = {};
 
 	controller.adicionarVendas = function(req, res){
@@ -40,10 +50,35 @@ module.exports = function() {
 		//var data = new Date();
 		//cria uma data
 		
-		console.log(valores);
+		//console.log(valores);
 	//	valores.momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a");
 		var vendas = new ShemaVendasAvista({momento: dataMomento,
 		produtos: valores.produtos, valorTotalVenda: valores.valorTotalVenda});
+		//função para diminuir do estoque os produtos quando faz a venda
+		
+		var produtos = [];
+		produtos = valores.produtos;
+
+		
+		
+		produtos.forEach(function(produto){
+			
+			ShemaProdutos.findById(produto._id,function(err,produto){
+				if(err){
+					console.log(err);
+				}else{
+					var produtosUpdate = [];
+					produtosUpdate.push(produto);
+					
+				}
+									
+			})
+
+
+		})
+		
+		
+		/*
 		vendas.save(function(err, venda){
 			if(err){
 				return res.json(err);
@@ -51,7 +86,7 @@ module.exports = function() {
 				return res.json(venda);
 			}
 		})
-	
+		*/
 	};
 
 
@@ -63,6 +98,7 @@ module.exports = function() {
 	};
 
 
+	
 
 
 	//função logar
@@ -70,4 +106,35 @@ module.exports = function() {
 	return controller;
 
 //fecha os dados
+
+/*
+			
+			ShemaProdutos.findById(produto._id, function(err, produto){
+				if (err){
+					console.log(err)
+				}else{
+
+					if(produto.quantidade == 0){
+						console.log("Venda não efetuada, não existe no estoque 1")
+
+					}else{
+						var produtoUpdate = produto;
+					//testa se o produto tem uma quantidade maior que 0, pois se caso ela tem 0 ele não tem no estoque
+						if(produtoUpdate.quantidade != 0){
+						console.log("a quantidade do produto é", produtoUpdate.quantidade)
+						//pega a quantidade do produto e coloca -1 do estoque já que ele foi vendido
+						produtoUpdate.quantidade = produtoUpdate.quantidade -1;
+						//atualiza o bd
+						
+
+					}
+
+					//pega o produto vindo do bd e procurando pela lista
+					
+				}
+				
+				
+				
+		})
+			*/
 };

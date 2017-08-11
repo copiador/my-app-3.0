@@ -25,7 +25,7 @@ var schema = new mongoose.Schema({
 	
 		
 });
-console.log('shema Produto ok');
+
 
 
 

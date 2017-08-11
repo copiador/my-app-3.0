@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 //serviços
 import {VendasAvistaService} from '../service/vendas-a-vista.service';
+import {ProdutoService} from '../service/produto.service';
 //Model
 import {VendasAvistaModel} from '../model/vendas-a-vista.model';
 import {ProdutoModel} from '../model/produto.model';
@@ -30,7 +31,7 @@ export class VendasComponente implements OnInit {
 
 
 
-    constructor(private serviceVendas: VendasAvistaService){
+    constructor(private serviceVendas: VendasAvistaService, private produtoService: ProdutoService ){
 
 
         console.log(moment.locale()); // en
@@ -75,8 +76,10 @@ let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
      
     // this.produtosVendidos.push(produtoVendido);
     //console.log(produtoVendido.valor);
-   
+   //adiciona em uma lista os produtos vendidos
      this.produtosVendidos.push(produtoVendido);
+     //atualisar a o estoque
+    this.diminueEstoque(produtoVendido);
     //prepara a venda para ser registrada no bando de dados
      this.vendaAvista.add(produtoVendido);
      //chama a função de somar todos os produtos da venda   e apresenta na tela
@@ -103,8 +106,43 @@ let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
        
     }
 
+    diminueEstoque(produto: ProdutoModel){
 
+        //a atualiza o estoque a cada produto vendido
+        let produtoAtualizado = new ProdutoModel();
+        produtoAtualizado = produto;
+        produtoAtualizado.quantidade = produtoAtualizado.quantidade -1;
+
+            this.produtoService.atualizarProduto(produtoAtualizado).subscribe();
+          
+        }
+
+        deleteVenda(produto: ProdutoModel){
+            //pega o index do objeto e deleta o objeto da do array            
+            let index = this.produtosVendidos.indexOf(produto);
+            if (index > -1) {
+                this.produtosVendidos.splice(index, 1);
+                //a atualiza o estoque a cada produto tirado da venda
+                this.aumentaEstoque(produto);
+                //Atualiza o valor total da venda depois de tirado o produto da venda
+                this.valorTotal();
+            }
+            
+            
+        }
+
+        aumentaEstoque(produto: ProdutoModel){
+
+        //a atualiza o estoque a cada produto tirado da venda
+        let produtoAtualizado = new ProdutoModel();
+        produtoAtualizado = produto;
+        produtoAtualizado.quantidade = produtoAtualizado.quantidade +1;
+
+            this.produtoService.atualizarProduto(produtoAtualizado).subscribe();
+          
+        }
+  
     
-
 }
+
 

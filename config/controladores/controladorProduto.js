@@ -68,6 +68,22 @@ ShemaProdutos.find(function(err, produtos) {
 				return res.json(produto);
 			});
 		};
+
+	controller.atualizarEstoque = function(req, res){
+
+		var produto = req.body;
+		console.log("id do produto pra atulizar",produto._id);
+		ShemaProdutos.findByIdAndUpdate(produto._id, {quantidade: produto.quantidade},function(err, produto){
+			if(err){
+				return(err);
+			}else{
+				return res.json("Estoque Atualizado")
+			}
+			
+		});
+		
+
+	}
 	controller.deleteProduto = function (req, res) {
 		//pega o id do cliente
 		var _idProduto = req.params.id;

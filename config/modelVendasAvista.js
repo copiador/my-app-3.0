@@ -24,7 +24,7 @@ var schema = new mongoose.Schema({
 	
 		
 });
-console.log('shema Vendas a vista ok');
+
 
 
 

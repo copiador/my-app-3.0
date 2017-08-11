@@ -26,7 +26,7 @@ var schema = new mongoose.Schema({
 	
 		
 });
-console.log('shema Usuario ok');
+
 
 
 

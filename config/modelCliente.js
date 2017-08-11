@@ -16,7 +16,7 @@ var schema = new mongoose.Schema({
 	
 		
 });
-console.log('shema ok');
+
 
 
 

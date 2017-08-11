@@ -19,6 +19,8 @@ module.exports = function(app) {
 	app.post('/api/produtos', controllerProduto.adicionarProduto);
 	app.delete('/api/produtos/:id', controllerProduto.deleteProduto);
 	app.get('/api/produtos/:id', controllerProduto.buscarProduto);
+	//esse atualizar produto serve para atualizar o estoque quando a venda é feita.
+	app.put('/api/produtos', controllerProduto.atualizarEstoque);
 
 	//vendas
 	app.get('/api/vendas', controllerVendasAvista.listarVendas);

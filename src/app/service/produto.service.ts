@@ -50,13 +50,13 @@ export class ProdutoService {
     return this.http.delete(url).map(this.extractData);
   }
 
-  atualizarCliente(cliente:ProdutoModel): Observable<ProdutoModel[]>{
+  atualizarProduto(produto:ProdutoModel): Observable<ProdutoModel[]>{
     
     var url = this.produtosUrl;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     
-    return this.http.put(url,cliente,options).map(this.extractData);
+    return this.http.put(url,produto,options).map(this.extractData);
   }
 
 
