@@ -32,10 +32,10 @@ modeloClienteSchema.find(function(err, clientes) {
 	//função listar
 	controller.listarClientes = function(req, res) {
 		//função para listar
-		ShemaCliente.find(function(err, contatos) {
+		ShemaCliente.find(function(err, clientes) {
 			if (err) return console.error(err);
 			//envia via json os dados de todos os clientes
-			res.json(contatos);
+			res.json(clientes);
 		})
 	
 		

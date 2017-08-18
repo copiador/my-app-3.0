@@ -2,9 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 //serviços
 import {VendasAvistaService} from '../service/vendas-a-vista.service';
 import {ProdutoService} from '../service/produto.service';
+import {ClienteService} from '../service/cliente.service';
 //Model
 import {VendasAvistaModel} from '../model/vendas-a-vista.model';
 import {ProdutoModel} from '../model/produto.model';
+import {ClienteModel} from '../model/cliente.model';
 
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
@@ -25,27 +27,24 @@ export class VendasComponente implements OnInit {
     produtos: ProdutoModel[];
     vendaAvista = new VendasAvistaModel();
     produtosVendidos = [];
-   
     valorTotalFinal : number;
+    clientes: ClienteModel[];
+    clienteSelected: ClienteModel;
+    values: string; // valores para buscar
+    //butão pra mostrar lista de clientes e fechar lista
+    listarClienteButton: boolean = true;
     
 
 
 
-    constructor(private serviceVendas: VendasAvistaService, private produtoService: ProdutoService ){
+    constructor(private serviceVendas: VendasAvistaService,
+         private produtoService: ProdutoService, private clienteService: ClienteService ){
 
-
-        console.log(moment.locale()); // en
-
-moment.locale('pt-BR');
-console.log(moment.locale());
-console.log("momento " + moment().format("MM,DD,YYYY , "));
-console.log("momento " + moment().format("MMMM,DD,YYYY , HH:M:Ss"));
-console.log(moment().format("dddd, MMMM Do YYYY, hh:mm:ss a")); // pt-BR
-let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
     }
     //pega a lista do servidor
     ngOnInit(){
         this.serviceVendas.getProdutos().subscribe(produtos => this.produtos = produtos);
+        
         
     }
    //pega o valor tde todos os produtos da venda soma todos
@@ -85,23 +84,12 @@ let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
      //chama a função de somar todos os produtos da venda   e apresenta na tela
      this.valorTotal();
    
-    
-     
-     //    this.clienteService.deleteCliente(cliente._id).subscribe
-        //  (() => {this.clientes = this.clientes.filter(c => c !== cliente)});
     }
 
 
     finalizarVenda(){
-        let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
-        let data = new Date();
+       
         this.vendaAvista.valorTotalVenda = this.valorTotalFinal;
-        
-      //  this.vendaAvista.momento = momento;
-       // this.vendaAvista.data = data;
-        
-     
-        console.log(this.vendaAvista.valorTotalVenda);
         this.serviceVendas.adicionarVenda(this.vendaAvista).subscribe();
        
     }
@@ -141,6 +129,28 @@ let momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a"); // pt-BR
             this.produtoService.atualizarProduto(produtoAtualizado).subscribe();
           
         }
+
+
+        onSelect(cliente: ClienteModel){
+            
+
+            this.clienteSelected = cliente;
+            this.vendaAvista.cliente = this.clienteSelected;
+            console.log(this.vendaAvista.cliente);
+
+        }
+
+        onKey(event: any){
+            this.values = event.target.value;
+
+        }
+
+        listarClientes(){
+
+            this.listarClienteButton = !this.listarClienteButton;
+            this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
+        }
+       
   
     
 }

@@ -3,6 +3,7 @@ var controllerUsuario = require('../controladores/controladorUsuario.js')();
 var controllerProduto = require('../controladores/controladorProduto.js')();
 var controllerVendasAvista = require('../controladores/controladorVendasAvista.js')();
 var controllerRelatorios = require('../controladores/controladorRelatorios.js')();
+var controllerRecebidos = require('../controladores/controladorRecebidos.js')();
 
 module.exports = function(app) {
 	//app.get('/index', controller.index);
@@ -29,5 +30,7 @@ module.exports = function(app) {
 	app.get('/api/relatorios/listarVendasDoDia', controllerRelatorios.listarVendasDoDia);
 	app.get('/api/relatorios/listarVendas', controllerRelatorios.listarVendas);	
 	app.delete('/api/relatorios/listarVendas/:id', controllerRelatorios.deleteVenda);	
+	//recebidos
+	app.post('/api/recebidos/recebidos', controllerRecebidos.adicionarRecebidos);
 			  
 };

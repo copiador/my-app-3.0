@@ -9,7 +9,6 @@ module.exports = function() {
 	var ShemaVendasAvista = modeloVendasAvistaSchema.model('VendasAvista');
 	var ShemaProdutos = modeloProdutoSchema.model('Produto');
 	
-	
 	//	valores.momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a");
 	var valoresMomento = moment().format("DD-MM-YYYY, HH:mm:ss");
 	
@@ -30,15 +29,9 @@ module.exports = function() {
 			console.log(vendas);
 		});
 	
-
-
 		
 */
 //listar de funções
-
-
-	
-
 
 	var controller = {};
 
@@ -50,17 +43,36 @@ module.exports = function() {
 		//var data = new Date();
 		//cria uma data
 		
-		//console.log(valores);
 	//	valores.momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a");
-		var vendas = new ShemaVendasAvista({momento: dataMomento,
-		produtos: valores.produtos, valorTotalVenda: valores.valorTotalVenda});
-		//função para diminuir do estoque os produtos quando faz a venda
 		
+		if(valores.cliente){
+			
+		
+			var vendas = new ShemaVendasAvista({momento: dataMomento,
+			produtos: valores.produtos,
+			valorTotalVenda: valores.valorTotalVenda,cliente: valores.cliente});
+			vendas.save(function(err, vendas){
+				 if (err) return console.error(err);
+				  return res.json(vendas);
+			});
+		}else{
+		
+			var vendas = new ShemaVendasAvista({momento: dataMomento,
+			produtos: valores.produtos,
+			valorTotalVenda: valores.valorTotalVenda});
+			vendas.save(function(err,vendas){
+				 if (err) return console.error(err);
+				  return res.json(vendas);
+			});
+		}
+		
+		
+	
+		//função para diminuir do estoque os produtos quando faz a venda
+		/*
 		var produtos = [];
 		produtos = valores.produtos;
 
-		
-		
 		produtos.forEach(function(produto){
 			
 			ShemaProdutos.findById(produto._id,function(err,produto){
@@ -71,22 +83,11 @@ module.exports = function() {
 					produtosUpdate.push(produto);
 					
 				}
-									
 			})
-
-
 		})
-		
-		
-		/*
-		vendas.save(function(err, venda){
-			if(err){
-				return res.json(err);
-			}else{
-				return res.json(venda);
-			}
-		})
+
 		*/
+	
 	};
 
 
@@ -97,44 +98,7 @@ module.exports = function() {
 		});
 	};
 
-
-	
-
-
-	//função logar
-
 	return controller;
 
-//fecha os dados
 
-/*
-			
-			ShemaProdutos.findById(produto._id, function(err, produto){
-				if (err){
-					console.log(err)
-				}else{
-
-					if(produto.quantidade == 0){
-						console.log("Venda não efetuada, não existe no estoque 1")
-
-					}else{
-						var produtoUpdate = produto;
-					//testa se o produto tem uma quantidade maior que 0, pois se caso ela tem 0 ele não tem no estoque
-						if(produtoUpdate.quantidade != 0){
-						console.log("a quantidade do produto é", produtoUpdate.quantidade)
-						//pega a quantidade do produto e coloca -1 do estoque já que ele foi vendido
-						produtoUpdate.quantidade = produtoUpdate.quantidade -1;
-						//atualiza o bd
-						
-
-					}
-
-					//pega o produto vindo do bd e procurando pela lista
-					
-				}
-				
-				
-				
-		})
-			*/
 };

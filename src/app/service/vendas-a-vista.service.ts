@@ -53,26 +53,7 @@ export class VendasAvistaService {
     return this.http.post(this.vendasAvistaUrl, venda, options ).map(this.extractData);
   }
 
-  /*
 
-  deleteProduto(_id: number): Observable<ProdutoModel[]>{
-    
-    var url = this.produtosUrl + "/" + _id;
-    
-    return this.http.delete(url).map(this.extractData);
-  }
-*/
-/*
-  atualizarCliente(cliente:ProdutoModel): Observable<ProdutoModel[]>{
-    
-    var url = this.produtosUrl;
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    
-    return this.http.put(url,cliente,options).map(this.extractData);
-  }
-
-*/
   private extractData(res: Response) {
     let body = res.json();
     console.log(body);

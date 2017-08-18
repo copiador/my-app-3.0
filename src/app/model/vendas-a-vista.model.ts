@@ -1,4 +1,5 @@
 import {ProdutoModel} from './produto.model';
+import {ClienteModel} from './cliente.model';
 
 export class VendasAvistaModel{
 
@@ -8,6 +9,7 @@ export class VendasAvistaModel{
     momento: String;
     produtos: ProdutoModel[] = [];
     valorTotalVenda : number;
+    cliente : ClienteModel;
 
     add(produto: ProdutoModel){
         let produto2 = new ProdutoModel();

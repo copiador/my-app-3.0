@@ -11,18 +11,14 @@ var schema = new mongoose.Schema({
     data: {
         type: Date
     },
-    produtos:[{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Produto'
-    }],
     cliente:{
-        type:mongoose.Schema.ObjectId,
-        ref:'Cliente'
+        type: mongoose.Schema.ObjectId,
+        ref: 'Cliente'
     },
     momento:{
         type: String
     }, 
-    valorTotalVenda:{
+    valorRecebido:{
         type: Number
     }
 	
@@ -32,7 +28,7 @@ var schema = new mongoose.Schema({
 
 
 
-var modeloVendasAvista = mongoose.model('VendasAvista', schema);
+var modeloRecebidos = mongoose.model('Recebidos', schema);
 //autoIncrement.plugin(schema,'Cliente');
 
-module.exports = modeloVendasAvista;
+module.exports = modeloRecebidos;

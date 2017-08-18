@@ -6,22 +6,24 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginGuardaService} from './service/login.guarda.service';
 const routes: Routes = [
  //navs
-   
+    {
+    path: 'vendas-module', 
+    loadChildren: './vendas/vendas.module#VendasModule',
+   },
+   {
+    path: 'recebidos-module', 
+    loadChildren: './recebidos/recebidos.module#RecebidosModule',
+   },
      
    {
     path: 'cruds-nav-module', 
     loadChildren: './cruds/cruds.module#CrudsModule',
    },
-   {
-    path: 'vendas-module', 
-    loadChildren: './vendas/vendas.module#VendasModule',
-   },
+  
    {
     path: 'relatorios-module', 
     loadChildren: './relatorios/relatorios.module#RelatoriosModule',
     //canActivate: [LoginGuardaService]
-
-
    }
 ]
 @NgModule({

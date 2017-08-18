@@ -28,21 +28,33 @@
 							
 						</tr>
 					</table>
-					<table>
-						<tr *ngFor="let produto of produtos">
-							<td>{{produto.nome}}</td>
-							<td>{{produto.quantidade}}</td>
-							
-						</tr>
-						
-					</table>
+					
 				</div>
 		</div>
 		<div class="col-md-4">
 			<h4>Valor Total da Compra</h4>
 			<h3><p>{{valorTotalFinal}}</p></h3>
-			<button class="btn btn-primary btn-lg btn-block" (click)="atualizarEstoque()">Estoque</button>
+			<h4><p>Escolha o cliente</p></h4>
+			<input type="button" class="btn btn-primary btn-lg btn-block" 
+			[value]="listarClienteButton ? 'Listar Clientes' : 'Fechar Lista'"
+			(click)="listarClientes()">
 			<button class="btn btn-primary btn-lg btn-block" (click)="finalizarVenda()">Finalizar Venda</button>
+			
+			
+			<h4>Procurar Cliente:</h4>
+			<p></p>
+			<div *ngIf="!listarClienteButton">
+			<input type="text" class="form-control" (keyup)="onKey($event)"/>
+				<ul class="list-group"  *ngFor="let cliente of clientes | filterCliente: values">
+					<li (click)="onSelect(cliente)" 
+						class="list-group-item list-group-item-action"
+						[ngClass]="{'active': clienteSelected == cliente}">
+						{{cliente.nome}}
+					</li>
+				</ul>
+			</div>
 		</div>
+
+	
 </div>
 		

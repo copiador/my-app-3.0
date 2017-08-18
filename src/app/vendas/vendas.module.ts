@@ -3,10 +3,13 @@ import { FormsModule }    from '@angular/forms';
 import { CommonModule }   from '@angular/common';
 // Componentes Vendas
 import {VendasComponente} from './vendas.componente';
+
 // serviço
 import {VendasAvistaService} from '../service/vendas-a-vista.service';
 //rotas
 import {VendasRouter} from './vendas.router';
+//pipes e filtros
+import {FilterClienteComponente} from './filter.cliente.componente';
 
 
 @NgModule({
@@ -19,6 +22,8 @@ import {VendasRouter} from './vendas.router';
   ],
   declarations: [
     VendasComponente,// Componente de vendas
+    FilterClienteComponente
+    
  
     
   ],
