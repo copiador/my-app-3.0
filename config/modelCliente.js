@@ -13,6 +13,12 @@ var schema = new mongoose.Schema({
 	cpf:{
 		type: Number,
 	},
+	debitoDoCliente:{
+        type: Number
+    },
+ 
+
+	
 	
 		
 });

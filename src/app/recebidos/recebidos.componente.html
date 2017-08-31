@@ -1,1 +1,64 @@
-<h1>MODULO RECEBIDOS</h1>
+<div class="col-md-12">
+      	<div class="responsive">
+	    	<div class="col-md-12" class="panel panel-primary">
+                <div class="panel-heading">
+                     <h3 class="panel-title">Recebido</h3>
+                </div>
+                  <div class="panel-body">
+                    <div class="col-md-4">
+                        <p>Procurar:</p> <input type="text" class="form-control" (keyup)="onKey($event)"/>
+                        <div *ngFor="let cliente of clientes | filterClienteRecebidos: values" class="list-group">
+                            <a class="list-group-item" 
+                            (click)="onSelectCliente(cliente)" [ngClass]="{'active': clienteSelected == cliente}" >
+                               <p class="list-group-item-text">{{cliente.nome}} </p>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div *ngIf="clienteSelected" class="col-md-4">
+                         <div *ngFor="let venda of vendasAvistaModel" class="list-group">
+                            <a class="list-group-item" 
+                            (click)="onSelectVenda(venda)" [ngClass]="{'active': vendasAvistaSelected == venda}" >
+                              <p class="list-group-item-text">{{venda.momento}} Valor da venda: {{venda.valorTotalVenda}}</p>
+                            </a>
+                        </div>
+                        <p>Debito do Cliente:{{clienteSelected.debitoDoCliente}}</p>
+                        <div>
+                            <p>Recebidos:</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="success">
+                                        <td>data</td>
+                                        <td>323</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <p>Digite o valor Recebido:<input #recebido type="text" class="form-control">
+                                <button (click)="recebidoFunction(recebido.value); recebido.value=''"
+                                class="btn btn-primary btn-lg btn-block">Add</button></p>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <table  class="table table-striped">
+                            <th>Nome</th>
+                            <th>Valor</th>
+                                <tr  *ngFor="let produto of produtosSelected">
+                                     <td>{{produto.nome}}</td>
+                                     <td>{{produto.valor}}</td>
+                                </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div> 

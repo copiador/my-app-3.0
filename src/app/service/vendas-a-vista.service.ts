@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 //cliente model
 import {ProdutoModel} from '../model/produto.model';
 import {VendasAvistaModel} from '../model/vendas-a-vista.model'
+import {ClienteModel} from '../model/cliente.model'
 
 
 @Injectable()
@@ -28,10 +29,7 @@ export class VendasAvistaService {
    
   }
 
-  getProduto(_id: number | string): Observable<ProdutoModel>{
-    var url = this.produtosUrl + "/" + _id;
-    return this.http.get(url).map(res => res.json());
-  }
+ 
 
 
   getVendas(): Observable<VendasAvistaModel[]> {
@@ -47,10 +45,26 @@ export class VendasAvistaService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     
     let options = new RequestOptions({ headers: headers });
-    console.log(venda);
+    
    
     
     return this.http.post(this.vendasAvistaUrl, venda, options ).map(this.extractData);
+  }
+
+
+  listarVendasIdCliente(_id: Number): Observable<VendasAvistaModel[]>{
+  
+    var url = this.vendasAvistaUrl + "/cliente/" + _id;
+
+    return this.http.get(url).map(res => res.json());
+  }
+
+  
+  buscarVendaId(_id: Number): Observable<VendasAvistaModel>{
+  
+    var url = this.vendasAvistaUrl + "/" + _id;
+
+    return this.http.get(url).map(res => res.json());
   }
 
 

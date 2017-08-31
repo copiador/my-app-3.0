@@ -8,9 +8,10 @@ var controllerRecebidos = require('../controladores/controladorRecebidos.js')();
 module.exports = function(app) {
 	//app.get('/index', controller.index);
 	app.get('/api/clientes', controller.listarClientes);
+	app.get('/api/clientes/:id', controller.buscarCliente);
 	app.post('/api/clientes', controller.adicionarCliente);
 	app.delete('/api/clientes/:id', controller.deleteCliente);
-	app.put('/api/cliente', controller.atualizarCliente);
+	app.put('/api/clientes', controller.atualizarCliente);
 
 	// rotas login
 	app.post('/api/login', controllerUsuario.logar);
@@ -25,12 +26,16 @@ module.exports = function(app) {
 
 	//vendas
 	app.get('/api/vendas', controllerVendasAvista.listarVendas);
+	app.get('/api/vendas/cliente/:id', controllerVendasAvista.listarVendasClienteId);
+	app.get('/api/vendas/:id', controllerVendasAvista.buscarVendaId);
 	app.post('/api/vendas', controllerVendasAvista.adicionarVendas);
 	//relatorios
 	app.get('/api/relatorios/listarVendasDoDia', controllerRelatorios.listarVendasDoDia);
 	app.get('/api/relatorios/listarVendas', controllerRelatorios.listarVendas);	
 	app.delete('/api/relatorios/listarVendas/:id', controllerRelatorios.deleteVenda);	
 	//recebidos
-	app.post('/api/recebidos/recebidos', controllerRecebidos.adicionarRecebidos);
+	app.post('/api/recebidos', controllerRecebidos.adicionarRecebidos);
+	app.get('/api/recebidos/clienteId/:id', controllerRecebidos.listarRecebidosClienteId);
+
 			  
 };

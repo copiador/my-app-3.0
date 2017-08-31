@@ -78,7 +78,7 @@ export class ResumoDoDiaComponente implements OnInit {
        //pega a lista de venda clicada pelo usuario, junto da lista de vendas vindas do bd
        //e compara os produtos clicados pelo usuario com a lista de produtos vindo do bd
       this.produtosSelected.forEach((value2, index)=>{
-            console.log(value2);
+            
             this.produtos.forEach((value,index)=>{
                 if(value2 == value._id){
                    
@@ -92,33 +92,7 @@ export class ResumoDoDiaComponente implements OnInit {
 
 }
 
-  /*pega a lista de produtos vindos do servidor, e compara a lista os _ids lista da venda 
-       clicada pelo usuario 
-       this.produtosFiltrados = this.produtos.
-       filter(produto=>this.vendasSelected.produtos.
-        filter(produtofilter=> produto._id == produtofilter._id));
-       console.log(this.produtosFiltrados)
-       */
-        /*
-       this.produtos.forEach((value)=>{
-           this.produtosFiltrados = this.produtosSelected.filter(produto=> value._id == produto._id);
-       })
-       console.log(this.produtosFiltrados);
-       */
-     // console.log(this.produtosSelected);
-       /*
-      this.produtos.forEach((produtoLista)=>{
-         // console.log(produtoLista);
-         console.log("1");
-         this.produtosSelected.forEach(produtoSelecionado=>{
-            // console.log(produtoSelecionado);
-             console.log("2");
-             if(produtoSelecionado._id == produtoLista._id){
-                 console.log("3");
-                this.produtosFiltrados.push(produtoLista);
-             }
-         })
-            */
+  
           
 
    

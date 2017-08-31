@@ -27,13 +27,13 @@ export class ClienteService {
 
 
   getClientes(): Observable<ClienteModel[]> {
-    console.log("cliente service inicializado 222")
+
     return this.http.get(this.clientesUrl).map(res => res.json()) ;
-    // res => res.json()
+  
   }
 
   getCliente(_id: number): Observable<ClienteModel>{
-    var url = '${this.clientesUrl}/${_id}';
+    var url = this.clientesUrl + "/" + _id;
     return this.http.get(url).map(res => res.json());
   }
 
@@ -43,7 +43,7 @@ export class ClienteService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     
     let options = new RequestOptions({ headers: headers });
-    console.log(cliente);
+    
    
     
     return this.http.post(this.clientesUrl, cliente, options ).map(this.extractData);
@@ -56,13 +56,13 @@ export class ClienteService {
     return this.http.delete(url).map(this.extractData);
   }
 
-  atualizarCliente(cliente:ClienteModel): Observable<ClienteModel[]>{
+  atualizarCliente(cliente:ClienteModel): Observable<ClienteModel>{
     
     var url = this.clientesUrl;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     
-    return this.http.put(url,cliente,options).map(this.extractData);
+    return this.http.put(url,cliente,options).map(res => res.json());
   }
 
 

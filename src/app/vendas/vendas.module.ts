@@ -6,6 +6,7 @@ import {VendasComponente} from './vendas.componente';
 
 // serviço
 import {VendasAvistaService} from '../service/vendas-a-vista.service';
+import {ClienteService} from '../service/cliente.service';
 //rotas
 import {VendasRouter} from './vendas.router';
 //pipes e filtros
@@ -27,7 +28,7 @@ import {FilterClienteComponente} from './filter.cliente.componente';
  
     
   ],
-  providers: [VendasAvistaService]
+  providers: [VendasAvistaService, ClienteService]
 })
 
 export class VendasModule { }

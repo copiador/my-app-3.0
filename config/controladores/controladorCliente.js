@@ -57,6 +57,8 @@ modeloClienteSchema.find(function(err, clientes) {
 			console.log("adicionar");
 			var valores = req.body;
 			valores._id = null;
+			
+			
 			console.log(valores);
 			var cliente = new ShemaCliente(valores);
 			cliente.save();
@@ -71,10 +73,11 @@ modeloClienteSchema.find(function(err, clientes) {
 		//pega o cliente vendo da pagina
 		var _idCliente = req.params.id;
 		//função para procurar o cliente e devolver para pagina
-		modeloClienteSchema.findById(_idCliente).then(function(contato){
-			if(!contato) throw new Error("Cliente não encontrado");
-			//manda o cliente pra pagina
-			res.json(cliente);
+		ShemaCliente.findById(_idCliente,function(err, cliente){
+			if (err) return console.error(err);
+			console.log(cliente);
+			return res.json(cliente);
+			
 		})
 
 
@@ -99,29 +102,17 @@ modeloClienteSchema.find(function(err, clientes) {
 	controller.atualizarCliente = function(req, res){
 		var _idCliente = req.body._id;
 		var valores = req.body;
+		console.log("valores atualizar",valores);
+	
+		ShemaCliente.findByIdAndUpdate(_idCliente, valores,function(err,cliente){
+			if (err) return console.error(err);
 		
-	if(_idCliente){
-		ShemaCliente.findByIdAndUpdate(_idCliente, req.body,function(err,res){
-			var cliente = req.body;
-				console.log(err);
-			console.log("cliente atualizado com sucesso");
-				return res.json(cliente);
+				return res.json("cliente atualizado com sucesso");
 			});
 		
-	}else{
-		var cliente = new ShemaCliente(valores);
-		console.log(cliente.nome);
-			cliente.save(function(err, cliente){
-				if(err){
-					console.log(err);
-					return res.json(err);
-				}else{
-				console.log("Cliente adicionado com sucesso");
-					return res.json(cliente);
-				}
-		  });
-		}
+
 	}
+	
 
 	return controller;
 //fecha os dados

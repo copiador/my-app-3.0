@@ -105,54 +105,48 @@ export class VendasComponente implements OnInit {
           
         }
 
-        deleteVenda(produto: ProdutoModel){
-            //pega o index do objeto e deleta o objeto da do array            
-            let index = this.produtosVendidos.indexOf(produto);
-            if (index > -1) {
-                this.produtosVendidos.splice(index, 1);
-                //a atualiza o estoque a cada produto tirado da venda
-                this.aumentaEstoque(produto);
+    deleteVenda(produto: ProdutoModel){
+        //pega o index do objeto e deleta o objeto da do array            
+        let index = this.produtosVendidos.indexOf(produto);
+        if (index > -1) {
+            this.produtosVendidos.splice(index, 1);
+            //a atualiza o estoque a cada produto tirado da venda
+            this.aumentaEstoque(produto);
                 //Atualiza o valor total da venda depois de tirado o produto da venda
-                this.valorTotal();
-            }
-            
-            
+            this.valorTotal();
         }
+            
+            
+    }
 
-        aumentaEstoque(produto: ProdutoModel){
+    aumentaEstoque(produto: ProdutoModel){
 
         //a atualiza o estoque a cada produto tirado da venda
         let produtoAtualizado = new ProdutoModel();
         produtoAtualizado = produto;
         produtoAtualizado.quantidade = produtoAtualizado.quantidade +1;
-
-            this.produtoService.atualizarProduto(produtoAtualizado).subscribe();
+        this.produtoService.atualizarProduto(produtoAtualizado).subscribe();
           
-        }
+    }
 
 
-        onSelect(cliente: ClienteModel){
-            
+    onSelect(cliente: ClienteModel){
+        this.clienteSelected = cliente;
+        this.vendaAvista.cliente = this.clienteSelected;
+        console.log(this.vendaAvista.cliente);
 
-            this.clienteSelected = cliente;
-            this.vendaAvista.cliente = this.clienteSelected;
-            console.log(this.vendaAvista.cliente);
+    }
 
-        }
+    onKey(event: any){
+        this.values = event.target.value;
 
-        onKey(event: any){
-            this.values = event.target.value;
+    }
 
-        }
-
-        listarClientes(){
-
-            this.listarClienteButton = !this.listarClienteButton;
-            this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
-        }
-       
-  
-    
+    listarClientes(){
+        this.listarClienteButton = !this.listarClienteButton;
+        this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
+    }
+         
 }
 
 

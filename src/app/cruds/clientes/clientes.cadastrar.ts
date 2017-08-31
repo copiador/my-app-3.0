@@ -49,6 +49,8 @@ prepararValores(): ClienteModel{
    cliente._id = this.clienteForm.controls._id.value;
    cliente.nome = this.clienteForm.controls.nome.value;
    cliente.cpf = this.clienteForm.controls.cpf.value;
+   cliente.debitoDoCliente = 0;
+  
    return cliente;
 };
 //submete os valores para o banco de dados depois de preparados

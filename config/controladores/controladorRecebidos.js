@@ -1,54 +1,50 @@
 var modeloVendasAvistaSchema = require('../modelVendasAvista.js');
 var modeloClienteSchema = require('../modelProduto.js');
+var modeloRecebidoShema = require ('../modelRecebidos.js');
 
 var moment = require('moment');
 
 
+
 module.exports = function() {
 
-	var ShemaVendasAvista = modeloVendasAvistaSchema.model('VendasAvista');
+	var shemaVendasAvista = modeloVendasAvistaSchema.model('VendasAvista');
+	var shemaCliente = modeloClienteSchema.model('Cliente');
+	var shemaRecebido = modeloRecebidoShema.model('Recebidos');
 
 	
-	//	valores.momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a");
-	var valoresMomento = moment().format("DD-MM-YYYY, HH:mm:ss");
-	
-	var data2 = new Date();
-	var dados = {codigo: 11, data: valoresMomento };
-//	var dados = {codigo:2, nome: "guidinha", endereco: {rua: "chove pau", bairro: "beira rio", numero: 95,
-//	cidade: "taquaritinga",cep: 55790}};
-
-//console.log("momento " + moment().format("MMMM,DD,YYYY , HH:M:Ss"));
-	var vendas = new ShemaVendasAvista(dados);
-	//vendas.save();
-//	var contato = new ShemaCliente({"nome":"guidinha"});
-	//contato2.save();
-	//contato2.nextCount()
-/*
-	ShemaVendasAvista.find(function(err, vendas) {
-			if (err)return console.error(err);
-			console.log(vendas);
-		});
-	
-		
-*/
 //listar de funções
 
 	var controller = {};
 
 	controller.adicionarRecebidos = function(req, res){
-        return res.json("recebidos ok")
-	
+		valores = req.body;
+		console.log(valores);
+		var dataMomento = moment().format("DD-MM-YYYY, HH:mm:ss");
+		
+		recebido = new shemaRecebido({cliente: valores.cliente, momentoRecebido: dataMomento, valorRecebido: valores.valorRecebido })
+
+		recebido.save(function(err,recebido){
+			if (err) return console.error(err);
+			return res.json(recebido);
+		})
 	};
 
 
-	controller.listarVendas = function(req, res){
-		ShemaVendasAvista.find(function(err, vendas) {
+	controller.listarRecebidosClienteId = function(req, res){
+		var _id = req.params.id;
+		console.log("recebidos",_id);
+		shemaRecebido.find({'cliente': _id},function(err, recebidos) {
 			if (err)return console.error(err);
-			return res.json(vendas);
+			return res.json(recebidos);
 		});
 	};
+
+
 
 	return controller;
 
 
+
 };
+

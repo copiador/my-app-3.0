@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-
+require('mongoose-moment')(mongoose);
 
 //autoIncrement.initialize(mongoose.connection);
 
@@ -8,24 +8,25 @@ var schema = new mongoose.Schema({
 	codigo: {
         type: Number
     },
-    cliente:{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Cliente'
+    data: {
+        type: Date
     },
-    momentoRecebido:{
+    momento:{
         type: String
     }, 
     valorRecebido:{
         type: Number
-    }
-	
+    },
+    momentoRecebido:{
+        type: String
+    }, 
 		
 });
 
 
 
 
-var modeloRecebidos = mongoose.model('Recebidos', schema);
+var modeloVendasAvista = mongoose.model('Recebido', schema);
 //autoIncrement.plugin(schema,'Cliente');
 
-module.exports = modeloRecebidos;
+module.exports = modeloVendasAvista;

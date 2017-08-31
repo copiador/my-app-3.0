@@ -24,7 +24,9 @@ var schema = new mongoose.Schema({
     }, 
     valorTotalVenda:{
         type: Number
-    }
+    },
+   
+
 	
 		
 });
