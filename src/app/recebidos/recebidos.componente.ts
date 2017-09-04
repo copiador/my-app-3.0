@@ -37,7 +37,10 @@ export class RecebidosComponente implements OnInit {
     produtosSelected: ProdutoModel[] = [];
     //total do valor das vendas do Cliente
     totalValorClienteVenda : number = 0;
+    //total valor de recebido Cliente 
+    totalValorRecebidoCliente: number = 0;
     //model
+    recebidosCliente: RecebidosModel[];
    
 
 
@@ -68,21 +71,18 @@ export class RecebidosComponente implements OnInit {
      
         this.vendasAVistaService.
         listarVendasIdCliente(this.clienteSelected._id)
-        .subscribe(vendas => this.vendasAvistaModel = vendas)
+        .subscribe(vendas => this.vendasAvistaModel = vendas, Error, ()=> this.somarValoresVenda())
+        //pega a lista
+        this.pegaListaRecebidosPeloId(this.clienteSelected);
+        //soma os valores recebidos do cliente
+  
+        
+        
+        
     
     }
 
-    somarValoresVenda(){
-        
-        let valorTotal: number = 0;
-
-        this.vendasAvistaModel.forEach((venda)=>{
-            valorTotal += venda.valorTotalVenda;
-        })
-
-        this.totalValorClienteVenda = valorTotal;
-
-    }
+   
 
     onKey(event: any){
         this.values = event.target.value;
@@ -126,7 +126,45 @@ export class RecebidosComponente implements OnInit {
         clienteAtualizado.debitoDoCliente = clienteAtualizado.debitoDoCliente - valorRecebido;
         this.serviceCliente.atualizarCliente(clienteAtualizado)
         .subscribe();
+        //atualizar lista recebidos
+        this.pegaListaRecebidosPeloId(clienteAtualizado);
+       
+       
       
+    }
+    
+    pegaListaRecebidosPeloId(cliente: ClienteModel){
+        this.recebidosService.listarRecebidosPeloIdCliente(cliente._id)
+        .subscribe(recebidos => this.recebidosCliente = recebidos,Error,
+            ()=>{this.totalValorRecebidos()});
+
+    }
+
+    somarValoresVenda(){
+        
+        let valorTotal: number = 0;
+
+        this.vendasAvistaModel.forEach((venda)=>{
+            valorTotal += venda.valorTotalVenda;
+        })
+
+        this.totalValorClienteVenda = valorTotal;
+       
+
+    }
+
+    totalValorRecebidos(){
+
+        let somaValoresRecebidos : number = 0;
+        this.recebidosCliente.forEach((recebido)=>{
+          
+
+            somaValoresRecebidos += recebido.valorRecebido;
+
+        })
+
+        this.totalValorRecebidoCliente = somaValoresRecebidos;
+
     }
 
     

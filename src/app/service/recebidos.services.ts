@@ -31,7 +31,7 @@ export class RecebidosService {
     return this.http.post(this.recebidosUrl, recebido, options).map(this.extractData);
   }
 
-  listarRecebidosPeloIdCliente(idCliente: number): Observable<RecebidosModel>{
+  listarRecebidosPeloIdCliente(idCliente: number): Observable<RecebidosModel[]>{
         var url = this.recebidosUrl + "/clienteId/" + idCliente;
     
         return this.http.get(url).map(res => res.json());

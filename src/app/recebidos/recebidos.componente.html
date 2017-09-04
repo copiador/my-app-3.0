@@ -22,6 +22,9 @@
                               <p class="list-group-item-text">{{venda.momento}} Valor da venda: {{venda.valorTotalVenda}}</p>
                             </a>
                         </div>
+                        <p>Soma das Vendas do Cliente:{{totalValorClienteVenda}}</p>
+                        <p>Total Recebidos:{{totalValorRecebidoCliente}}</p>
+                      
                         <p>Debito do Cliente:{{clienteSelected.debitoDoCliente}}</p>
                         <div>
                             <p>Recebidos:</p>
@@ -33,12 +36,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="success">
-                                        <td>data</td>
-                                        <td>323</td>
+                                    <tr *ngFor="let recebido of recebidosCliente" class="info">
+                                        <td>{{recebido.momentoRecebido}}</td>
+                                        <td>{{recebido.valorRecebido}}</td>
                                     </tr>
+                                  
                                     
                                 </tbody>
+
+                                
                             </table>
                         </div>
                         <div>

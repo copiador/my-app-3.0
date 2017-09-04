@@ -40,6 +40,17 @@ module.exports = function() {
 		});
 	};
 
+	controller.listarRecebidos = function(req, res) {
+		//função para listar
+		shemaRecebido.find(function(err, recebidos) {
+			if (err) return console.error(err);
+			//envia via json os dados de todos os produtos
+			res.json(recebidos);
+		})
+	
+		
+	};
+
 
 
 	return controller;
