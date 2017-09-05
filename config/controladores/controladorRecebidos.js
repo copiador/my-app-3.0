@@ -22,7 +22,7 @@ module.exports = function() {
 		console.log(valores);
 		var dataMomento = moment().format("DD-MM-YYYY, HH:mm:ss");
 		
-		recebido = new shemaRecebido({cliente: valores.cliente, momentoRecebido: dataMomento, valorRecebido: valores.valorRecebido })
+		recebido = new shemaRecebido({cliente: valores.cliente, momento: dataMomento, valor: valores.valor })
 
 		recebido.save(function(err,recebido){
 			if (err) return console.error(err);
@@ -50,6 +50,23 @@ module.exports = function() {
 	
 		
 	};
+
+	controller.deleteRecebido = function (req, res) {
+		//pega o id do cliente
+		var _idrecebido = req.params.id;
+		console.log(_idrecebido);
+		//função para remover o cliente pelo id
+		shemaRecebido.findByIdAndRemove(_idrecebido, function(err, recebido){
+			if(err){
+				console.log(err);
+				return res.json(err);
+			}else{
+				return res.json(recebido);
+			} 
+		})
+	};
+
+	
 
 
 

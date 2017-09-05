@@ -42,13 +42,14 @@
                 <div class="panel-body">
                     <div class="col-md-6"> 
                	    <table class="table table-striped">
-                    <th>CPF</th>
-                    <th>NOME</th>
-				    <th>VALOR</th>
-				        <tr class="success">
-						    <td>1</td>
-						    <td>JOSÉ ARRUDA</td>
-						    <td>20,00</td>
+                    <th>Data</th>
+				    <th>Valor</th>
+				        <tr *ngFor="let recebido of recebidos" class="success">
+                            <td>{{recebido.momento}}</td>
+                            <td>{{recebido.valor}}</td>
+                            <td><div class="pull-right">
+                                <button class="btn btn-danger btn-xs" (click)="deleteRecebido(recebido)">X</button>
+                            </div></td>				    
                         </tr>
                     </table>
                     <p>Valor TOTAL RECEBIDOS: 100,00</p>

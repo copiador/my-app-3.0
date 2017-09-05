@@ -1,9 +1,10 @@
 var modeloVendasAvistaSchema = require('../modelVendasAvista.js');
 var moment = require('moment');
+var modeloRecebidosShema = require('../modelRecebidos.js');
 
 //shemas
 	var ShemaVendasAvista = modeloVendasAvistaSchema.model('VendasAvista');
-
+	var ShemaRecebidos = modeloRecebidosShema.model('Recebidos');
 
 
 module.exports = function() {
@@ -22,6 +23,20 @@ module.exports = function() {
 		});
 		
 	}
+
+	controller.listarRecebidosDoDia = function(req, res){
+		
+				var valoresMomento = moment().format("DD-MM-YYYY");
+				console.log(valoresMomento);
+				//pega as vendas do dia atual, usanbo a biblioteca moment
+				ShemaRecebidos.find({ "momento" : { "$gte" : valoresMomento } },
+				  function(err, recebidos) {
+					if (err)return console.error(err);
+					console.log(recebidos);
+					return res.json(recebidos);
+				});
+				
+			}
 	controller.listarVendas = function(req, res){
 		 ShemaVendasAvista.find(function(err, vendas) {
 			if (err)return console.error(err);

@@ -117,7 +117,7 @@ export class RecebidosComponente implements OnInit {
        //adiciona um recebido ao modelo de recebido no bd
         let recebido = new RecebidosModel();
         recebido.cliente = this.clienteSelected;
-        recebido.valorRecebido = valorRecebido;
+        recebido.valor = valorRecebido;
         this.recebidosService.adicionarRecebido(recebido).subscribe();
         
         //depois de acionar um recebido 
@@ -159,7 +159,7 @@ export class RecebidosComponente implements OnInit {
         this.recebidosCliente.forEach((recebido)=>{
           
 
-            somaValoresRecebidos += recebido.valorRecebido;
+            somaValoresRecebidos += recebido.valor;
 
         })
 

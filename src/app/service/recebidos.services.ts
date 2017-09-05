@@ -37,6 +37,21 @@ export class RecebidosService {
         return this.http.get(url).map(res => res.json());
   }
 
+  deleteRecebido(_id: number): Observable<RecebidosModel>{
+    
+    var url = this.recebidosUrl + "/" + _id;
+
+    console.log(url);
+    
+    return this.http.delete(url).map(this.extractData);
+  }
+
+  getRecebidos(): Observable<RecebidosModel[]> {
+    
+    return this.http.get(this.recebidosUrl).map(res => res.json()) ;
+   
+  }
+
 
   private extractData(res: Response) {
     let body = res.json();

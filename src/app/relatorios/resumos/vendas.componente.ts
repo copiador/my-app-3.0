@@ -3,9 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 //SERVIÇOS
 import {RelatoriosService} from './../../service/relatorios.services';
 import {ProdutoService} from './../../service/produto.service';
+import {RecebidosService} from './../../service/recebidos.services';
 //model
 import {VendasAvistaModel} from './../../model/vendas-a-vista.model';
 import {ProdutoModel} from './../../model/produto.model';
+import {RecebidosModel} from './../../model/recebidos.model';
 
 @Component({
 
@@ -31,10 +33,13 @@ export class VendasComponente implements OnInit {
     produtosFiltrados: ProdutoModel[] = [];
     //variavel que soma todos os valores das vendas do dia e posta da tela
     valorTotalVendasDoDia : number = 0;
+    //recebidos model lista de recebidos
+    recebidos: RecebidosModel[];
 
 
    constructor(private relatoriosService : RelatoriosService, 
-        private produtoService: ProdutoService){
+        private produtoService: ProdutoService,
+        private recebidosService: RecebidosService){
 
            
     }
@@ -47,6 +52,7 @@ export class VendasComponente implements OnInit {
         .subscribe(vendasAVista => this.vendasAvista = vendasAVista);
         //pega a lista de produtos do servidor
         this.produtoService.getProdutos().subscribe(produtos => this.produtos = produtos);
+        this.recebidosService.getRecebidos().subscribe(recebidos => this.recebidos = recebidos);
         
 
     }
@@ -84,6 +90,12 @@ export class VendasComponente implements OnInit {
          let idVenda = venda._id;
         this.relatoriosService.deleteVenda(idVenda)
         .subscribe(() => {this.vendasAvista = this.vendasAvista.filter(v => v !== venda)});
+
+     }
+     deleteRecebido(recebido: RecebidosModel){
+
+        this.recebidosService.deleteRecebido(recebido._id)
+        .subscribe(()=>{this.recebidos = this.recebidos.filter(r => r !== recebido)});
 
      }
      

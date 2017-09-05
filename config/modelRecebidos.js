@@ -12,10 +12,10 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Cliente'
     },
-    momentoRecebido:{
+    momento:{
         type: String
     }, 
-    valorRecebido:{
+    valor:{
         type: Number
     }
 	

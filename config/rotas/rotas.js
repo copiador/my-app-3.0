@@ -32,10 +32,14 @@ module.exports = function(app) {
 	//relatorios
 	app.get('/api/relatorios/listarVendasDoDia', controllerRelatorios.listarVendasDoDia);
 	app.get('/api/relatorios/listarVendas', controllerRelatorios.listarVendas);	
-	app.delete('/api/relatorios/listarVendas/:id', controllerRelatorios.deleteVenda);	
+	app.delete('/api/relatorios/listarVendas/:id', controllerRelatorios.deleteVenda);
+	app.get('/api/relatorios/listarRecebidosDoDia', controllerRelatorios.listarRecebidosDoDia);	
 	//recebidos
 	app.post('/api/recebidos', controllerRecebidos.adicionarRecebidos);
 	app.get('/api/recebidos/clienteId/:id', controllerRecebidos.listarRecebidosClienteId);
+	app.get('/api/recebidos', controllerRecebidos.listarRecebidos);
+	app.delete('/api/recebidos/:id', controllerRecebidos.deleteRecebido);
+	
 
 			  
 };

@@ -41,10 +41,9 @@
                     <th>CPF</th>
                     <th>NOME</th>
 				    <th>VALOR</th>
-				        <tr class="success">
-						    <td>1</td>
-						    <td>JOSÉ ARRUDA</td>
-						    <td>20,00</td>
+				        <tr *ngFor="let recebido of recebidosDoDia" class="success">
+                            <td>{{recebido.momento}}</td>
+                            <td>{{recebido.valor}}</td>
                         </tr>
                     </table>
                     <p>Valor TOTAL RECEBIDOS: 100,00</p>

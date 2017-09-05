@@ -11,6 +11,7 @@ import {ProdutoService} from './produto.service';
 
 //cliente model
 import {VendasAvistaModel} from '../model/vendas-a-vista.model';
+import {RecebidosModel} from '../model/recebidos.model';
 
 
 @Injectable()
@@ -19,6 +20,7 @@ export class RelatoriosService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private relatoriosVendasDoDiaUrl = 'http://localhost:3000/api/relatorios/listarVendasDoDia';  // URL to web api
     private relatoriosVendasUrl = 'http://localhost:3000/api/relatorios/listarVendas';  // URL to web api
+    private relatoriosRecebidosDoDiaUrl = 'http://localhost:3000/api/relatorios/listarRecebidosDoDia';  // URL to web api
 
     constructor(private vendasService: VendasAvistaService, private produtosService: ProdutoService, private http: Http){
 
@@ -28,6 +30,11 @@ export class RelatoriosService {
   getRelatorioVendasDoDia(): Observable<VendasAvistaModel[]> {
     
     return this.http.get(this.relatoriosVendasDoDiaUrl).map(res => res.json()) ;
+   
+  }
+  getRelatorioRecebidosDoDia(): Observable<RecebidosModel[]> {
+    
+    return this.http.get(this.relatoriosRecebidosDoDiaUrl).map(res => res.json()) ;
    
   }
    getRelatorioVendas(): Observable<VendasAvistaModel[]> {

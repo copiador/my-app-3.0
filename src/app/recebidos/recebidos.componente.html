@@ -27,7 +27,7 @@
                       
                         <p>Debito do Cliente:{{clienteSelected.debitoDoCliente}}</p>
                         <div>
-                            <p>Recebidos:</p>
+                            <p>Lista de Recebidos:</p>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -37,11 +37,9 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let recebido of recebidosCliente" class="info">
-                                        <td>{{recebido.momentoRecebido}}</td>
-                                        <td>{{recebido.valorRecebido}}</td>
+                                        <td>{{recebido.momento}}</td>
+                                        <td>{{recebido.valor}}</td>
                                     </tr>
-                                  
-                                    
                                 </tbody>
 
                                 

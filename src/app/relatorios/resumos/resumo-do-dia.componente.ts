@@ -2,9 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 //SERVIÇOS
 import {RelatoriosService} from './../../service/relatorios.services';
 import {ProdutoService} from './../../service/produto.service';
+import {RecebidosService} from './../../service/recebidos.services';
 //model
 import {VendasAvistaModel} from './../../model/vendas-a-vista.model';
 import {ProdutoModel} from './../../model/produto.model';
+import {RecebidosModel} from './../../model/recebidos.model';
 
 
 
@@ -31,13 +33,15 @@ export class ResumoDoDiaComponente implements OnInit {
     produtosFiltrados: ProdutoModel[] = [];
     //variavel que soma todos os valores das vendas do dia e posta da tela
     valorTotalVendasDoDia : number = 0;
-
+    //* */recebidos relatorios*//*
+    recebidosDoDia: RecebidosModel[];
 
 
 
 
     constructor(private relatoriosService : RelatoriosService, 
-        private produtoService: ProdutoService){
+        private produtoService: ProdutoService,
+        private recebidosService: RecebidosService ){
 
            
     }
@@ -54,6 +58,8 @@ export class ResumoDoDiaComponente implements OnInit {
         });
         //pega a lista de produtos do servidor
         this.produtoService.getProdutos().subscribe(produtos => this.produtos = produtos);
+        this.relatoriosService.getRelatorioRecebidosDoDia()
+        .subscribe(recebidos => this.recebidosDoDia = recebidos);
         
 
     }
