@@ -20,6 +20,8 @@ import {VendasModule} from './vendas/vendas.module';//vendas
 import {RelatoriosModule} from './relatorios/relatorios.module';
 import {RecebidosModule} from './recebidos/recebidos.module';
 
+
+
 //Serviços
 import {ClienteService} from './service/cliente.service';
 
@@ -37,7 +39,7 @@ import {ClienteService} from './service/cliente.service';
     LoginRouterModule, // login modulo
     VendasModule, // vendas modulo
     RelatoriosModule, // modulo relatorio
-    RecebidosModule// recebidos module
+    RecebidosModule,// recebidos module
 
 
   ],

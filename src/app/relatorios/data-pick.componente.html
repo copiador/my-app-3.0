@@ -1,0 +1,20 @@
+   
+  <div>
+    <div class="card hidden">
+      <pre class="card-block card-header">Selected date is: <em *ngIf="dt">{{ getDate() | date:'fullDate'}}</em></pre>
+    </div>
+    
+    <h4>Selecione uma data:</h4>
+    <h5>{{dataMoment}}</h5>
+    <div style="display:inline-block; min-height:290px;">
+       
+      <datepicker [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+    </div>
+    
+
+ 
+
+  </div>
+
+  <button type="button" class="btn btn-primary btn-md" (click)="today()">Hoje</button>
+

@@ -21,7 +21,7 @@ export class RelatoriosService {
     private relatoriosVendasDoDiaUrl = 'http://localhost:3000/api/relatorios/listarVendasDoDia';  // URL to web api
     private relatoriosVendasUrl = 'http://localhost:3000/api/relatorios/listarVendas';  // URL to web api
     private relatoriosRecebidosDoDiaUrl = 'http://localhost:3000/api/relatorios/listarRecebidosDoDia';  // URL to web api
-
+    private relatoriosListarVendasPelaDataUrl = 'http://localhost:3000/api/relatorios/listarVendasPelaData'
     constructor(private vendasService: VendasAvistaService, private produtosService: ProdutoService, private http: Http){
 
     }
@@ -35,6 +35,14 @@ export class RelatoriosService {
   getRelatorioRecebidosDoDia(): Observable<RecebidosModel[]> {
     
     return this.http.get(this.relatoriosRecebidosDoDiaUrl).map(res => res.json()) ;
+   
+  }
+  getRelatorioVendasPelaData(data:any): Observable<VendasAvistaModel[]> {
+
+    var url = this.relatoriosListarVendasPelaDataUrl + "/" + data;
+    
+    
+    return this.http.get(url).map(res => res.json()) ;
    
   }
    getRelatorioVendas(): Observable<VendasAvistaModel[]> {

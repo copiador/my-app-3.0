@@ -36,23 +36,32 @@
                 </div>
 
                 <div class="panel-body">
-                    <div class="col-md-6"> 
-               	    <table class="table table-striped">
-                    <th>CPF</th>
-                    <th>NOME</th>
-				    <th>VALOR</th>
-				        <tr *ngFor="let recebido of recebidosDoDia" class="success">
-                            <td>{{recebido.momento}}</td>
-                            <td>{{recebido.valor}}</td>
-                        </tr>
-                    </table>
-                    <p>Valor TOTAL RECEBIDOS: 100,00</p>
+               
+                    <div class="col-md-4">
+                        <table class="table table-striped">
+                            <th>Nome</th>
+                            <tr *ngFor="let cliente of clientesRecebido">
+                                <td>{{cliente.nome}}</td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="col-md-4">Grafico Recebido</div>
+                    <div class="col-md-6"> 
+                            <table class="table table-striped">
+                         <th>Data</th>
+                         <th class="pull-right">Valor</th>
+                              <tr *ngFor="let recebido of recebidosDoDia"  >
+                                <td>{{recebido.momento}}</td>
+                                <td class="pull-right">{{recebido.valor}}</td>
+                             </tr>
+                             <tr>
+                                <td></td>
+                               <td class="pull-right warning">Total: {{totalDeRecebidos}}</td>
+                             </tr>
+                          </table>
+                        
+                         </div>
                 </div>
-
-
             </div>
           </div>
-	    <div class="panel panel-primary"><h4> VALOR FINAL: 250,00</h4></div>
+	    <div class="panel panel-primary"><h4>Apurado do Dia:{{ valorTotalVendasDoDia + totalDeRecebidos}}</h4></div>
     </div> 

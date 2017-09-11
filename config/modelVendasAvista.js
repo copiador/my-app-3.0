@@ -21,7 +21,13 @@ var schema = new mongoose.Schema({
     },
     momento:{
         type: String
-    }, 
+    },
+    data:{
+        type: String,
+    },
+    tempo:{
+        type: String,
+    },
     valorTotalVenda:{
         type: Number
     },

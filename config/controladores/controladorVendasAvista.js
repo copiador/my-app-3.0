@@ -41,7 +41,9 @@ module.exports = function() {
 		//coloca pega dos valores do servidor
 		valores = req.body;
 		//cria dos valores das dates e do momento
-		var dataMomento = moment().format("DD-MM-YYYY, HH:mm:ss");
+		var momento = moment().format("DD-MM-YYYY, HH:mm:ss");
+		var dataMomento = moment().format("DD-MM-YYYY");
+		var tempoMomento = moment().format("HH:mm:ss");
 		//var data = new Date();
 		//cria uma data
 		
@@ -50,7 +52,8 @@ module.exports = function() {
 		if(valores.cliente){
 			
 		
-			var vendas = new ShemaVendasAvista({momento: dataMomento,
+			var vendas = new ShemaVendasAvista({momento: momento, 
+				data: dataMomento,tempo: tempoMomento,
 			produtos: valores.produtos,
 			valorTotalVenda: valores.valorTotalVenda,cliente: valores.cliente});
 
@@ -68,8 +71,8 @@ module.exports = function() {
 			
 		}else{
 		
-			var vendas = new ShemaVendasAvista({momento: dataMomento,
-			produtos: valores.produtos,
+			var vendas = new ShemaVendasAvista({momento: momento, data: dataMomento,
+				tempo: tempoMomento, produtos: valores.produtos,
 			valorTotalVenda: valores.valorTotalVenda});
 			vendas.save(function(err,vendas){
 				 if (err) return console.error(err);
@@ -82,6 +85,11 @@ module.exports = function() {
 
 
 	controller.listarVendas = function(req, res){
+		var data = moment().format("DD-MM-YYYY");
+		var tempo = moment().format("HH:mm:ss");
+		console.log(data);
+		console.log(tempo);
+		
 		ShemaVendasAvista.find(function(err, vendas) {
 			if (err)return console.error(err);
 			return res.json(vendas);

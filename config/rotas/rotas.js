@@ -29,11 +29,13 @@ module.exports = function(app) {
 	app.get('/api/vendas/cliente/:id', controllerVendasAvista.listarVendasClienteId);
 	app.get('/api/vendas/:id', controllerVendasAvista.buscarVendaId);
 	app.post('/api/vendas', controllerVendasAvista.adicionarVendas);
+
 	//relatorios
 	app.get('/api/relatorios/listarVendasDoDia', controllerRelatorios.listarVendasDoDia);
 	app.get('/api/relatorios/listarVendas', controllerRelatorios.listarVendas);	
 	app.delete('/api/relatorios/listarVendas/:id', controllerRelatorios.deleteVenda);
 	app.get('/api/relatorios/listarRecebidosDoDia', controllerRelatorios.listarRecebidosDoDia);	
+	app.get('/api/relatorios/listarVendasPelaData/:data', controllerRelatorios.listarVendasPelaData);
 	//recebidos
 	app.post('/api/recebidos', controllerRecebidos.adicionarRecebidos);
 	app.get('/api/recebidos/clienteId/:id', controllerRecebidos.listarRecebidosClienteId);

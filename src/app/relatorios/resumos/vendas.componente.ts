@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {RelatoriosService} from './../../service/relatorios.services';
 import {ProdutoService} from './../../service/produto.service';
 import {RecebidosService} from './../../service/recebidos.services';
+import {VendasAvistaService} from './../../service/vendas-a-vista.service';
 //model
 import {VendasAvistaModel} from './../../model/vendas-a-vista.model';
 import {ProdutoModel} from './../../model/produto.model';
@@ -21,7 +22,7 @@ export class VendasComponente implements OnInit {
 
 
     //lista todas as vendas
-    vendasAvista: VendasAvistaModel[];
+    vendasAvista: VendasAvistaModel[] = [];
     //lista de vendas selecionadas
     vendasSelected : VendasAvistaModel;
     //produtos selecionados
@@ -35,11 +36,17 @@ export class VendasComponente implements OnInit {
     valorTotalVendasDoDia : number = 0;
     //recebidos model lista de recebidos
     recebidos: RecebidosModel[];
+    // output data
+    dataSelected: string;
+
+
+    
 
 
    constructor(private relatoriosService : RelatoriosService, 
         private produtoService: ProdutoService,
-        private recebidosService: RecebidosService){
+        private recebidosService: RecebidosService,
+        private vendasAvistaService: VendasAvistaService){
 
            
     }
@@ -48,12 +55,11 @@ export class VendasComponente implements OnInit {
 
     ngOnInit(){
         //pega a lista de vendas vinda do servidor
-        this.relatoriosService.getRelatorioVendas()
-        .subscribe(vendasAVista => this.vendasAvista = vendasAVista);
+       
         //pega a lista de produtos do servidor
         this.produtoService.getProdutos().subscribe(produtos => this.produtos = produtos);
         this.recebidosService.getRecebidos().subscribe(recebidos => this.recebidos = recebidos);
-        
+        this.vendasAvistaService.getVendas().subscribe(vendas => this.vendasAvista = vendas);
 
     }
 
@@ -97,6 +103,26 @@ export class VendasComponente implements OnInit {
         this.recebidosService.deleteRecebido(recebido._id)
         .subscribe(()=>{this.recebidos = this.recebidos.filter(r => r !== recebido)});
 
+     }
+
+     modificaData(data: string){
+        console.log("evento ok", data);
+       
+        this.dataSelected = data;
+
+        
+     }
+
+     buscarData(){
+
+
+       //  let data2: {data:string};
+        // data2.data = this.dataSelected;
+        
+        this.relatoriosService.getRelatorioVendasPelaData(this.dataSelected)
+        .subscribe(vendas => this.vendasAvista = vendas,
+        Error,()=>{});
+         
      }
      
 

@@ -6,6 +6,7 @@ import {RelatoriosComponente} from './relatorios.componente';
 import {EstoqueComponente} from './resumos/estoque.componente';
 import {ResumoDoDiaComponente} from './resumos/resumo-do-dia.componente';
 import {VendasComponente} from './resumos/vendas.componente';
+import {DataPickComponent} from './data-pick.componente';
 // serviço
 import {RelatoriosService} from  '../service/relatorios.services';
 import {ProdutoService} from '../service/produto.service';
@@ -15,12 +16,18 @@ import{RelatoriosRouter} from './relatorios.router';
 //pipe estoque
 import {EstoquePipe} from './resumos/estoque.pipe'
 
+import { DatepickerModule } from 'ngx-bootstrap';
+
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RelatoriosRouter
+    RelatoriosRouter,
+   DatepickerModule.forRoot(),
+    
+   
    
     
   ],
@@ -29,7 +36,8 @@ import {EstoquePipe} from './resumos/estoque.pipe'
     ResumoDoDiaComponente,
     EstoqueComponente,
     VendasComponente,
-    EstoquePipe
+    EstoquePipe,
+    DataPickComponent
     
     
   ],

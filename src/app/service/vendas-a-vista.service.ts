@@ -34,7 +34,7 @@ export class VendasAvistaService {
 
   getVendas(): Observable<VendasAvistaModel[]> {
     
-   return this.http.get(this.produtosUrl).map(res => res.json()) ;
+   return this.http.get(this.vendasAvistaUrl).map(res => res.json()) ;
    
   }
 

@@ -3,10 +3,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import {RelatoriosService} from './../../service/relatorios.services';
 import {ProdutoService} from './../../service/produto.service';
 import {RecebidosService} from './../../service/recebidos.services';
+import {ClienteService} from './../../service/cliente.service';
 //model
 import {VendasAvistaModel} from './../../model/vendas-a-vista.model';
 import {ProdutoModel} from './../../model/produto.model';
 import {RecebidosModel} from './../../model/recebidos.model';
+import {ClienteModel} from './../../model/cliente.model';
 
 
 
@@ -34,14 +36,21 @@ export class ResumoDoDiaComponente implements OnInit {
     //variavel que soma todos os valores das vendas do dia e posta da tela
     valorTotalVendasDoDia : number = 0;
     //* */recebidos relatorios*//*
-    recebidosDoDia: RecebidosModel[];
+    recebidosDoDia: any[];
+    //clientes lista de clientes do servidor
+    clientes: ClienteModel[];
+    //nome dos clientes recebido
+    clientesRecebido: ClienteModel[] = [];
+    //total dos valores recebidos
+    totalDeRecebidos: number;
 
 
 
 
     constructor(private relatoriosService : RelatoriosService, 
         private produtoService: ProdutoService,
-        private recebidosService: RecebidosService ){
+        private recebidosService: RecebidosService,
+        private clienteService: ClienteService ){
 
            
     }
@@ -58,9 +67,12 @@ export class ResumoDoDiaComponente implements OnInit {
         });
         //pega a lista de produtos do servidor
         this.produtoService.getProdutos().subscribe(produtos => this.produtos = produtos);
+        //pega lista de recebidos do dia
         this.relatoriosService.getRelatorioRecebidosDoDia()
-        .subscribe(recebidos => this.recebidosDoDia = recebidos);
-        
+        .subscribe(recebidos => this.recebidosDoDia = recebidos,Error,()=> this.somaValoresRecebidos());
+        //pega lista de clientes
+        this.clienteService.getClientes()
+        .subscribe(clientes => this.clientes = clientes,Error,()=> this.listarNomesClientes());
 
     }
 
@@ -87,11 +99,41 @@ export class ResumoDoDiaComponente implements OnInit {
             
             this.produtos.forEach((value,index)=>{
                 if(value2 == value._id){
-                   
-                    this.produtosFiltrados.push(value);
+                   this.produtosFiltrados.push(value);
                 }
             })
       })
+     }
+
+     //listar nome dos clientes pelo objet id
+     listarNomesClientes(){
+
+        this.recebidosDoDia.forEach((recebido)=>{
+            let clienteRecebido = recebido.cliente;
+           
+            this.clientes.forEach((cliente)=>{
+                if(clienteRecebido == cliente._id){
+                  this.clientesRecebido.push(cliente);
+                }
+            })
+        })
+        
+
+     }
+     somaValoresRecebidos(){
+        let valoresSomados : number = 0;
+
+        this.recebidosDoDia.forEach((recebido)=>{
+            
+           
+
+            valoresSomados += recebido.valor;
+            
+        })
+        this.totalDeRecebidos = valoresSomados;
+
+      
+
      }
      
     
