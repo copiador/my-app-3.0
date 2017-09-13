@@ -4,15 +4,14 @@
                 <div class="panel-heading">
                      <h3 class="panel-title">Vendidos</h3>
                 </div>
-
-             
-                
 	        	<div class="panel-body">
-
                     <div class="col-md-6">
                         
                         <data-pick (dataMomentOutput)="modificaData($event)"></data-pick>
+                        
                         <button class="btn btn-primary btn-md" (click)="buscarData()">Buscar</button>
+                        <button class="btn btn-primary btn-md" (click)="ngOnInit()">Todas</button>
+                        <br>
                         <div *ngFor="let vendas of vendasAvista" 
                         class="list-group">
                             <a class="list-group-item" 
@@ -27,6 +26,8 @@
                                       
                             </a>
                         </div>
+
+                        <div class="panel panel-primary"><h4>Total Vendas:{{ TotalValoresDasVendas}}</h4></div>
           	           
                     </div>
                         <div *ngIf="produtosFiltrados" class="col-md-4">
@@ -57,14 +58,22 @@
                             </div></td>				    
                         </tr>
                     </table>
-                    <p>Valor TOTAL RECEBIDOS: 100,00</p>
+                    <div class="panel panel-primary"><h4>Total Recebidos:{{ TotalValoresRecebidos}}</h4></div>
                     </div>
-                    <div class="col-md-4">Grafico Recebido</div>
+                    <div class="col-md-4">
+                        <table class="table table-striped" >
+                            <th>Nome</th>
+                            <tr *ngFor="let cliente of clientesRecebido"class="success">
+                                <td>{{cliente.nome}}</td>
+                            </tr>
+                        </table>
+
+                    </div>
                 </div>
 
 
             </div>
           </div>
-        <div class="panel panel-primary"><h4> VALOR FINAL: 250,00</h4></div>
+        <div class="panel panel-primary"><h4>Apurado do Dia: {{TotalValoresDasVendas+TotalValoresRecebidos}}</h4></div>
          
     </div> 

@@ -13,7 +13,7 @@
                             <a class="list-group-item" 
                             (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
                                <h4 class="list-group-item-heading">{{vendas.codigo}}</h4>
-                                <p class="list-group-item-text">{{vendas.momento}} 
+                                <p class="list-group-item-text">{{vendas.data}}{{vendas.tempo}} 
                                 Valor Total: {{vendas.valorTotalVenda}} </p>
 
                             </a>

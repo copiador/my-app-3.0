@@ -19,7 +19,7 @@
                          <div *ngFor="let venda of vendasAvistaModel" class="list-group">
                             <a class="list-group-item" 
                             (click)="onSelectVenda(venda)" [ngClass]="{'active': vendasAvistaSelected == venda}" >
-                              <p class="list-group-item-text">{{venda.momento}} Valor da venda: {{venda.valorTotalVenda}}</p>
+                              <p class="list-group-item-text">{{venda.data}}{{venda.tempo}} Valor da venda: {{venda.valorTotalVenda}}</p>
                             </a>
                         </div>
                         <p>Soma das Vendas do Cliente:{{totalValorClienteVenda}}</p>
@@ -37,7 +37,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let recebido of recebidosCliente" class="info">
-                                        <td>{{recebido.momento}}</td>
+                                        <td>{{recebido.data}},{{recebido.tempo}}</td>
                                         <td>{{recebido.valor}}</td>
                                     </tr>
                                 </tbody>

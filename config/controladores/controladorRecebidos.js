@@ -20,11 +20,12 @@ module.exports = function() {
 	controller.adicionarRecebidos = function(req, res){
 		valores = req.body;
 		
-		var dataMomento = moment().format("DD-MM-YYYY, HH:mm:ss");
+		var momento = moment().format("DD-MM-YYYY, HH:mm:ss");
 		var dataMomento = moment().format("DD-MM-YYYY");
 		var tempoMomento = moment().format("HH:mm:ss");
 		
-		recebido = new shemaRecebido({cliente: valores.cliente, momento: dataMomento, valor: valores.valor })
+		recebido = new shemaRecebido({cliente: valores.cliente, 
+			momento: momento,data: dataMomento,tempo: tempoMomento, valor: valores.valor })
 
 		recebido.save(function(err,recebido){
 			if (err) return console.error(err);

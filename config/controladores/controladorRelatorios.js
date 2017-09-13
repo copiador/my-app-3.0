@@ -40,14 +40,25 @@ module.exports = function() {
 
 	controller.listarVendasPelaData = function(req,res){
 		var valorData = req.params.data;
-		console.log(valorData);
-		var valoresMomento = moment('11-09-2017');
-		console.log(valoresMomento);
-		ShemaVendasAvista.find({ "data" : { "$eq" : valorData } },
-		function(err, vendas) {
-		  if (err)return console.error(err);
-		  console.log(vendas);
-		  return res.json(vendas);
+	    var valoresMomento = moment().format(valorData);
+		
+		//lista as vendas pela data vinda do front end
+		ShemaVendasAvista.find({ "data" : { "$eq" : valoresMomento } },
+			function(err, vendas) {
+		  		if (err)return console.error(err);
+		   	 		 return res.json(vendas);
+	  });
+
+	}
+	controller.listarRecebidosPelaData = function(req,res){
+		var valorData = req.params.data;
+	    var valoresMomento = moment().format(valorData);
+		
+		//lista as vendas pela data vinda do front end
+		ShemaRecebidos.find({ "data" : { "$eq" : valoresMomento } },
+			function(err, recebidos) {
+		  		if (err)return console.error(err);
+		   	 		 return res.json(recebidos);
 	  });
 
 	}

@@ -4,9 +4,11 @@ import {ClienteModel} from './cliente.model';
 export class VendasAvistaModel{
 
     _id?: Number;
-    data: Date;
+    
     cod: Number;
     momento: String;
+    data: String;
+    tempo: String;
     produtos: ProdutoModel[] = [];
     valorTotalVenda : number;
     cliente : ClienteModel;

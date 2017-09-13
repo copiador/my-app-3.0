@@ -36,6 +36,7 @@ module.exports = function(app) {
 	app.delete('/api/relatorios/listarVendas/:id', controllerRelatorios.deleteVenda);
 	app.get('/api/relatorios/listarRecebidosDoDia', controllerRelatorios.listarRecebidosDoDia);	
 	app.get('/api/relatorios/listarVendasPelaData/:data', controllerRelatorios.listarVendasPelaData);
+	app.get('/api/relatorios/listarRecebidosPelaData/:data', controllerRelatorios.listarRecebidosPelaData);
 	//recebidos
 	app.post('/api/recebidos', controllerRecebidos.adicionarRecebidos);
 	app.get('/api/recebidos/clienteId/:id', controllerRecebidos.listarRecebidosClienteId);

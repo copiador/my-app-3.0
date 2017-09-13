@@ -7,6 +7,8 @@ export class RecebidosModel{
     momento: String;
     cliente: ClienteModel;
     valor: number;
+    data:String;
+    tempo: String;
 
     
     

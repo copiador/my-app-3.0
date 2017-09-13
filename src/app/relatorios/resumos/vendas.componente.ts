@@ -5,10 +5,12 @@ import {RelatoriosService} from './../../service/relatorios.services';
 import {ProdutoService} from './../../service/produto.service';
 import {RecebidosService} from './../../service/recebidos.services';
 import {VendasAvistaService} from './../../service/vendas-a-vista.service';
+import {ClienteService} from './../../service/cliente.service';
 //model
 import {VendasAvistaModel} from './../../model/vendas-a-vista.model';
 import {ProdutoModel} from './../../model/produto.model';
 import {RecebidosModel} from './../../model/recebidos.model';
+import {ClienteModel} from './../../model/cliente.model';
 
 @Component({
 
@@ -29,14 +31,22 @@ export class VendasComponente implements OnInit {
     produtosSelected: any[] = [];
     //lista de todos os produtos
     produtos: ProdutoModel[];
+    //clintes vindos so servidor
+    clientes : ClienteModel[];
+
     //lista de todos produtos filtrados pela venda
     //Quando o usuario clica na lista de vendas, cada lista de vendas tem uma lista de produtos
     produtosFiltrados: ProdutoModel[] = [];
     //variavel que soma todos os valores das vendas do dia e posta da tela
-    valorTotalVendasDoDia : number = 0;
+    TotalValoresDasVendas : number = 0;
+    TotalValoresRecebidos : number = 0;
     //recebidos model lista de recebidos
-    recebidos: RecebidosModel[];
+    recebidos: any[];
     // output data
+    //Recebidos dos Clientes do dia
+    //nome dos clientes recebido( lista os nomes dos clientes que receberam do dia)
+     clientesRecebido: ClienteModel[] = [];
+   
     dataSelected: string;
 
 
@@ -46,7 +56,8 @@ export class VendasComponente implements OnInit {
    constructor(private relatoriosService : RelatoriosService, 
         private produtoService: ProdutoService,
         private recebidosService: RecebidosService,
-        private vendasAvistaService: VendasAvistaService){
+        private vendasAvistaService: VendasAvistaService,
+        private clientesServices: ClienteService){
 
            
     }
@@ -58,8 +69,13 @@ export class VendasComponente implements OnInit {
        
         //pega a lista de produtos do servidor
         this.produtoService.getProdutos().subscribe(produtos => this.produtos = produtos);
-        this.recebidosService.getRecebidos().subscribe(recebidos => this.recebidos = recebidos);
-        this.vendasAvistaService.getVendas().subscribe(vendas => this.vendasAvista = vendas);
+        this.recebidosService.getRecebidos().subscribe(recebidos => this.recebidos = recebidos,Error,
+            ()=>{this.somaValoresDosRecebidos()});
+        this.vendasAvistaService.getVendas().subscribe(vendas => this.vendasAvista = vendas,Error,
+            ()=>{this.somaValoresDasVendas()});
+        this.clientesServices.getClientes().subscribe(clientes => this.clientes = clientes,Error,()=>{
+            this.listarNomesClientes();
+        });
 
     }
 
@@ -95,35 +111,71 @@ export class VendasComponente implements OnInit {
      deleteVenda(venda: VendasAvistaModel){
          let idVenda = venda._id;
         this.relatoriosService.deleteVenda(idVenda)
-        .subscribe(() => {this.vendasAvista = this.vendasAvista.filter(v => v !== venda)});
+        .subscribe(() => {this.vendasAvista = this.vendasAvista.filter(v => v !== venda)},Error,
+            ()=>{this.somaValoresDasVendas()});
 
      }
      deleteRecebido(recebido: RecebidosModel){
 
         this.recebidosService.deleteRecebido(recebido._id)
-        .subscribe(()=>{this.recebidos = this.recebidos.filter(r => r !== recebido)});
+        .subscribe(()=>{this.recebidos = this.recebidos.filter(r => r !== recebido)},Error,
+        ()=>{this.somaValoresDosRecebidos()});
+
 
      }
-
+     //modifica a data escohida pelo usuario
      modificaData(data: string){
-        console.log("evento ok", data);
+       
        
         this.dataSelected = data;
 
         
      }
 
-     buscarData(){
-
-
-       //  let data2: {data:string};
-        // data2.data = this.dataSelected;
-        
+     //busca as vendas e os recebidos pela data
+     buscarData(){    
         this.relatoriosService.getRelatorioVendasPelaData(this.dataSelected)
-        .subscribe(vendas => this.vendasAvista = vendas,
-        Error,()=>{});
+        .subscribe(vendas => this.vendasAvista = vendas, Error,()=>this.somaValoresDasVendas() );
+        this.relatoriosService.getRelatorioRecebidosPelaData(this.dataSelected)
+        .subscribe(recebidos => this.recebidos = recebidos,Error,
+            ()=> this.somaValoresDosRecebidos());
          
      }
+
+     somaValoresDasVendas(){
+
+        let valoresSomados : number = 0;
+        this.vendasAvista.forEach((venda)=>{
+            valoresSomados += venda.valorTotalVenda;
+        })
+        this.TotalValoresDasVendas = valoresSomados;
+
+     }
+     somaValoresDosRecebidos(){
+        
+                let valoresSomados : number = 0;
+                this.recebidos.forEach((recebidos)=>{
+                    valoresSomados += recebidos.valor;
+                })
+                this.TotalValoresRecebidos = valoresSomados;
+                //chamo função de listar nome dos clientes recebidos para a atualizar a tablea dos nomes do clientes que pagaram um valor
+                this.listarNomesClientes();
+     }
+
+     listarNomesClientes(){
+        this.clientesRecebido.length = 0;
+                this.recebidos.forEach((recebido)=>{
+                    let clienteRecebido = recebido.cliente;
+                   
+                    this.clientes.forEach((cliente)=>{
+                        if(clienteRecebido == cliente._id){
+                          this.clientesRecebido.push(cliente);
+                        }
+                    })
+                })
+                
+        
+             }
      
 
 }
