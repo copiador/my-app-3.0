@@ -13,8 +13,9 @@ import {ProdutoService} from '../service/produto.service';
 
 //rotas
 import{RelatoriosRouter} from './relatorios.router';
-//pipe estoque
+//pipes
 import {EstoquePipe} from './resumos/estoque.pipe'
+import {FilterClienteVendaComponente} from './resumos/filter.cliente.venda.componente';
 
 import { DatepickerModule } from 'ngx-bootstrap';
 
@@ -37,7 +38,8 @@ import { DatepickerModule } from 'ngx-bootstrap';
     EstoqueComponente,
     VendasComponente,
     EstoquePipe,
-    DataPickComponent
+    DataPickComponent,
+    FilterClienteVendaComponente
     
     
   ],

@@ -12,15 +12,15 @@
                         <button class="btn btn-primary btn-md" (click)="buscarData()">Buscar</button>
                         <button class="btn btn-primary btn-md" (click)="ngOnInit()">Todas</button>
                         <br>
-                        <div *ngFor="let vendas of vendasAvista" 
+                        <div *ngFor="let vendas of vendasAvista"
                         class="list-group">
                             <a class="list-group-item" 
                             (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
-                               <h4 class="list-group-item-heading">{{vendas.codigo}}
+                               <h4 class="list-group-item-heading">Cliente - {{vendas.cliente}} </h4>
                                     <div class="pull-right">
                                         <button class="btn btn-danger btn-xs" (click)="deleteVenda(vendas)">X</button>
                                     </div>
-                                </h4>
+                               
                                 <p class="list-group-item-text">{{vendas.data}}, {{vendas.tempo}} 
                                 Valor Total: {{vendas.valorTotalVenda}} </p>
                                       
@@ -48,9 +48,11 @@
                 <div class="panel-body">
                     <div class="col-md-6"> 
                	    <table class="table table-striped">
+                    <th>Cliente</th>
                     <th>Data</th>
 				    <th>Valor</th>
 				        <tr *ngFor="let recebido of recebidos" class="success">
+                            <td>{{recebido.cliente}}</td>
                             <td>{{recebido.momento}}</td>
                             <td>{{recebido.valor}}</td>
                             <td><div class="pull-right">
@@ -58,22 +60,15 @@
                             </div></td>				    
                         </tr>
                     </table>
-                    <div class="panel panel-primary"><h4>Total Recebidos:{{ TotalValoresRecebidos}}</h4></div>
+                        <div class="panel panel-primary"><h4>Total Recebidos:{{ TotalValoresRecebidos}}</h4></div>
                     </div>
-                    <div class="col-md-4">
-                        <table class="table table-striped" >
-                            <th>Nome</th>
-                            <tr *ngFor="let cliente of clientesRecebido"class="success">
-                                <td>{{cliente.nome}}</td>
-                            </tr>
-                        </table>
-
-                    </div>
+                    
                 </div>
 
 
             </div>
           </div>
         <div class="panel panel-primary"><h4>Apurado do Dia: {{TotalValoresDasVendas+TotalValoresRecebidos}}</h4></div>
-         
+        
+   
     </div> 

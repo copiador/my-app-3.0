@@ -24,7 +24,7 @@ export class VendasComponente implements OnInit {
 
 
     //lista todas as vendas
-    vendasAvista: VendasAvistaModel[] = [];
+    vendasAvista: any[] = [];
     //lista de vendas selecionadas
     vendasSelected : VendasAvistaModel;
     //produtos selecionados
@@ -32,34 +32,24 @@ export class VendasComponente implements OnInit {
     //lista de todos os produtos
     produtos: ProdutoModel[];
     //clintes vindos so servidor
-    clientes : ClienteModel[];
-
-    //lista de todos produtos filtrados pela venda
-    //Quando o usuario clica na lista de vendas, cada lista de vendas tem uma lista de produtos
+    clientes : ClienteModel[] = [];
+     //Quando o usuario clica na lista de vendas, cada lista de vendas tem uma lista de produtos
     produtosFiltrados: ProdutoModel[] = [];
     //variavel que soma todos os valores das vendas do dia e posta da tela
     TotalValoresDasVendas : number = 0;
     TotalValoresRecebidos : number = 0;
     //recebidos model lista de recebidos
-    recebidos: any[];
-    // output data
-    //Recebidos dos Clientes do dia
+    recebidos: any[] = [];
     //nome dos clientes recebido( lista os nomes dos clientes que receberam do dia)
      clientesRecebido: ClienteModel[] = [];
-   
+   //pega a data selecionada do calendário
     dataSelected: string;
-
-
-    
-
 
    constructor(private relatoriosService : RelatoriosService, 
         private produtoService: ProdutoService,
         private recebidosService: RecebidosService,
         private vendasAvistaService: VendasAvistaService,
         private clientesServices: ClienteService){
-
-           
     }
 
 
@@ -73,10 +63,8 @@ export class VendasComponente implements OnInit {
             ()=>{this.somaValoresDosRecebidos()});
         this.vendasAvistaService.getVendas().subscribe(vendas => this.vendasAvista = vendas,Error,
             ()=>{this.somaValoresDasVendas()});
-        this.clientesServices.getClientes().subscribe(clientes => this.clientes = clientes,Error,()=>{
-            this.listarNomesClientes();
-        });
-
+        this.clientesServices.getClientes().subscribe(clientes => this.clientes = clientes,
+            Error,()=>{this.listarNomesClientes()})
     }
 
     onSelect(vendasAvista: VendasAvistaModel){
@@ -95,7 +83,6 @@ export class VendasComponente implements OnInit {
            
        });
 
-      
        //pega a lista de venda clicada pelo usuario, junto da lista de vendas vindas do bd
        //e compara os produtos clicados pelo usuario com a lista de produtos vindo do bd
       this.produtosSelected.forEach((value2, index)=>{
@@ -126,10 +113,8 @@ export class VendasComponente implements OnInit {
      //modifica a data escohida pelo usuario
      modificaData(data: string){
        
-       
         this.dataSelected = data;
 
-        
      }
 
      //busca as vendas e os recebidos pela data
@@ -139,44 +124,57 @@ export class VendasComponente implements OnInit {
         this.relatoriosService.getRelatorioRecebidosPelaData(this.dataSelected)
         .subscribe(recebidos => this.recebidos = recebidos,Error,
             ()=> this.somaValoresDosRecebidos());
+
+    
          
      }
-
+     //soma os valores das vendas e guarda em uma variavel
      somaValoresDasVendas(){
 
         let valoresSomados : number = 0;
         this.vendasAvista.forEach((venda)=>{
+          
             valoresSomados += venda.valorTotalVenda;
         })
         this.TotalValoresDasVendas = valoresSomados;
 
      }
+     //soma os valores dos recebidos e guarda em uma variavel
      somaValoresDosRecebidos(){
-        
-                let valoresSomados : number = 0;
-                this.recebidos.forEach((recebidos)=>{
-                    valoresSomados += recebidos.valor;
-                })
-                this.TotalValoresRecebidos = valoresSomados;
+            let valoresSomados : number = 0;
+            this.recebidos.forEach((recebidos)=>{
+                valoresSomados += recebidos.valor;
+            })
+            this.TotalValoresRecebidos = valoresSomados;
+
+            this.listarNomesClientes();
                 //chamo função de listar nome dos clientes recebidos para a atualizar a tablea dos nomes do clientes que pagaram um valor
-                this.listarNomesClientes();
-     }
+        }
 
+     //lista os nomes das vendas e dos recebidos. o motivo disso é que quando ele vem do bd em vem como objeto id
      listarNomesClientes(){
-        this.clientesRecebido.length = 0;
-                this.recebidos.forEach((recebido)=>{
-                    let clienteRecebido = recebido.cliente;
-                   
-                    this.clientes.forEach((cliente)=>{
-                        if(clienteRecebido == cliente._id){
-                          this.clientesRecebido.push(cliente);
-                        }
-                    })
-                })
-                
-        
-             }
-     
+        this.vendasAvista.map((value)=>{
+            this.clientes.forEach((cliente)=>{
+                if(value.cliente == cliente._id){
+                    value.cliente = cliente.nome;
+                }
+                if (value.cliente === undefined || value.cliente === null) {
+                    value.cliente = "Venda a Vista";
+               }
+            })
+        })
+        this.listarNomesRecebidos();
 
+    }
+
+    listarNomesRecebidos(){
+        this.recebidos.map((value)=>{
+            this.clientes.forEach((cliente)=>{
+               if(value.cliente == cliente._id){
+                   value.cliente= cliente.nome;
+               }
+            })
+        })
+    }
 }
 

@@ -23,7 +23,7 @@ import {ClienteModel} from './../../model/cliente.model';
 export class ResumoDoDiaComponente implements OnInit {
 
     //lista todas as vendas
-    vendasAvista: VendasAvistaModel[];
+    vendasAvista: any[] = [];
     //lista de vendas selecionadas
     vendasSelected : VendasAvistaModel;
     //produtos selecionados
@@ -38,7 +38,7 @@ export class ResumoDoDiaComponente implements OnInit {
     //* */recebidos relatorios*//*
     recebidosDoDia: any[];
     //clientes lista de clientes do servidor
-    clientes: ClienteModel[];
+    clientes: ClienteModel[] = [];
     //nome dos clientes recebido
     clientesRecebido: ClienteModel[] = [];
     //total dos valores recebidos
@@ -105,37 +105,43 @@ export class ResumoDoDiaComponente implements OnInit {
       })
      }
 
-     //listar nome dos clientes pelo objet id
-     listarNomesClientes(){
 
-        this.recebidosDoDia.forEach((recebido)=>{
-            let clienteRecebido = recebido.cliente;
-           
-            this.clientes.forEach((cliente)=>{
-                if(clienteRecebido == cliente._id){
-                  this.clientesRecebido.push(cliente);
-                }
-            })
-        })
-        
-
-     }
+  
      somaValoresRecebidos(){
         let valoresSomados : number = 0;
 
         this.recebidosDoDia.forEach((recebido)=>{
-            
-           
-
             valoresSomados += recebido.valor;
             
         })
         this.totalDeRecebidos = valoresSomados;
-
       
-
      }
+
+     listarNomesClientes(){
+        this.vendasAvista.map((value)=>{
+            this.clientes.forEach((cliente)=>{
+                if(value.cliente == cliente._id){
+                    value.cliente = cliente.nome;
+                }
+                if (value.cliente === undefined || value.cliente === null) {
+                    value.cliente = "Venda a Vista";
+                }
+            })
+        })
+        this.listarNomesRecebidos();
+
+    }
      
+     listarNomesRecebidos(){
+         this.recebidosDoDia.map((value)=>{
+             this.clientes.forEach((cliente)=>{
+                if(value.cliente == cliente._id){
+                    value.cliente= cliente.nome;
+                }
+            })
+         })
+     }
     
 
 }

@@ -1,5 +1,4 @@
 <div class="col-md-10">
-    <h3>RESUMO DO DIA</h3>
     	<div class="responsive">
 	    	<div class="col-md-10" class="panel panel-primary">
                 <div class="panel-heading">
@@ -12,13 +11,13 @@
                         <div *ngFor="let vendas of vendasAvista" class="list-group">
                             <a class="list-group-item" 
                             (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
-                               <h4 class="list-group-item-heading">{{vendas.codigo}}</h4>
-                                <p class="list-group-item-text">{{vendas.data}}{{vendas.tempo}} 
-                                Valor Total: {{vendas.valorTotalVenda}} </p>
+                               <h4 class="list-group-item-heading">Cliente:{{vendas.cliente}}</h4>
+                                <p class="list-group-item-text">{{vendas.data}},{{vendas.tempo}},
+                                Total vendas: {{vendas.valorTotalVenda}}  </p>
 
                             </a>
                         </div>
-          	            <p>Valor TOTAL DE PRODUTOS: {{valorTotalVendasDoDia}}</p>
+                        <div class="panel panel-primary"><h4>Total vendas:{{valorTotalVendasDoDia}}</h4></div>
                     </div>
                         <div *ngIf="produtosFiltrados" class="col-md-4">
                             <table  class="table table-striped">
@@ -36,29 +35,19 @@
                 </div>
 
                 <div class="panel-body">
-               
-                    <div class="col-md-4">
-                        <table class="table table-striped">
-                            <th>Nome</th>
-                            <tr *ngFor="let cliente of clientesRecebido">
-                                <td>{{cliente.nome}}</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-6"> 
+                      <div class="col-md-6"> 
                             <table class="table table-striped">
-                         <th>Data</th>
-                         <th class="pull-right">Valor</th>
+                                <th>Cliente</th>
+                                <th>Data</th>
+                                <th>Valor</th>
                               <tr *ngFor="let recebido of recebidosDoDia"  >
+                                <td>{{recebido.cliente}}</td>
                                 <td>{{recebido.momento}}</td>
-                                <td class="pull-right">{{recebido.valor}}</td>
+                                <td>{{recebido.valor}}</td>
                              </tr>
-                             <tr>
-                                <td></td>
-                               <td class="pull-right warning">Total: {{totalDeRecebidos}}</td>
-                             </tr>
+                             
                           </table>
-                        
+                          <div class="panel panel-primary"><h4>Total recebidos:{{totalDeRecebidos}}</h4></div>
                          </div>
                 </div>
             </div>
