@@ -5,6 +5,7 @@ import { CommonModule }   from '@angular/common';
 import {CrudNavTitulo} from './crud.nav.titulo';
 import {CrudNavComponente} from './crud.nav.componente';
 import {CrudNavComponente2} from './crud.nav.componente2';
+import {CampoErroComponente} from './campo.erro.componente';
 
 //Rotas
 import {CrudRouter} from './crud.router'
@@ -21,6 +22,11 @@ import {ClienteService} from './../service/cliente.service';
 import {ProdutoService} from './../service/produto.service';
 //pipe
 import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
+//boots trap
+
+
+
+
 
 
 @NgModule({
@@ -28,8 +34,8 @@ import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
     CommonModule,
     FormsModule,  
     CrudRouter,// rotas
-    ReactiveFormsModule
-  
+    ReactiveFormsModule,
+    
     
   ],
   declarations: [
@@ -42,10 +48,12 @@ import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
     ProdutosCadastrar,//Produtos Cadastrar
     ProdutoEditar,//produto editar
     CrudFilterClientePipe, // pipe filtros para procurar na lista
-    ClientesTeste
+    ClientesTeste,
+    CampoErroComponente
  
     
   ],
+
   providers: [ClienteService, ProdutoService]
 })
 

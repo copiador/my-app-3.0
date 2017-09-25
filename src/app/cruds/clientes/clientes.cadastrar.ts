@@ -1,7 +1,6 @@
 import { Component, Input, OnChanges} from '@angular/core';
 import { NgModule }       from '@angular/core';
-import { FormsModule, FormBuilder, FormControl,FormGroup  }    from '@angular/forms';
-
+import { FormBuilder, FormGroup, Validators  }    from '@angular/forms';
 
 //cliente serviço
 import {ClienteService} from './../../service/cliente.service';
@@ -14,16 +13,22 @@ import {ClienteModel} from './../../model/cliente.model';
     templateUrl: './clientes.cadastrar.html'
 
 
+
 })
 
 export class ClientesCadastrar implements OnChanges {
 
+    
+    
     clienteForm : FormGroup;
     cliente = new ClienteModel(); // cliente para um novo cadastro
     @Input() clienteEditar : ClienteModel; // cliente para um cadastro para editar
+    
   
 
      constructor( private clienteService: ClienteService, private fb: FormBuilder) {
+     
+      
         this.createFormBuild();
         
     
@@ -34,7 +39,7 @@ createFormBuild(){
 
     this.clienteForm = this.fb.group({
         _id: '',
-        nome: '',
+        nome: ['',[Validators.required,Validators.maxLength(30)]], 
         cpf: '',
     });
 
@@ -68,6 +73,24 @@ onSubmit(){
 //imprementa ngOnChages para os dados vindos do "editar"
 ngOnChanges(){
     this.clienteForm.reset({_id: this.clienteEditar._id, nome: this.clienteEditar.nome, cpf: this.clienteEditar.cpf})
+}
+
+verificaCampos(campo: string): boolean{
+
+    if (!this.clienteForm.get(campo).valid && (this.clienteForm.get(campo).touched ||
+     this.clienteForm.get(campo).dirty)){
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+aplicaCssErro(campo: string){
+    return{
+        'has-error': this.verificaCampos(campo),
+    };
+    
 }
 
 
