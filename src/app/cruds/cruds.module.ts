@@ -23,7 +23,7 @@ import {ProdutoService} from './../service/produto.service';
 //pipe
 import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
 //boots trap
-
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 
@@ -35,7 +35,7 @@ import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
     FormsModule,  
     CrudRouter,// rotas
     ReactiveFormsModule,
-    
+    TextMaskModule
     
   ],
   declarations: [

@@ -4,8 +4,14 @@ import { FormBuilder, FormGroup, Validators  }    from '@angular/forms';
 
 //cliente serviço
 import {ClienteService} from './../../service/cliente.service';
+import {ValidationService} from './../../service/validator.service';
 //modelo
 import {ClienteModel} from './../../model/cliente.model';
+
+
+
+
+
 
 @Component({
 
@@ -18,8 +24,10 @@ import {ClienteModel} from './../../model/cliente.model';
 
 export class ClientesCadastrar implements OnChanges {
 
-    
-    
+   
+   
+    public maskCpf = [/[0-9]/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/, '-', /\d/, /\d/]
+
     clienteForm : FormGroup;
     cliente = new ClienteModel(); // cliente para um novo cadastro
     @Input() clienteEditar : ClienteModel; // cliente para um cadastro para editar
@@ -27,8 +35,10 @@ export class ClientesCadastrar implements OnChanges {
   
 
      constructor( private clienteService: ClienteService, private fb: FormBuilder) {
-     
-      
+       
+  
+    
+   
         this.createFormBuild();
         
     
@@ -40,7 +50,7 @@ createFormBuild(){
     this.clienteForm = this.fb.group({
         _id: '',
         nome: ['',[Validators.required,Validators.maxLength(30)]], 
-        cpf: '',
+        cpf: ['',[Validators.required,ValidationService.cpfValidator]],
     });
 
 };

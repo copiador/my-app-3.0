@@ -28,7 +28,6 @@ import {ClienteService} from './service/cliente.service';
 
 
 
-
 @NgModule({
    imports: [
     BrowserModule,
@@ -40,7 +39,7 @@ import {ClienteService} from './service/cliente.service';
     VendasModule, // vendas modulo
     RelatoriosModule, // modulo relatorio
     RecebidosModule,// recebidos module
-
+  
 
   ],
   declarations: [

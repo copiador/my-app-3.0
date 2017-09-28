@@ -7,11 +7,11 @@
 			    <label for="inputCadastro" class="col-sm-1">Nome</label>
 					<div class="col-sm-7" [ngClass]="aplicaCssErro('nome')">
 						<input type="text" class="form-control" formControlName="nome" required  placeholder="Nome" />
-						<campo-erro-componente [testeErro]="verificaCampos('nome')" menssagemErro="Campo de Nome Inválido"></campo-erro-componente>
+						<campo-erro-componente [testeErro]="verificaCampos('nome')" [control]="clienteForm.controls.nome"></campo-erro-componente>
 					</div>
-					<div class="col-sm-4">
-							
-				    	<input type="text"  [ngStyle]="{'border-left': '5px solid #a94442'}" class="form-control" formControlName="cpf"  placeholder="Cpf" />
+					<div class="col-sm-4" [ngClass]="aplicaCssErro('cpf')">
+						<input [textMask]="{mask: maskCpf}" formControlName="cpf" required placeholder="Cpf" class="form-control" type="text"/>
+						<campo-erro-componente [testeErro]="verificaCampos('cpf')" [control]="clienteForm.controls.cpf"></campo-erro-componente>
 					</div>
 			</div>
 			<div class="form-group">
