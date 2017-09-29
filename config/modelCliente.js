@@ -11,8 +11,41 @@ var schema = new mongoose.Schema({
 	},
 	
 	cpf:{
-		type: Number,
+		type: String,
 	},
+	
+	rua:{
+		type: String,
+	},
+	bairro:{
+		type: String,
+	},
+	numero: {
+		type: String,
+	},
+	cidade: {
+		type: String,
+	},
+	estado: {
+		type: String,
+	},
+	cep: {
+		type: String,
+	},
+	email:{
+		type: String
+	},
+	 //
+	telefoneFixo:{
+		type:String
+	},
+	telefoneCelular:{
+		type: String
+	},
+	informacoes:{
+		type:String,
+	},
+//
 	debitoDoCliente:{
         type: Number
     },

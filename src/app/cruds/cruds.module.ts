@@ -20,6 +20,7 @@ import {ProdutoEditar} from './produtos/produto.editar';
 //serviços
 import {ClienteService} from './../service/cliente.service';
 import {ProdutoService} from './../service/produto.service';
+import {MaskServices} from './../service/mask.services';
 //pipe
 import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
 //boots trap
@@ -54,7 +55,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     
   ],
 
-  providers: [ClienteService, ProdutoService]
+  providers: [ClienteService, ProdutoService,MaskServices]
 })
 
 export class CrudsModule { }

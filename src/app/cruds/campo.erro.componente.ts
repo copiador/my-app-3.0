@@ -18,8 +18,7 @@ import { ValidationService } from '../service/validator.service';
 export class CampoErroComponente{
 
     
-    @Input()  testeErro : boolean;
-    @Input()  menssagemErro: string;
+ 
 
     @Input() control: FormControl;
 
