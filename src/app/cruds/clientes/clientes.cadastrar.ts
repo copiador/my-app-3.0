@@ -14,6 +14,8 @@ import {ClienteModel} from './../../model/cliente.model';
 
 
 
+
+
 @Component({
 
     selector: 'cliente-cadastrar',
@@ -23,11 +25,13 @@ import {ClienteModel} from './../../model/cliente.model';
 
 })
 
+
 export class ClientesCadastrar implements OnChanges {
 
-   
-   
-    public maskCpf : any = '';
+
+    
+      
+   public maskCpf : any = '';
     public maskCep : any = '';
     public maskNumero: any = '';
     public maskTelefoneFixo: any ='';
@@ -51,8 +55,11 @@ export class ClientesCadastrar implements OnChanges {
     
         this.createFormBuild();
         
-    
+        
   }
+
+
+
 
 
 createFormBuild(){
@@ -148,8 +155,11 @@ aplicaCssErro(campo: string){
 }
 
 
+
+
   
 
 }
+
 
 

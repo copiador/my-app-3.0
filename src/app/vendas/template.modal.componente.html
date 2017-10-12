@@ -1,0 +1,33 @@
+<button class="btn btn-primary" (click)="lgModal.show()">Listas Todos os Produtos</button>
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h4 class="modal-title pull-left">Lista de Produtos</h4>
+       <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <div class="modal-body">
+        <input type="text" class="form-control" placeholder="Nome do Produto"  (keyup)="onKey($event)"/>
+        <br>
+        <table class="table table-striped">
+            <th>C/ Barras</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+                <tr *ngFor="let produto of produtos | filterProduto: values" class="success">
+                    <td>{{produto.codigoBarras}}</td>
+                    <td>{{produto.nome}}</td>
+                    <td>{{produto.valor}}</td>
+                    <td>{{produto.quantidade}}</td>
+                    <td><button type="button" class="btn btn-success" (click)="copiarCodigo()">Copiar Codigo</button></td>
+             
+                </tr>
+        </table>
+     </div>
+   </div>
+ </div>
+</div>
+<br>

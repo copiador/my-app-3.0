@@ -1,11 +1,14 @@
 import { Component, Input, OnChanges} from '@angular/core';
 import { NgModule }       from '@angular/core';
-import { FormsModule, FormBuilder, FormControl,FormGroup  }    from '@angular/forms';
+import { FormsModule, FormBuilder, FormControl,FormGroup , Validators  }    from '@angular/forms';
 
 //cliente serviço
 import {ProdutoService} from './../../service/produto.service';
+import {ValidationService} from './../../service/validator.service';
+import {MaskServices} from './../../service/mask.services';
 //modelo
 import {ProdutoModel} from './../../model/produto.model';
+
 
 @Component({
 
@@ -18,13 +21,14 @@ import {ProdutoModel} from './../../model/produto.model';
 export class ProdutosCadastrar implements OnChanges {
 
 
+
     produtoForm : FormGroup;
     produto = new ProdutoModel(); // cliente para um novo cadastro
     @Input() produtoEditar : ProdutoModel; // cliente para um cadastro para editar
 
     constructor(private produtoService: ProdutoService, private fb: FormBuilder){
         this.createFormBuild();
-        this.editar();
+    
 
     }
    
@@ -36,18 +40,16 @@ createFormBuild(){
 
     this.produtoForm = this.fb.group({
         _id: '',
-        codigoBarras: '',
-        nome: '',
-        valor: '',
+        codigoBarras: ['',Validators.required],
+        nome: ['', Validators.required ],
+        valor: ['',Validators.required],
         quantidade: '',
     });
 
 }
 
 
-editar(){
- 
-};
+
 prepararValores(): ProdutoModel{
     let valores = this.produtoForm.value;
     let produto = new ProdutoModel();
@@ -77,5 +79,23 @@ ngOnChanges(){
     this.produtoForm.reset({_id: this.produtoEditar._id, nome: this.produtoEditar.nome, 
         codigoBarras: this.produtoEditar.codigoBarras, valor: this.produtoEditar.valor, quantidade: this.produtoEditar.quantidade })
 }
+
+verificaCampos(campo: string): boolean{
+    
+        if (!this.produtoForm.get(campo).valid && (this.produtoForm.get(campo).touched ||
+         this.produtoForm.get(campo).dirty)){
+            return true;
+        }else{
+            return false;
+        }
+    
+    }
+    
+    aplicaCssErro(campo: string){
+        return{
+            'has-error': this.verificaCampos(campo),
+        };
+        
+    }
 }
 

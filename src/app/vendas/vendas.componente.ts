@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, NgForm  }    from '@angular/forms';
 //serviços
 import {VendasAvistaService} from '../service/vendas-a-vista.service';
 import {ProdutoService} from '../service/produto.service';
@@ -34,6 +35,7 @@ export class VendasComponente implements OnInit {
     //butão pra mostrar lista de clientes e fechar lista
     listarClienteButton: boolean = true;
     
+    produto = new ProdutoModel();
 
 
 
@@ -65,13 +67,18 @@ export class VendasComponente implements OnInit {
     }
    
     //coloca o codigo de barrras vindo e cadastra na tela
-    venda(codigoDeBarras : Number){
-
+    venda(codigoBarras : number){
+        
+    this.validaProduto(codigoBarras);
+    let produtoFilter = this.produtos.findIndex(produto => produto.codigoBarras == codigoBarras) ;
+    console.log(produtoFilter);
+        
      //pega a lista vinda do servidor, e filtra o produto de acordo com o codigo de barras  
      //essa variavel produtoFilter anexa o codigo de barras do produto vendido 
-     let produtoFilter = this.produtos.findIndex(produto => produto.codigoBarras == codigoDeBarras) ;
+    
      //coloca o produto vendido em um modelo de produto
      let produtoVendido = this.produtos[produtoFilter];
+
      
     // this.produtosVendidos.push(produtoVendido);
     //console.log(produtoVendido.valor);
@@ -84,6 +91,34 @@ export class VendasComponente implements OnInit {
      //chama a função de somar todos os produtos da venda   e apresenta na tela
      this.valorTotal();
    
+    }
+//ver se existe um produto valido quando é digitado um codigo de barras
+    validaProduto(codigoBarras : number){
+        if(codigoBarras == undefined){
+            return true;
+        }else{
+            let produtoFilter = this.produtos.findIndex(produto => produto.codigoBarras == codigoBarras) ;
+            
+            let produtoVendido = this.produtos[produtoFilter];
+            if(produtoFilter == -1){
+                console.log(this.validaVenda());
+                return true;
+            }else{
+                return false;
+            }
+        }
+     
+    }
+    //valida se tem algum item na lista
+    validaVenda(){
+       
+        if(this.produtosVendidos.length > 0){
+            console.log(this.produtosVendidos.length);
+            console.log(this.produtosVendidos);
+            return false;
+        }else{
+            return true;
+        }
     }
 
 
@@ -115,6 +150,7 @@ export class VendasComponente implements OnInit {
                 //Atualiza o valor total da venda depois de tirado o produto da venda
             this.valorTotal();
         }
+      
             
             
     }
@@ -147,6 +183,14 @@ export class VendasComponente implements OnInit {
         this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
     }
          
+        aplicaCssErro(campo){
+            return{
+                'has-error': true,
+            };
+            
+        }
+
+      
 }
 
 

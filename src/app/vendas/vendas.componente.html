@@ -1,16 +1,27 @@
 <div class="row">
 	<div class="col-md-4">
 		<h4>Nome da Imagem</h4>
-		<p></p>
-		<div class="input-group">
-			  <input #codigoBarras type="text" (keyup.enter)="venda(codigoBarras.value); codigoBarras.value=''"
-				  class="form-control" placeholder="Codigo de Barras">
-					
-			  <button (click)="venda(codigoBarras.value); codigoBarras.value=''"
-				 class="btn btn-primary btn-lg btn-block">Add</button>
-		</div>
-		<p>Essa é uma discrição da imagem</p>
+		<br>
+		<modal-static></modal-static>
+		<br>
 	
+		<div class="form-group">
+			<input type="number" #codigoBarras="ngModel" required
+				[(ngModel)]="produto.codigoBarras" class="form-control"  placeholder="Codigo de Barras">
+			  <button (click)="venda(codigoBarras.value); codigoBarras.value=''"
+				 class="btn btn-primary btn-lg btn-block" [disabled]="validaProduto(codigoBarras.value)">Adicionar</button>
+				 <div *ngIf="validaProduto(codigoBarras.value) && (codigoBarras.dirty && codigoBarras.touched)"
+				   	class="alert alert-danger">
+					Codigo de Barras Invalido
+				  </div>
+		<div *ngIf="codigoBarras.invalid && (codigoBarras.dirty && codigoBarras.touched)"
+		class="alert alert-danger">
+   	 		<div *ngIf="codigoBarras.errors.required">
+	  		 Digite um Codigo de Barras
+	 		</div>
+	    </div>
+	</div>
+
 	</div>
 		<div class="col-md-4">
 			<h4>Lista de Produtos</h4>
@@ -37,8 +48,9 @@
 			<h4><p>Escolha o cliente</p></h4>
 			<input type="button" class="btn btn-primary btn-lg btn-block" 
 			[value]="listarClienteButton ? 'Listar Clientes' : 'Fechar Lista'"
-			(click)="listarClientes()">
-			<button class="btn btn-primary btn-lg btn-block" (click)="finalizarVenda()">Finalizar Venda</button>
+			(click)="listarClientes()" [disabled]="validaVenda()">
+			<button class="btn btn-primary btn-lg btn-block" 
+			[disabled]="validaVenda()" (click)="finalizarVenda()">Finalizar Venda</button>
 			
 			
 			<h4>Procurar Cliente:</h4>
