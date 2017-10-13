@@ -182,13 +182,13 @@ export class VendasComponente implements OnInit {
         this.listarClienteButton = !this.listarClienteButton;
         this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
     }
+
+    copiarCodigoBarras(codigoBarras: number){
+        
+        this.produto.codigoBarras = codigoBarras;
+    }
          
-        aplicaCssErro(campo){
-            return{
-                'has-error': true,
-            };
-            
-        }
+        
 
       
 }

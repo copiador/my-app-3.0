@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter,ViewChild} from '@angular/core';
 //services
 import {ProdutoService} from '../service/produto.service';
 import {ProdutoModel} from '../model/produto.model';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
  selector: 'modal-static',
@@ -11,7 +12,10 @@ export class TemplateModalComponente implements OnInit {
 
     produtos: ProdutoModel[];
     values: any;
-
+    @Output() codigoBarrasOutput = new EventEmitter();
+    @ViewChild('lgModal') public lgModal:ModalDirective;
+    public isModalShown:boolean = false;
+   
 
     constructor(private produtoServices: ProdutoService){
 
@@ -28,9 +32,15 @@ onKey(event: any){
 
 }
 
-copiarCodigo(){
-    
+copiarCodigo(codigoBarras: number){
+    this.codigoBarrasOutput.emit(codigoBarras);
+    this.lgModal.hide();
+
 }
+
+public hideModal():void {
+    
+  }
 
 
 
