@@ -11,7 +11,7 @@
                         <div *ngFor="let vendas of vendasAvista" class="list-group">
                             <a class="list-group-item" 
                             (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
-                               <h4 class="list-group-item-heading">Cliente:{{vendas.cliente}}</h4>
+                           
                                 <p class="list-group-item-text">{{vendas.data}},{{vendas.tempo}},
                                 Total vendas: {{vendas.valorTotalVenda}}  </p>
 
@@ -19,13 +19,13 @@
                         </div>
                         <div class="panel panel-primary"><h4>Total vendas:{{valorTotalVendasDoDia}}</h4></div>
                     </div>
-                        <div *ngIf="produtosFiltrados" class="col-md-4">
+                        <div *ngIf="produtosSelected2" class="col-md-4">
                             <table  class="table table-striped">
 				                <th>Nome</th>
 				                <th>Valor</th>
-				                    <tr  *ngFor="let produtoFiltrado of produtosFiltrados">
-                                        <td>{{produtoFiltrado.nome}}</td>
-                                        <td>{{produtoFiltrado.valor}}</td>
+				                    <tr  *ngFor="let produto of produtosSelected2">
+                                        <td>{{produto.nome}}</td>
+                                        <td>{{produto.valor}}</td>
 						            </tr>
 			                </table>
                         </div>
@@ -41,14 +41,16 @@
                                 <th>Data</th>
                                 <th>Valor</th>
                               <tr *ngFor="let recebido of recebidosDoDia"  >
-                                <td>{{recebido.cliente}}</td>
-                                <td>{{recebido.momento}}</td>
+                                <td>{{recebido.cliente.nome}}</td>
+                                <td>{{recebido.data}}</td>
                                 <td>{{recebido.valor}}</td>
+                               
                              </tr>
                              
                           </table>
                           <div class="panel panel-primary"><h4>Total recebidos:{{totalDeRecebidos}}</h4></div>
-                         </div>
+                          <button type="button"(click)="listarVendas2()" >Listar</button> 
+                        </div>
                 </div>
             </div>
           </div>

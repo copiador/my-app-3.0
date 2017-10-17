@@ -31,6 +31,7 @@ export class RecebidosComponente implements OnInit {
     vendasAvistaModel: VendasAvistaModel[];
     //selecionar a venda do cliente
     vendasAvistaSelected: VendasAvistaModel;
+    produtosSelected2: ProdutoModel[] = [];
     //produtos Service
     produtos: ProdutoModel[];
     //produtos selecidonados pela venda;
@@ -91,21 +92,11 @@ export class RecebidosComponente implements OnInit {
 
     onSelectVenda(venda: VendasAvistaModel){
         this.vendasAvistaSelected = venda;
-
-        //reseta a lista de produtos
-        this.produtosSelected.length = 0;
+        this.produtosSelected = venda.produtos;
+     
       
-        //pega a lista de vendas e mostra os produtos de cada venda
-        this.vendasAvistaSelected.produtos.forEach((produto)=>{
-           //pega o id do produto
-            let numberidProduto: any = produto;
-            this.produtos.forEach((value2)=>{
-                if(numberidProduto == value2._id){
-                    this.produtosSelected.push(value2);
-                 
-                }
-            })
-        })
+       
+    
         
 
     }

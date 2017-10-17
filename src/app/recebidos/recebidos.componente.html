@@ -6,7 +6,7 @@
                 </div>
                   <div class="panel-body">
                     <div class="col-md-4">
-                        <p>Procurar:</p> <input type="text" class="form-control" (keyup)="onKey($event)"/>
+                        <p>Procurar Cliente:</p> <input type="text" class="form-control" (keyup)="onKey($event)"/>
                         <div *ngFor="let cliente of clientes | filterClienteRecebidos: values" class="list-group">
                             <a class="list-group-item" 
                             (click)="onSelectCliente(cliente)" [ngClass]="{'active': clienteSelected == cliente}" >
@@ -46,9 +46,9 @@
                             </table>
                         </div>
                         <div>
-                            <p>Digite o valor Recebido:<input #recebido type="text" class="form-control">
+                            <p>Digite o valor Recebido:<input #recebido type="number"  class="form-control">
                                 <button (click)="recebidoFunction(recebido.value); recebido.value=''"
-                                class="btn btn-primary btn-lg btn-block">Add</button></p>
+                                class="btn btn-primary btn-lg btn-block">Adicionar Recebido</button></p>
                         </div>
                         
                     </div>

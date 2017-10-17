@@ -28,6 +28,7 @@ export class ResumoDoDiaComponente implements OnInit {
     vendasSelected : VendasAvistaModel;
     //produtos selecionados
     produtosSelected: any[] = [];
+    produtosSelected2: ProdutoModel[] = [];
     //lista de todos os produtos
     produtos: ProdutoModel[];
     //lista de todos produtos filtrados pela venda
@@ -70,9 +71,9 @@ export class ResumoDoDiaComponente implements OnInit {
         //pega lista de recebidos do dia
         this.relatoriosService.getRelatorioRecebidosDoDia()
         .subscribe(recebidos => this.recebidosDoDia = recebidos,Error,()=> this.somaValoresRecebidos());
-        //pega lista de clientes
-        this.clienteService.getClientes()
-        .subscribe(clientes => this.clientes = clientes,Error,()=> this.listarNomesClientes());
+
+
+
 
     }
 
@@ -84,25 +85,8 @@ export class ResumoDoDiaComponente implements OnInit {
         //pega a lista de venda clica do usuario
       
        this.vendasSelected = vendasAvista;
-      
-       //coloca a lista de vendas selecionados e coloca dentro de um array de produtos selecionados
-        this.vendasSelected.produtos.forEach((value, index)=>{
-         // console.log(_id._id);
-            this.produtosSelected.push(value);
-           
-       });
-
-      
-       //pega a lista de venda clicada pelo usuario, junto da lista de vendas vindas do bd
-       //e compara os produtos clicados pelo usuario com a lista de produtos vindo do bd
-      this.produtosSelected.forEach((value2, index)=>{
-            
-            this.produtos.forEach((value,index)=>{
-                if(value2 == value._id){
-                   this.produtosFiltrados.push(value);
-                }
-            })
-      })
+       this.produtosSelected2 = this.vendasSelected.produtos;
+     
      }
 
 
@@ -117,7 +101,7 @@ export class ResumoDoDiaComponente implements OnInit {
         this.totalDeRecebidos = valoresSomados;
       
      }
-
+/*
      listarNomesClientes(){
         this.vendasAvista.map((value)=>{
             this.clientes.forEach((cliente)=>{
@@ -141,6 +125,10 @@ export class ResumoDoDiaComponente implements OnInit {
                 }
             })
          })
+     }
+*/
+     listarVendas2(){
+         this.relatoriosService.getRelatorioVendasDoDia().subscribe(vendas => console.log(vendas));
      }
     
 

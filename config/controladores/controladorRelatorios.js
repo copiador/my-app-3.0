@@ -14,14 +14,23 @@ module.exports = function() {
 	controller.listarVendasDoDia = function(req, res){
 
 		var valoresMomento = moment().format("DD-MM-YYYY");
-		
-		//pega as vendas do dia atual, usanbo a biblioteca moment
-		ShemaVendasAvista.find({ "momento" : { "$gte" : valoresMomento } },
+		console.log(valoresMomento);
+		//pega as vendas do dia atual, usando a biblioteca moment, e retorna as vendas do dia,
+		//populando dos produtos e os clientes
+		ShemaVendasAvista.find({"data": {"$eq": valoresMomento}
+	}).populate({path: 'produtos'}).populate({path: 'cliente'}).exec(function(err,vendas){
+			if (err)return console.error(err);
+			console.log(vendas);
+			return res.json(vendas);
+		})
+		/*
+		ShemaVendasAvista.find({ "data" : { "$eq" : valoresMomento } },
 		  function(err, vendas) {
 			if (err)return console.error(err);
+			console.log(vendas);
 			return res.json(vendas);
 		});
-		
+		*/
 	}
 
 	controller.listarRecebidosDoDia = function(req, res){
@@ -29,12 +38,12 @@ module.exports = function() {
 				var valoresMomento = moment().format("DD-MM-YYYY");
 				
 				//pega as vendas do dia atual, usanbo a biblioteca moment
-				ShemaRecebidos.find({ "momento" : { "$gte" : valoresMomento } },
-				  function(err, recebidos) {
+				ShemaRecebidos.find({"data": {"$eq": valoresMomento}
+			}).populate({path: 'cliente'}).exec(function(err,recebidos){
 					if (err)return console.error(err);
-					
+					console.log(recebidos);
 					return res.json(recebidos);
-				});
+				})
 				
 			}
 

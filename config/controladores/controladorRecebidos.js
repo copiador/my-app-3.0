@@ -41,6 +41,14 @@ module.exports = function() {
 			if (err)return console.error(err);
 			return res.json(recebidos);
 		});
+/*
+		ShemaRecebidos.find({'cliente': _id})
+		.populate({path: 'cliente'}).exec(function(err,recebidos){
+			if (err)return console.error(err);
+			console.log(recebidos);
+			return res.json(recebidos);
+		})
+		*/
 	};
 
 	controller.listarRecebidos = function(req, res) {

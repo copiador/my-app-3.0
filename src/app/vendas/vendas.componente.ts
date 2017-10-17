@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, NgForm  }    from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 //serviços
 import {VendasAvistaService} from '../service/vendas-a-vista.service';
 import {ProdutoService} from '../service/produto.service';
 import {ClienteService} from '../service/cliente.service';
+
 //Model
 import {VendasAvistaModel} from '../model/vendas-a-vista.model';
 import {ProdutoModel} from '../model/produto.model';
@@ -36,6 +38,7 @@ export class VendasComponente implements OnInit {
     listarClienteButton: boolean = true;
     
     produto = new ProdutoModel();
+    
 
 
 
@@ -154,7 +157,7 @@ export class VendasComponente implements OnInit {
             
             
     }
-
+    //almenta o estoque depois que o usuario deleta do estoque 
     aumentaEstoque(produto: ProdutoModel){
 
         //a atualiza o estoque a cada produto tirado da venda
@@ -165,14 +168,14 @@ export class VendasComponente implements OnInit {
           
     }
 
-
+    //pega o cliente selecionado
     onSelect(cliente: ClienteModel){
         this.clienteSelected = cliente;
         this.vendaAvista.cliente = this.clienteSelected;
         console.log(this.vendaAvista.cliente);
 
     }
-
+    //detecta os valores digitados pelo usuario no campo cliente e filtra eles pelo pipe
     onKey(event: any){
         this.values = event.target.value;
 
@@ -182,11 +185,24 @@ export class VendasComponente implements OnInit {
         this.listarClienteButton = !this.listarClienteButton;
         this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
     }
-
+    //copia codigo de barras vindo da lista de produtos  do tempalte modal
     copiarCodigoBarras(codigoBarras: number){
         
         this.produto.codigoBarras = codigoBarras;
     }
+    //detecta uma ação do usuario caso fique com produtos na lista 
+    canDeactivate(): Observable<boolean> | boolean {
+        // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
+        if (this.validaVenda()) {
+          return true;
+        }else{
+            window.alert("Para sair no menu delete os produtos da lista de produtos");
+        }
+
+     
+        
+       
+      }
          
         
 

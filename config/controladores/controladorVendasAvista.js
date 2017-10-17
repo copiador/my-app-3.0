@@ -94,16 +94,31 @@ module.exports = function() {
 			if (err)return console.error(err);
 			return res.json(vendas);
 		});
+	ShemaVendasAvista.find().populate({path: 'cliente'}).exec(function(err,vendas){
+		if (err)return console.error(err);
+		return console.log(vendas);
+	})
+	
 	};
 
 	//listar venda do cliente desejado
 	controller.listarVendasClienteId = function(req, res){
 		var _id = req.params.id;
-			ShemaVendasAvista.find({'cliente': _id},function(err,vendas){
+		/*	
+		ShemaVendasAvista.find({'cliente': _id},function(err,vendas){
 			 if (err) return console.error(err);
 			
 				return res.json(vendas);
 		})
+		*/
+		ShemaVendasAvista.find({'cliente': _id}).populate({path: 'produtos'})
+		.populate({path: 'cliente'}).exec(function(err,vendas){
+			if (err)return console.error(err);
+			console.log(vendas);
+			return res.json(vendas);
+		})
+
+		
 	}
 
 	controller.buscarVendaId = function(req, res){

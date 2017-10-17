@@ -1,5 +1,6 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {CanDeactivateGuard } from './service/can.deactivate.guard.service'
 
 
 //guardas serviço
@@ -28,7 +29,8 @@ const routes: Routes = [
 ]
 @NgModule({
   imports: [ RouterModule.forRoot(routes,{enableTracing: true}) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers:[ CanDeactivateGuard ],
 })
 
 export class AppRotasModule {}
