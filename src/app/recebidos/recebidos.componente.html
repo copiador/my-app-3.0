@@ -46,9 +46,19 @@
                             </table>
                         </div>
                         <div>
-                            <p>Digite o valor Recebido:<input #recebido type="number"  class="form-control">
-                                <button (click)="recebidoFunction(recebido.value); recebido.value=''"
-                                class="btn btn-primary btn-lg btn-block">Adicionar Recebido</button></p>
+                            Digite o valor Recebido:
+                            <input  type="number" [(ngModel)]="recebido.valor" required
+                            #valor="ngModel" class="form-control">
+                                
+                            <button (click)="recebidoFunction(valor.value); valor.value=''" required
+                                class="btn btn-primary btn-lg btn-block" [disabled]="valor.errors">Adicionar Recebido</button>
+
+                            <div *ngIf="valor.invalid && (valor.dirty && valor.touched)"
+                                class="alert alert-danger">
+                                        <div *ngIf="valor.errors.required">
+                                       Digite um valor
+                                     </div>
+                                </div>
                         </div>
                         
                     </div>

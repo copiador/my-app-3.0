@@ -34,9 +34,9 @@ import {ClienteService} from './service/cliente.service';
     FormsModule,
     HttpModule,
     AppRotasModule, //Rotas
+    VendasModule, // vendas modulo
     CrudsModule, // Modulo Cruds
     LoginRouterModule, // login modulo
-    VendasModule, // vendas modulo
     RelatoriosModule, // modulo relatorio
     RecebidosModule,// recebidos module
   

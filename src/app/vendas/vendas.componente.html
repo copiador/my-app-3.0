@@ -6,7 +6,7 @@
 		<br>
 	
 		<div class="form-group">
-			<input type="number" #codigoBarras="ngModel" required
+			<input type="number"  #codigoBarras="ngModel" required
 				[(ngModel)]="produto.codigoBarras" class="form-control"  placeholder="Codigo de Barras">
 			  <button (click)="venda(codigoBarras.value); codigoBarras.value=''"
 				 class="btn btn-primary btn-lg btn-block" [disabled]="validaProduto(codigoBarras.value)">Adicionar</button>

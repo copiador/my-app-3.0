@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, NgForm  }    from '@angular/forms';
 //serviços
 import {ClienteService} from '../service/cliente.service';
 import {VendasAvistaService} from '../service/vendas-a-vista.service';
@@ -10,7 +11,7 @@ import {VendasAvistaModel} from '../model/vendas-a-vista.model';
 import {ProdutoModel} from '../model/produto.model';
 import {RecebidosModel} from '../model/recebidos.model';
 
-import { Observable } from 'rxjs/Observable';
+
 @Component({
 
     selector: '',
@@ -24,7 +25,7 @@ export class RecebidosComponente implements OnInit {
     
     clientes: ClienteModel[];
     clienteSelected: ClienteModel;
-    cliente: Observable<ClienteModel>;
+   
     //filter//
     values: string;
     //lista de vendas do cliente selecionado
@@ -42,7 +43,8 @@ export class RecebidosComponente implements OnInit {
     totalValorRecebidoCliente: number = 0;
     //model
     recebidosCliente: RecebidosModel[];
-   
+   //recebido adicionado    
+    recebido = new RecebidosModel();
 
 
     constructor(private serviceCliente:  ClienteService, 
