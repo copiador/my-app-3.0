@@ -6,15 +6,21 @@ module.exports = function() {
 	var ShemaUsuario = modeloUsuarioSchema.model('Usuario');
 	
 	
-	var dados = {"nome":"testando 2",email:"jessemarques@gmail.com", senha: "123", tipo: "administrador"};
+	var dados = {"nome":"testando 2",email:"jessemarques@gmail.com", senha: "1235", tipo: "administrador"};
 //	var dados = {codigo:2, nome: "guidinha", endereco: {rua: "chove pau", bairro: "beira rio", numero: 95,
 //	cidade: "taquaritinga",cep: 55790}};
 	var usuario = new ShemaUsuario(dados);
-//	usuario.save();
+	//usuario.save();
 //	var contato = new ShemaCliente({"nome":"guidinha"});
 	//contato2.save();
 	//contato2.nextCount()
 	
+
+	ShemaUsuario.find(function(err, usuarios) {
+		if (err) return console.error(err);
+		//envia via json os dados de todos os clientes
+		console.log(usuarios)
+	})
 
 
 	
@@ -84,9 +90,9 @@ module.exports = function() {
 
 
 	//função listar
-	controller.listarUsuario = function(req, res) {
+	controller.listarUsuarios = function(req, res) {
 		//função para listar
-		ShemaUsuario.find(function(err, usurios) {
+		ShemaUsuario.find(function(err, usuarios) {
 			if (err) return console.error(err);
 			//envia via json os dados de todos os clientes
 			res.json(usuarios);

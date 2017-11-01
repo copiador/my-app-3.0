@@ -15,6 +15,8 @@ module.exports = function(app) {
 
 	// rotas login
 	app.post('/api/login', controllerUsuario.logar);
+	// usuario
+	app.get('/api/usuarios', controllerUsuario.listarUsuarios);
 
 	//produtos
 	app.get('/api/produtos', controllerProduto.listarProdutos);

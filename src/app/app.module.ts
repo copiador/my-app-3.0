@@ -24,6 +24,8 @@ import {RecebidosModule} from './recebidos/recebidos.module';
 
 //Serviços
 import {ClienteService} from './service/cliente.service';
+import {UsuarioService} from './service/usuario.service'
+
 
 
 
@@ -49,7 +51,7 @@ import {ClienteService} from './service/cliente.service';
 
   ],
  
-  providers: [ClienteService],
+  providers: [ClienteService, UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

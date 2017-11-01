@@ -19,7 +19,7 @@ export class LoginComponente {
 
     menssagem : string;
     usuarioPrepararLogar = new UsuarioModel();// preparar usuario para logar
-    usuario = new UsuarioModel();
+    usuario : UsuarioModel;
     menssagemLogar : string;
     
 
@@ -62,7 +62,9 @@ setMessage() {
   }
 
   
- 
+ getUsuario(): UsuarioModel{
+    return this.usuario;
+ }
   sair() {
     this.loginService.logout();
     this.setMessage();
