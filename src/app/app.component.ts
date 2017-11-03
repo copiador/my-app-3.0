@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   login: LoginComponente;
   usuarios: UsuarioModel[];
   //pega o usuario logado da paga de login
-  //usuario  = new UsuarioModel();
+  usuario  = new UsuarioModel();
   
   
   constructor(private usuarioService: UsuarioService, private loginService: LoginService ){
