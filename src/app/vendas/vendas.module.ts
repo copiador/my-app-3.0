@@ -5,6 +5,9 @@ import { CommonModule }   from '@angular/common';
 // Componentes Vendas
 import {VendasComponente} from './vendas.componente';
 import {TemplateModalComponente} from './template.modal.componente'
+import {MenuPrincipalModule} from '../menu-principal/menu-principal.module'
+
+
 
 // serviço
 import {VendasAvistaService} from '../service/vendas-a-vista.service';
@@ -25,6 +28,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     VendasRouter,
     ReactiveFormsModule,
     ModalModule.forRoot(),
+    MenuPrincipalModule
    
    
     
@@ -33,7 +37,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     VendasComponente,// Componente de vendas
     FilterClienteComponente,
     TemplateModalComponente,
-    FilterProdutoComponente
+    FilterProdutoComponente,
+    
+
     
  
     

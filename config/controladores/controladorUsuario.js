@@ -6,7 +6,7 @@ module.exports = function() {
 	var ShemaUsuario = modeloUsuarioSchema.model('Usuario');
 	
 	
-	var dados = {"nome":"testando 2",email:"jessemarques@gmail.com", senha: "1235", tipo: "administrador"};
+	var dados = {"nome":"testando 2",email:"jessemarques@gmail.com", senha: "123", tipo: "administrador"};
 //	var dados = {codigo:2, nome: "guidinha", endereco: {rua: "chove pau", bairro: "beira rio", numero: 95,
 //	cidade: "taquaritinga",cep: 55790}};
 	var usuario = new ShemaUsuario(dados);

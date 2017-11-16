@@ -25,6 +25,8 @@ import {MaskServices} from './../service/mask.services';
 import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
 //boots trap
 import { TextMaskModule } from 'angular2-text-mask';
+//modulos
+import {MenuPrincipalModule} from '../menu-principal/menu-principal.module'
 
 
 
@@ -36,7 +38,9 @@ import { TextMaskModule } from 'angular2-text-mask';
     FormsModule,  
     CrudRouter,// rotas
     ReactiveFormsModule,
-    TextMaskModule
+    TextMaskModule,
+    MenuPrincipalModule
+
     
   ],
   declarations: [

@@ -28,7 +28,7 @@ module.exports = function() {
 
 
 	//setando a porta pra o express
-	app.set('port', 80);
+	app.set('port', 3000);
 	home(app);
 	return app;
 

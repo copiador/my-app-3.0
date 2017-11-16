@@ -8,7 +8,7 @@ import {LoginService} from '../service/login.service';
 
 
 const LoginRoutes: Routes = [
-  { path: 'login-module',  
+  { path: 'login-componente',  
   component: LoginComponente},
 ];
 
@@ -26,4 +26,4 @@ const LoginRoutes: Routes = [
 
 
 })
-export class LoginRouterModule { }
+export class LoginRouter { }

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: `
+	template: `
+
+	<menu-principal></menu-principal>
+	
     <ul class="nav nav-tabs nav-justified">
 	    <li role="presentation" routerLinkActive="active">
 		    <a routerLink="crud-nav-cadastrar">CADASTRAR</a>

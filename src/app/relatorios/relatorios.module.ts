@@ -18,7 +18,8 @@ import {EstoquePipe} from './resumos/estoque.pipe'
 import {FilterClienteVendaComponente} from './resumos/filter.cliente.venda.componente';
 
 import { DatepickerModule } from 'ngx-bootstrap';
-
+//modules
+import {MenuPrincipalModule} from '../menu-principal/menu-principal.module'
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { DatepickerModule } from 'ngx-bootstrap';
     FormsModule,
     RelatoriosRouter,
    DatepickerModule.forRoot(),
+   MenuPrincipalModule
     
    
    

@@ -62,9 +62,7 @@ setMessage() {
   }
 
   
- getUsuario(): UsuarioModel{
-    return this.usuario;
- }
+ 
   sair() {
     this.loginService.logout();
     this.setMessage();
