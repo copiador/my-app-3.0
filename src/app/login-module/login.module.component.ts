@@ -14,7 +14,9 @@ import {LoginComponente} from '../login/login.componente'
 @Component({
 
     selector: '',
-    templateUrl: './login.module.component.html'
+    templateUrl: './login.module.component.html',
+    styleUrls: ['./login.module.component.css']
+
 
 
 
