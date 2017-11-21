@@ -52,7 +52,7 @@ export class LoginModuleComponent {
       this.menssagem = 'Carregando o a entrada';
       this.loginService.logarUsuario(this.usuarioPrepararLogar).subscribe(usuario => this.usuario = usuario,
       (err:any) => console.log(err),()=> this.testarLogin());
-      
+     
    /*   */
     }
   
@@ -64,10 +64,10 @@ export class LoginModuleComponent {
               if (this.loginService.estadoLogin) {
           // Get the redirect URL from our auth service
           // If no redirect has been set, use the default
-              let redirect = this.loginService.redirectUrl ? this.loginService.redirectUrl : '/cruds-nav-module';
+              let redirect = this.loginService.redirectUrl ? this.loginService.redirectUrl : 'menu-principal';
               console.log(this.loginService.estadoLogin);
           // Redirect the user
-              this.router.navigate([redirect]);
+              this.router.navigate([redirect, {id: this.usuario._id}]);
         }
       });
   
@@ -83,7 +83,11 @@ export class LoginModuleComponent {
     }
   
     logar(){
-      this.router.navigateByUrl('/vendas-module');
+      this.router.navigateByUrl('menu-principal');
+    }
+
+    getUser(){
+      return this.usuario;
     }
 
 

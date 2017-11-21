@@ -28,7 +28,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     VendasRouter,
     ReactiveFormsModule,
     ModalModule.forRoot(),
-    MenuPrincipalModule
+  
    
    
     

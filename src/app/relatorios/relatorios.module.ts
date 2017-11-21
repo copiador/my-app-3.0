@@ -19,7 +19,7 @@ import {FilterClienteVendaComponente} from './resumos/filter.cliente.venda.compo
 
 import { DatepickerModule } from 'ngx-bootstrap';
 //modules
-import {MenuPrincipalModule} from '../menu-principal/menu-principal.module'
+
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import {MenuPrincipalModule} from '../menu-principal/menu-principal.module'
     FormsModule,
     RelatoriosRouter,
    DatepickerModule.forRoot(),
-   MenuPrincipalModule
+
     
    
    

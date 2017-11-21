@@ -101,6 +101,18 @@ module.exports = function() {
 		
 	};
 
+	controller.buscarUsuario = function(req, res){
+
+
+		var _idUsuario = req.params.id;
+		ShemaUsuario.findOne({ _id: _idUsuario  }, function(err, usuario) {
+			if (err) return console.log(err) ;
+	
+			return res.json(usuario);
+			
+		  });
+	}
+
 	controller.adicionarCliente = function (req, res){
 
 		var _idCliente = req.body._id;

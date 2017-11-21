@@ -4,10 +4,6 @@ import { CommonModule }   from '@angular/common';
 // Componentes Recebidos
 import {RecebidosComponente} from './recebidos.componente';
 
-//modulo
-import {MenuPrincipalModule} from '../menu-principal/menu-principal.module'
-
-
 // serviço
 import {RecebidosService} from '../service/recebidos.services';
 import {ClienteService} from '../service/cliente.service';
@@ -25,7 +21,7 @@ import {FilterClienteRecebidosComponente} from './filter.cliente.recebidos.compo
     FormsModule,
     //rota
     RecebidosRouter,
-    MenuPrincipalModule
+    
    
     
   ],

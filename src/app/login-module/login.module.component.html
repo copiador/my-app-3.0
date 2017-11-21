@@ -24,7 +24,7 @@
               <input type="text" class="form-control" [(ngModel)]="usuarioPrepararLogar.email" #email="ngModel"  placeholder="Email" required="" autofocus="" />
               <input type="password" class="form-control" [(ngModel)]="usuarioPrepararLogar.senha" #senha="ngModel" placeholder="Senha" required=""/>     		  
              
-              <button class="btn btn-lg btn-primary btn-block" (click)="logar()" 
+              <button class="btn btn-lg btn-primary btn-block" (click)="entrar()" 
               [disabled]="email.invalid || senha.invalid" type="Submit">Login</button>  			
            
         </div>

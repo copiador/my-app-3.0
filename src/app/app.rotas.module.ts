@@ -10,10 +10,10 @@ import {LoginGuardaService} from './service/login.guarda.service';
 const routes: Routes = [
  //navs
  
-  {
-    path: 'vendas-module', 
-    loadChildren: './vendas/vendas.module#VendasModule',
-   },
+  //{
+   // path: 'vendas-module', 
+   // loadChildren: './vendas/vendas.module#VendasModule',
+   //},
    
    {
     path: 'recebidos-module', 

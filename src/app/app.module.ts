@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 //componentes
 import { AppComponent } from './app.component';
 import { LoginModuleComponent} from './login-module/login.module.component'
-import {LoginComponente} from './login/login.componente'
+import { LoginComponente} from './login/login.componente'
 
 
 //Modulo de Rotas
@@ -16,9 +16,10 @@ import {LoginRouter} from './login/login.router'
 
 //Modulos
 import {CrudsModule} from './cruds/cruds.module'; //crud
-import {VendasModule} from './vendas/vendas.module';//vendas
+
 import {RelatoriosModule} from './relatorios/relatorios.module';
 import {RecebidosModule} from './recebidos/recebidos.module';
+import {MenuPrincipalModule} from './menu-principal/menu-principal.module'
 
 
 
@@ -37,10 +38,11 @@ import {UsuarioService} from './service/usuario.service'
     HttpModule,
     LoginModuleRouter,
     AppRotasModule, //Rotas
-    VendasModule, // vendas modulo
+  
     CrudsModule, // Modulo Cruds
     RelatoriosModule, // modulo relatorio
     RecebidosModule,// recebidos module
+    MenuPrincipalModule,
     LoginRouter
 
   

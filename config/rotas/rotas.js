@@ -17,6 +17,7 @@ module.exports = function(app) {
 	app.post('/api/login', controllerUsuario.logar);
 	// usuario
 	app.get('/api/usuarios', controllerUsuario.listarUsuarios);
+	app.get('/api/usuarios/:id', controllerUsuario.buscarUsuario);
 
 	//produtos
 	app.get('/api/produtos', controllerProduto.listarProdutos);

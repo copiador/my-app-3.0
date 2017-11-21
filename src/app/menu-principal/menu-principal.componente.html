@@ -1,20 +1,27 @@
-                    <ul class="nav nav-pills nav-justified">
+<hr class="colorgraph"><br>
+                 
+                   <ul class="nav nav-pills nav-justified">
                 
                         <li role="presentation" routerLinkActive="active">
-                            <a routerLink="/vendas-module" routerLinkActive="active">Vendas</a>
+                            <a routerLink="menu-vendas" routerLinkActive="active">Vendas</a>
                         </li>
                         <li role="presentation" routerLinkActive="active">
-                            <a routerLink="/recebidos-module" routerLinkActive="active">Recebidos</a>
+                            <a routerLink="menu-recebidos" routerLinkActive="active">Recebidos</a>
                         </li>
                         <li  role="presentation" routerLinkActive="active"> 
-                            <a routerLink="/cruds-nav-module" routerLinkActive="active">CRUDS</a>
+                            <a routerLink="menu-cruds" routerLinkActive="active">CRUDS</a>
                         </li>
                         <li  role="presentation" routerLinkActive="active">
-                            <a routerLink="/relatorios-module" routerLinkActive="active">Relatórios</a>
+                            <a routerLink="menu-relatorios" routerLinkActive="active">Relatórios</a>
+                        </li>
+                        <li  role="presentation" routerLinkActive="active">
+                            <a>{{id}}</a>
                         </li>
                         
                     </ul>
                 <br>
+
+                <router-outlet></router-outlet> 
  
                     
         
