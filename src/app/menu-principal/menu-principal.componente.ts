@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute, ParamMap }      from '@angular/router';
 
 import {LoginModuleComponent} from '../login-module/login.module.component'
@@ -14,18 +14,21 @@ import {UsuarioService} from '../service/usuario.service';
 
 })
 
-export class MenuPrincipalComponente {
+export class MenuPrincipalComponente implements OnInit {
 
-    usuario: UsuarioModel;
-    id: any;
+    usuario = new UsuarioModel();
+   
+
+
 
     constructor(private activedRouter: ActivatedRoute, private usuarioService: UsuarioService){
-    this.id = this.activedRouter.snapshot.paramMap.get('id')     
+    
     
     }
 
-    teste(){
-       
+    ngOnInit(){
+        let id = this.activedRouter.snapshot.paramMap.get('id') 
+        this.usuarioService.getUsuario(id).subscribe(usuario => this.usuario = usuario);
     }
 }
 

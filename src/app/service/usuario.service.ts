@@ -32,7 +32,7 @@ export class UsuarioService {
   
   }
 
-  getUsuario(_id: number): Observable<UsuarioModel>{
+  getUsuario(_id: any): Observable<UsuarioModel>{
     var url = this.usuariosUrl + "/" + _id;
     return this.http.get(url).map(res => res.json());
   }

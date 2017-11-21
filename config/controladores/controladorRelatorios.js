@@ -20,7 +20,7 @@ module.exports = function() {
 		ShemaVendasAvista.find({"data": {"$eq": valoresMomento}
 	}).populate({path: 'produtos'}).populate({path: 'cliente'}).exec(function(err,vendas){
 			if (err)return console.error(err);
-			console.log(vendas);
+			
 			return res.json(vendas);
 		})
 		/*
@@ -41,7 +41,7 @@ module.exports = function() {
 				ShemaRecebidos.find({"data": {"$eq": valoresMomento}
 			}).populate({path: 'cliente'}).exec(function(err,recebidos){
 					if (err)return console.error(err);
-					console.log(recebidos);
+				
 					return res.json(recebidos);
 				})
 				

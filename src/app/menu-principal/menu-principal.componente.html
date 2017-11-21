@@ -1,21 +1,24 @@
 <hr class="colorgraph"><br>
                  
                    <ul class="nav nav-pills nav-justified">
-                
+                    
                         <li role="presentation" routerLinkActive="active">
                             <a routerLink="menu-vendas" routerLinkActive="active">Vendas</a>
                         </li>
+                    
                         <li role="presentation" routerLinkActive="active">
                             <a routerLink="menu-recebidos" routerLinkActive="active">Recebidos</a>
                         </li>
-                        <li  role="presentation" routerLinkActive="active"> 
+               
+                        <li *ngIf="usuario.tipo == 'administrador'" role="presentation" routerLinkActive="active"> 
                             <a routerLink="menu-cruds" routerLinkActive="active">CRUDS</a>
                         </li>
-                        <li  role="presentation" routerLinkActive="active">
+                   
+                        <li *ngIf="usuario.tipo == 'administrador'" role="presentation" routerLinkActive="active">
                             <a routerLink="menu-relatorios" routerLinkActive="active">Relatórios</a>
                         </li>
                         <li  role="presentation" routerLinkActive="active">
-                            <a>{{id}}</a>
+                            <a>Bem Vindo: {{usuario.nome}}</a>
                         </li>
                         
                     </ul>

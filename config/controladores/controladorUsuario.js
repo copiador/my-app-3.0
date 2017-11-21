@@ -6,7 +6,7 @@ module.exports = function() {
 	var ShemaUsuario = modeloUsuarioSchema.model('Usuario');
 	
 	
-	var dados = {"nome":"testando 2",email:"jessemarques@gmail.com", senha: "123", tipo: "administrador"};
+	var dados = {"nome":"vendedor",email:"vendedor", senha: "123", tipo: "vendedor"};
 //	var dados = {codigo:2, nome: "guidinha", endereco: {rua: "chove pau", bairro: "beira rio", numero: 95,
 //	cidade: "taquaritinga",cep: 55790}};
 	var usuario = new ShemaUsuario(dados);
@@ -107,7 +107,7 @@ module.exports = function() {
 		var _idUsuario = req.params.id;
 		ShemaUsuario.findOne({ _id: _idUsuario  }, function(err, usuario) {
 			if (err) return console.log(err) ;
-	
+			console.log(usuario);
 			return res.json(usuario);
 			
 		  });
