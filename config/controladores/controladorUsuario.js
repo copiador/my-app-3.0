@@ -55,33 +55,28 @@ module.exports = function() {
 		var usuarioLogar = req.body;
 		//testado se o usuario está colocando senha ou email nulos ou vazios
 		if(usuarioLogar.email != null && usuarioLogar.email != ''){
+			if(usuarioLogar.senha != null && usuarioLogar.senha != ''){
 			//buscar na lista por email digitado do usuario
 			ShemaUsuario.findOne({ email: usuarioLogarEmail}, function(err, user) {
 			 if (err) return console.log(err);
-			 
 			 //se o usuario digitou o email correto ele testa a senha
 				if(user){
-				
-				if(user.senha == usuarioLogarSenha){
+					if(user.senha == usuarioLogarSenha){
 					//se o usuario digitou a senha e o email corretos, o usuario recebe um estado de verdadeiro.
-					
-					
 					user.estado = true;
-					
 					return res.json(user);
 				}else{
-					
 					return res.json("invalido senha")
 				}
-				
 			}else{
 				return res.json("invalido email")
 			}
-		
-			 
-		});
-
+			});
+			}else{
+			console.log("campo senha vazio")
+			}
 		}else{
+			console.log("email vazio")
 			return res.json("email vazio")
 		}
 	}

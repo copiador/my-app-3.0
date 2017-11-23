@@ -4,6 +4,7 @@ import { Router, NavigationExtras, ActivatedRoute, ParamMap }      from '@angula
 import {LoginModuleComponent} from '../login-module/login.module.component'
 import {UsuarioModel} from '../model/usuario.model'
 import {UsuarioService} from '../service/usuario.service';
+import {LoginService} from '../service/login.service';
 
 @Component({
 
@@ -21,14 +22,21 @@ export class MenuPrincipalComponente implements OnInit {
 
 
 
-    constructor(private activedRouter: ActivatedRoute, private usuarioService: UsuarioService){
+    constructor(
+        private activedRouter: ActivatedRoute, 
+        private usuarioService: UsuarioService,
+        private loginService: LoginService
+    ){
     
     
     }
 
     ngOnInit(){
         let id = this.activedRouter.snapshot.paramMap.get('id') 
-        this.usuarioService.getUsuario(id).subscribe(usuario => this.usuario = usuario);
+        this.usuarioService.getUsuario(id).subscribe(usuario => this.usuario = usuario, Error,()=>{
+            this.loginService.pushUsuarioLogin(this.usuario);
+        });
+       
     }
 }
 

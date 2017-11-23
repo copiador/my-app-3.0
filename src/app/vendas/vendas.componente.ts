@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, NgForm  }    from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { ActivatedRoute }      from '@angular/router';
 //serviços
 import {VendasAvistaService} from '../service/vendas-a-vista.service';
 import {ProdutoService} from '../service/produto.service';
 import {ClienteService} from '../service/cliente.service';
+import {LoginService} from '../service/login.service';
 
 //Model
 import {VendasAvistaModel} from '../model/vendas-a-vista.model';
 import {ProdutoModel} from '../model/produto.model';
 import {ClienteModel} from '../model/cliente.model';
+import {UsuarioModel} from '../model/usuario.model';
 
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
@@ -38,19 +41,28 @@ export class VendasComponente implements OnInit {
     listarClienteButton: boolean = true;
     
     produto = new ProdutoModel();
+
+    usuario: UsuarioModel;
     
 
 
 
     constructor(private serviceVendas: VendasAvistaService,
-         private produtoService: ProdutoService, private clienteService: ClienteService ){
+         private produtoService: ProdutoService, 
+         private clienteService: ClienteService,
+         private activedRouter: ActivatedRoute,
+         private loginService: LoginService,  ){
 
     }
     //pega a lista do servidor
     ngOnInit(){
         this.serviceVendas.getProdutos().subscribe(produtos => this.produtos = produtos);
-        
-        
+      //  let id = this.activedRouter.snapshot.paramMap.get('id') 
+        //console.log(id);
+        //pega o usuario da tela do menu
+        this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario, Error,()=>{
+            console.log(this.usuario);
+        })
     }
    //pega o valor tde todos os produtos da venda soma todos
     valorTotal(){

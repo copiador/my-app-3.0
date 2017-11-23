@@ -21,6 +21,8 @@ export class LoginService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
+  usuarioModel: UsuarioModel;
+
  private usuarioUrl = 'http://localhost:3000/api/login'; 
 
   constructor(private http: Http){}
@@ -37,6 +39,16 @@ export class LoginService {
    
     
     return this.http.post(this.usuarioUrl, usuario, options ).map(res => res.json());
+  }
+
+  //retorna o usuario vindo da tela menu como observador
+  getUsuarioLogin(): Observable<UsuarioModel>{
+    return Observable.of(this.usuarioModel);
+  }
+  //coloca o usuario dentro do serviço de login
+  pushUsuarioLogin(usuario: UsuarioModel){
+    this.usuarioModel = usuario;
+    
   }
 
   logout(): void {

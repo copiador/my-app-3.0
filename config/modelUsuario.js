@@ -6,8 +6,7 @@ var schema = new mongoose.Schema({
 	
 	codigo: {type: Number},
 	nome:{
-		type : String,
-		
+		type : String,		
 	},
     senha:{
         type: String,
