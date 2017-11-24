@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 
 var schema = new mongoose.Schema({
-	
+	//
 	codigo: {type: Number},
 	nome:{
 		type : String,		
@@ -41,15 +41,8 @@ var schema = new mongoose.Schema({
         type:mongoose.Schema.ObjectId,
         ref:'VendasAvista'
     }],
-    
-
-	//depios daqui são os dados
-	
-	
-		
+    		
 });
-
-
 
 
 var modeloSistema = mongoose.model('Sistema', schema);
