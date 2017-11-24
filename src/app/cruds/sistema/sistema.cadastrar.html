@@ -1,0 +1,84 @@
+<div class="col-md-9">
+    <p></p>
+	
+	    <form class="form-horizontal" [formGroup]="clienteForm">
+		    <div class="form-group">
+				<input type="hidden" class="form-control" formControlName="_id"/>
+			    <label for="inputCadastro" class="col-sm-1">Nome</label>
+					<div class="col-sm-7" [ngClass]="aplicaCssErro('nome')">
+						<input type="text" class="form-control" formControlName="nome" required  placeholder="Nome" />
+						<campo-erro-componente [control]="clienteForm.controls.nome"></campo-erro-componente>
+					</div>
+					<div class="col-sm-4" [ngClass]="aplicaCssErro('cpf')">
+						<input [textMask]="{mask: maskCpf}" formControlName="cpf" required placeholder="Cpf" class="form-control" type="text"/>
+						<campo-erro-componente [control]="clienteForm.controls.cpf"></campo-erro-componente>
+					</div>
+			</div>
+			<div class="form-group">
+				<label for="inputCadastro" class="col-sm-1">Endereço</label>
+    				<div class="col-sm-6" [ngClass]="aplicaCssErro('rua')" >
+						<input type="text" class="form-control" formControlName="rua" required id="form-rua" placeholder="Rua" />
+						<campo-erro-componente [control]="clienteForm.controls.rua"></campo-erro-componente>
+					</div>
+			        <div class="col-sm-3" [ngClass]="aplicaCssErro('bairro')">
+						<input type="text" class="form-control" formControlName="bairro" required id="form-bairro" placeholder="Bairro" />
+						<campo-erro-componente [control]="clienteForm.controls.bairro"></campo-erro-componente>
+			        </div>
+			        <div class="col-sm-2" [ngClass]="aplicaCssErro('numero')">
+						<input type="text" [textMask]="{mask: maskNumero}" class="form-control"formControlName="numero" required id="form-numero" placeholder="Numero" />
+						<campo-erro-componente [control]="clienteForm.controls.numero"></campo-erro-componente>
+
+			        </div>
+			</div>
+			<div class="form-group">
+				<label for="inputCadastro" class="col-sm-1">Cidade e Estado</label>
+					 <div class="col-sm-6" [ngClass]="aplicaCssErro('cidade')">
+						<input type="text" class="form-control" formControlName="cidade" required   placeholder="Cidade" />
+						<campo-erro-componente [control]="clienteForm.controls.cidade"></campo-erro-componente>
+			        </div>
+					<div class="col-sm-3" [ngClass]="aplicaCssErro('estado')">
+						<input type="text" class="form-control" formControlName="estado"  required   placeholder="Estado" />
+						<campo-erro-componente [control]="clienteForm.controls.estado"></campo-erro-componente>
+			        </div>
+					 <div class="col-sm-2" [ngClass]="aplicaCssErro('cep')">
+						<input type="text" [textMask]="{mask: maskCep}" formControlName="cep" required  class="form-control"   placeholder="Cep" />
+						<campo-erro-componente [control]="clienteForm.controls.cep"></campo-erro-componente>
+			        </div>
+			</div>
+					
+		   
+			<div class="form-group">
+				<label for="inputCadastro" class="col-sm-1">Contato</label>
+					<div class="col-sm-4" >
+						<input type="text"  class="form-control" formControlName="email"  placeholder="Email" />
+						
+					</div>
+					<div class="col-sm-3" >
+						<input type="text" class="form-control" [textMask]="{mask: maskTelefoneFixo}"  formControlName="telefoneFixo" placeholder="Telefone Fixo" />
+					</div>
+					<div class="col-sm-3" [ngClass]="aplicaCssErro('telefoneCelular')">
+						<input type="text" class="form-control" [textMask]="{mask: maskTelefoneCelular}"  formControlName="telefoneCelular" required   placeholder="Telefone Celular" />
+						<campo-erro-componente [control]="clienteForm.controls.telefoneCelular"></campo-erro-componente>
+					</div>
+			</div>
+			<div class="form-group">
+				<label for="comment">Informações adicionais do cliente:</label>
+      				<textarea class="form-control"formControlName="informacoes" rows="4" id="comentario"></textarea>
+							
+			</div>
+				<p class="text-right"> 
+				<button type="button" class="btn btn-default " (click)="onSubmit()">Salvar</button>
+				<button type="reset" class="btn btn-default">Limpar</button>
+				
+				</p>
+		</form>
+		
+
+
+
+		<p>Valores: {{ clienteForm.value | json }} Cliente editado: {{clienteForm.controls.nome.value}}</p>
+		<p>Validation status: {{ clienteForm.status }}</p>
+
+		
+
+</div>

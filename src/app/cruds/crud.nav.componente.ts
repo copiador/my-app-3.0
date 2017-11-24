@@ -11,6 +11,9 @@ import { Component } from '@angular/core';
 				<li role="presentation"routerLinkActive="active">
 					<a routerLink="produtos-cadastrar" >PRODUTO</a>
 				</li>
+				<li role="presentation"routerLinkActive="active">
+					<a routerLink="sistema-cadastrar" >SISTEMA</a>
+				</li>
 			</ul>
     </div>
    <router-outlet></router-outlet>

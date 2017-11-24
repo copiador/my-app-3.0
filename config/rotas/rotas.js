@@ -4,6 +4,7 @@ var controllerProduto = require('../controladores/controladorProduto.js')();
 var controllerVendasAvista = require('../controladores/controladorVendasAvista.js')();
 var controllerRelatorios = require('../controladores/controladorRelatorios.js')();
 var controllerRecebidos = require('../controladores/controladorRecebidos.js')();
+var controllerSistema = require('../controladores/controladorSistema.js')();
 
 module.exports = function(app) {
 	//app.get('/index', controller.index);
@@ -45,6 +46,11 @@ module.exports = function(app) {
 	app.get('/api/recebidos/clienteId/:id', controllerRecebidos.listarRecebidosClienteId);
 	app.get('/api/recebidos', controllerRecebidos.listarRecebidos);
 	app.delete('/api/recebidos/:id', controllerRecebidos.deleteRecebido);
+	//sistema
+	app.get('/api/sistema', controllerSistema.listarSistema);
+	app.post('/api/sistema', controllerSistema.adicionarSistema);
+	app.delete('/api/sistema/:id', controllerSistema.deleteSistema);
+	app.get('/api/sistema/:id', controllerSistema.buscarSistema);
 	
 
 			  

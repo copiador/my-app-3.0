@@ -12,11 +12,14 @@ import {CrudRouter} from './crud.router'
 //Cruds Cliente
 import {ClientesListar} from './clientes/clientes.listar';
 import {ClientesCadastrar} from './clientes/clientes.cadastrar';
-import {ClientesTeste} from './clientes/clientes.teste';
+
 //Crud Produtos
 import {ProdutosListar} from './produtos/produtos.listar';
 import {ProdutosCadastrar} from './produtos/produtos.cadastrar';
 import {ProdutoEditar} from './produtos/produto.editar';
+//crud sistema
+import {SistemaListar} from './sistema/sistema.listar'
+import {SistemaCadastrar} from './sistema/sistema.cadastrar'
 //serviços
 import {ClienteService} from './../service/cliente.service';
 import {ProdutoService} from './../service/produto.service';
@@ -25,7 +28,7 @@ import {MaskServices} from './../service/mask.services';
 import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
 //boots trap
 import { TextMaskModule } from 'angular2-text-mask';
-//modulos
+
 
 
 
@@ -53,8 +56,9 @@ import { TextMaskModule } from 'angular2-text-mask';
     ProdutosCadastrar,//Produtos Cadastrar
     ProdutoEditar,//produto editar
     CrudFilterClientePipe, // pipe filtros para procurar na lista
-    ClientesTeste,
-    CampoErroComponente
+    CampoErroComponente,//
+    SistemaCadastrar,// crud sistema
+    SistemaListar,  // crud sistema
  
     
   ],

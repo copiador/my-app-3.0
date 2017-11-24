@@ -12,7 +12,9 @@ import {ClientesListar} from './clientes/clientes.listar';
 import {ClientesCadastrar} from './clientes/clientes.cadastrar';  
 import {ProdutosListar} from './produtos/produtos.listar';
 import {ProdutosCadastrar} from './produtos/produtos.cadastrar';
-import {ClientesTeste} from './clientes/clientes.teste';
+import {SistemaCadastrar} from './sistema/sistema.cadastrar'
+import {SistemaListar} from './sistema/sistema.listar';
+ 
 import {ProdutoEditar} from './produtos/produto.editar';
 
 
@@ -33,6 +35,9 @@ const CrudNav: Routes = [{
           path: ':id',
           component: ProdutoEditar,
         }]
+      },{
+        path: 'sistema-listar',
+        component: SistemaListar,
       }]
   },{
       path: 'crud-nav-cadastrar',
@@ -43,6 +48,9 @@ const CrudNav: Routes = [{
       },{
         path: 'produtos-cadastrar',
         component: ProdutosCadastrar
+      },{
+        path: 'sistema-cadastrar',
+        component: SistemaCadastrar,
       }]
   }]
 }]

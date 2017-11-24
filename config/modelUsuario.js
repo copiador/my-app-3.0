@@ -19,6 +19,14 @@ var schema = new mongoose.Schema({
     },
     estado:{
         type: Boolean,
+    },
+    //essa função serve para desativar o usuario
+    ativacao:{
+        type: Boolean,
+    },
+    //o id o sistema que ele o usuario faz parte, é importane para fazer as consultas necessárias no sistema
+    _idSistema:{
+        type: String,
     }
 	
 	

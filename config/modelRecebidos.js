@@ -31,7 +31,7 @@ var schema = new mongoose.Schema({
 
 
 
-var modeloRecebidos = mongoose.model('Recebidos', schema);
+var modeloRecebidos = mongoose.model('Recebido', schema);
 //autoIncrement.plugin(schema,'Cliente');
 
 module.exports = modeloRecebidos;

@@ -16,11 +16,11 @@ module.exports = function() {
 	//contato2.nextCount()
 	
 
-	ShemaUsuario.find(function(err, usuarios) {
-		if (err) return console.error(err);
+	//ShemaUsuario.find(function(err, usuarios) {
+	//	if (err) return console.error(err);
 		//envia via json os dados de todos os clientes
-		console.log(usuarios)
-	})
+	///	console.log(usuarios)
+	//})
 
 
 	

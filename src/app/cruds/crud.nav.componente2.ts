@@ -9,7 +9,10 @@ import { Component } from '@angular/core';
 					<a routerLink="clientes-listar">CLIENTE</a>
 				</li>
 				<li role="presentation" routerLinkActive="active"\>
-					<a routerLink="produtos-listar" >PRODUTO</a>
+					<a routerLink="produtos-listar">PRODUTO</a>
+				</li>
+				<li role="presentation" routerLinkActive="active"\>
+					<a routerLink="sistema-listar">SISTEMA</a>
 				</li>
 			</ul>
     </div>

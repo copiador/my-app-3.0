@@ -1,0 +1,31 @@
+
+    <div class="col-md-10">
+    	<div class="responsive">
+			<table class="table table-striped">
+				<th>COD</th>
+				<th>NOME</th>
+				<th>CPF</th>
+				<th>EDIÇÃO</th>
+				<th>procurar: <input type="text" (keyup)="onKey($event)"/>{{values}}</th>
+					<tr *ngFor="let cliente of clientes | filter: values" class="success">
+						<td>{{cliente._id}}</td>
+						<td>{{cliente.nome}}</td>
+						<td>{{cliente.cpf}}</td>
+						<td>{{cliente.cpf}}</td>
+						<td><a class="btn btn-warning" (click)="editar(cliente)" >Editar</a></td>
+						<td><a class="btn btn-danger" (click)="delete(cliente)">Excluir</a></td>
+					</tr>
+			</table>
+		</div>
+		<div *ngIf="clienteParaEditar">
+  			<hr>
+  				<h4>Editar Cliente: {{clienteParaEditar.nome}} </h4>
+  				<h4>Editar Cliente: {{clienteParaEditar._id}} </h4>	
+  				<cliente-cadastrar [clienteEditar]="clienteParaEditar"></cliente-cadastrar>
+		</div>
+
+	</div>
+
+
+
+

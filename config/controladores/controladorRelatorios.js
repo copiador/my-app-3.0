@@ -4,7 +4,7 @@ var modeloRecebidosShema = require('../modelRecebidos.js');
 
 //shemas
 	var ShemaVendasAvista = modeloVendasAvistaSchema.model('VendasAvista');
-	var ShemaRecebidos = modeloRecebidosShema.model('Recebidos');
+	var ShemaRecebidos = modeloRecebidosShema.model('Recebido');
 
 
 module.exports = function() {

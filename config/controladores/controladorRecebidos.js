@@ -10,7 +10,7 @@ module.exports = function() {
 
 	var shemaVendasAvista = modeloVendasAvistaSchema.model('VendasAvista');
 	var shemaCliente = modeloClienteSchema.model('Cliente');
-	var shemaRecebido = modeloRecebidoShema.model('Recebidos');
+	var shemaRecebido = modeloRecebidoShema.model('Recebido');
 
 	
 //listar de funções
