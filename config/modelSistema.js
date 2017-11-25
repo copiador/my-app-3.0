@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
 	//
 	codigo: {type: Number},
-	nome:{
+	nomeSistema:{
 		type : String,		
 	},
     responsavel:{
@@ -15,6 +15,9 @@ var schema = new mongoose.Schema({
     },
     contatoResponsavel:{
         type: String,
+    },
+    informacoes:{
+
     },
     //essa função serve para desativar o sistema quando ele entrar em desuso
     ativacao:{

@@ -7,11 +7,12 @@ import {UsuarioModel} from './usuario.model'
 export class SistemaModel{
 
     _id?:number;
-    nome:string;
     responsavel:string;
     cpfResponsavel: string;
+    nomeSistema:string;
     contatoResponsavel: string;
-    //essa parte é destinada aos recursos dos sitema
+    informacoes: string;
+    //essa parte é destinada aos recursos dos sistema
     ativacao: boolean;
     usuarios:UsuarioModel[];
     clientes: ClienteModel[];

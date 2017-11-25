@@ -24,6 +24,7 @@ import {SistemaCadastrar} from './sistema/sistema.cadastrar'
 import {ClienteService} from './../service/cliente.service';
 import {ProdutoService} from './../service/produto.service';
 import {MaskServices} from './../service/mask.services';
+import {SistemaService} from './../service/sistema.service'
 //pipe
 import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
 //boots trap
@@ -63,7 +64,12 @@ import { TextMaskModule } from 'angular2-text-mask';
     
   ],
 
-  providers: [ClienteService, ProdutoService,MaskServices]
+  providers: [
+    ClienteService, 
+    ProdutoService,
+    MaskServices,
+    SistemaService
+  ]
 })
 
 export class CrudsModule { }
