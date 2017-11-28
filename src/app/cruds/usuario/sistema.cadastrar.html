@@ -1,0 +1,52 @@
+<div class="col-md-9">
+    <br>
+	
+	    <form class="form-horizontal" [formGroup]="sistemaForm">
+		    <div class="form-group">
+				<input type="hidden" class="form-control" formControlName="_id"/>
+			    <label class="col-sm-2">Nome Responsavel</label>
+					<div class="col-sm-6" [ngClass]="aplicaCssErro('responsavel')">
+						<input type="text" class="form-control" formControlName="responsavel" required  placeholder="Nome Responsavel" />
+						<campo-erro-componente [control]="sistemaForm.controls.responsavel"></campo-erro-componente>
+					</div>
+					<div class="col-sm-3" [ngClass]="aplicaCssErro('cpfResponsavel')">
+						<input [textMask]="{mask: maskCpf}" formControlName="cpfResponsavel" required placeholder="Cpf" class="form-control" type="text"/>
+						<campo-erro-componente [control]="sistemaForm.controls.cpfResponsavel"></campo-erro-componente>
+					</div>
+			</div>
+			<div class="form-group">
+				
+			    <label class="col-sm-2">Nome Sistema</label>
+					<div class="col-sm-6" [ngClass]="aplicaCssErro('nomeSistema')">
+						<input type="text" class="form-control" formControlName="nomeSistema" required  placeholder="Nome Sistema" />
+						<campo-erro-componente [control]="sistemaForm.controls.nomeSistema"></campo-erro-componente>
+					</div>
+			</div>	
+			<div class="form-group">
+				<label for="inputCadastro" class="col-sm-2">Contato</label>
+					<div class="col-sm-3" [ngClass]="aplicaCssErro('telefoneCelular')">
+						<input type="text" class="form-control" [textMask]="{mask: maskTelefoneCelular}"  formControlName="telefoneCelular" required   placeholder="Telefone Celular" />
+						<campo-erro-componente [control]="sistemaForm.controls.telefoneCelular"></campo-erro-componente>
+					</div>
+			</div>
+			<div class="form-group">
+				<label for="comment">Informações adicionais do cliente:</label>
+      				<textarea class="form-control"formControlName="informacoes" rows="4" id="comentario"></textarea>
+							
+			</div>
+				<p class="text-right"> 
+				<button type="button" class="btn btn-default " (click)="onSubmit()">Salvar</button>
+				
+				
+				</p>
+		</form>
+		
+
+
+
+		<p>Valores: {{ sistemaForm.value | json }} </p>
+		<p>Validation status: {{ sistemaForm.status }}</p>
+
+		
+
+</div>

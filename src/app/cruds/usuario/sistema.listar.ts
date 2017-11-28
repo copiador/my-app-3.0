@@ -57,7 +57,6 @@ export class SistemaListar implements OnInit {
         this.sistemaParaAdicionarUsuarioBollean = true;
         this.sistemaParaEditarBollean = false;
         this.sistemaParaAdiconarUsuario = sistema;
-
     }
 
 
