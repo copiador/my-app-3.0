@@ -18,7 +18,7 @@ import {SistemaModel} from './../../model/Sistema.model';
 
 @Component({
 
-    selector: '',
+    selector: 'sistema-cadastrar',
     templateUrl: './sistema.cadastrar.html'
 
 
@@ -73,22 +73,29 @@ createFormBuild(){
 
 //prepara valores para serem cadastrados ;
 prepararValores(): SistemaModel{
-    let valores = this.sistemaForm.value;
-    let cliente = new SistemaModel();
-  //  this.cliente.nome = this.clienteForm.controls.nome.value;    
-  //  this.cliente.cpf = this.clienteForm.controls.cpf.value;
+   // let valores = this.sistemaForm.value;
+    let sistema = new SistemaModel();
+    sistema._id = this.sistemaForm.controls._id.value;
+    sistema.responsavel = this.sistemaForm.controls.responsavel.value;    
+    sistema.cpfResponsavel = this.sistemaForm.controls.cpfResponsavel.value; 
+    sistema.nomeSistema = this.sistemaForm.controls.nomeSistema.value; 
+    sistema.contatoResponsavel = this.sistemaForm.controls.telefoneCelular.value; 
+    sistema.informacoes = this.sistemaForm.controls.informacoes.value;
+  // this.cliente.cpf = this.clienteForm.controls.cpf.value;
 
 
    
-   return cliente;
+   return sistema;
 };
 //submete os valores para o banco de dados depois de preparados
 onSubmit(){
 
-    let cliente = this.prepararValores();
+    let sistema = this.prepararValores();
+   
     
     
-    console.log(cliente);
+    console.log(sistema);
+    this.sistemaService.adicionarSistema(sistema).subscribe();
    //buscar o cliente no banco de dados, se o id do cliente for igual ao id do cliente do editar, então editar, caso não cadastrar.
     
     
@@ -99,8 +106,9 @@ ngOnChanges(){
     this.sistemaForm.reset({_id: this.sistemaEditar._id, 
         responsavel: this.sistemaEditar.responsavel,
         cpfResponsavel: this.sistemaEditar.cpfResponsavel,
-        nome: this.sistemaEditar.nomeSistema,
-        telefoneCelular: this.sistemaEditar.contatoResponsavel 
+        nomeSistema: this.sistemaEditar.nomeSistema,
+        telefoneCelular: this.sistemaEditar.contatoResponsavel,
+        informacoes:  this.sistemaEditar.informacoes
 
     })
 }

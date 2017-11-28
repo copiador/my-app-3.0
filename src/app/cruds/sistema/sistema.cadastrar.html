@@ -1,5 +1,5 @@
 <div class="col-md-9">
-    <p></p>
+    <br>
 	
 	    <form class="form-horizontal" [formGroup]="sistemaForm">
 		    <div class="form-group">
@@ -23,7 +23,7 @@
 					</div>
 			</div>	
 			<div class="form-group">
-				<label for="inputCadastro" class="col-sm-1">Contato</label>
+				<label for="inputCadastro" class="col-sm-2">Contato</label>
 					<div class="col-sm-3" [ngClass]="aplicaCssErro('telefoneCelular')">
 						<input type="text" class="form-control" [textMask]="{mask: maskTelefoneCelular}"  formControlName="telefoneCelular" required   placeholder="Telefone Celular" />
 						<campo-erro-componente [control]="sistemaForm.controls.telefoneCelular"></campo-erro-componente>
@@ -36,7 +36,7 @@
 			</div>
 				<p class="text-right"> 
 				<button type="button" class="btn btn-default " (click)="onSubmit()">Salvar</button>
-				<button type="reset" class="btn btn-default">Limpar</button>
+				
 				
 				</p>
 		</form>

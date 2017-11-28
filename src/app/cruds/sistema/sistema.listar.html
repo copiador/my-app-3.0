@@ -2,26 +2,27 @@
     <div class="col-md-10">
     	<div class="responsive">
 			<table class="table table-striped">
-				<th>COD</th>
-				<th>NOME</th>
-				<th>CPF</th>
-				<th>EDIÇÃO</th>
+				<th>NOME RESPONSAVEL</th>
+				<th>CPF RESPONSAVEL</th>
+				<th>NOME SISTEMA</th>
+				<th>CONTATO RESPONSAVEL</th>
 				<th>procurar: <input type="text" (keyup)="onKey($event)"/>{{values}}</th>
-					<tr *ngFor="let cliente of clientes | filter: values" class="success">
-						<td>{{cliente._id}}</td>
-						<td>{{cliente.nome}}</td>
-						<td>{{cliente.cpf}}</td>
-						<td>{{cliente.cpf}}</td>
-						<td><a class="btn btn-warning" (click)="editar(cliente)" >Editar</a></td>
-						<td><a class="btn btn-danger" (click)="delete(cliente)">Excluir</a></td>
+					<tr *ngFor="let sistema of sistemas | filter: values" class="success">
+						
+						<td>{{sistema.responsavel}}</td>
+						<td>{{sistema.cpfResponsavel}}</td>
+						<td>{{sistema.nomeSistema}}</td>
+						<td>{{sistema.contatoResponsavel}}</td>
+						<td><a class="btn btn-warning" (click)="editar(sistema)" >Editar</a></td>
+						<td><a class="btn btn-danger" (click)="delete(sistema)">Excluir</a></td>
 					</tr>
 			</table>
 		</div>
-		<div *ngIf="clienteParaEditar">
+		<div *ngIf="sistemaParaEditar">
   			<hr>
-  				<h4>Editar Cliente: {{clienteParaEditar.nome}} </h4>
-  				<h4>Editar Cliente: {{clienteParaEditar._id}} </h4>	
-  				<cliente-cadastrar [clienteEditar]="clienteParaEditar"></cliente-cadastrar>
+  				<h4>Editar Sistema: {{sistemaParaEditar.nomeSistema}} </h4>
+				<h4>id: {{sistemaParaEditar._id}}</h4>
+  				<sistema-cadastrar [sistemaEditar]="sistemaParaEditar"></sistema-cadastrar>
 		</div>
 
 	</div>

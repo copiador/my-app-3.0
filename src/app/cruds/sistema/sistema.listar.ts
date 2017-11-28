@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 //serviço
-import {ClienteService} from './../../service/cliente.service';
+import {SistemaService} from './../../service/sistema.service';
 //modelo
-import {ClienteModel} from './../../model/cliente.model';
+import {SistemaModel} from './../../model/Sistema.model';
 //rotas
 import {Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -15,39 +15,36 @@ import {Router, ActivatedRoute, Params } from '@angular/router';
     templateUrl: './sistema.listar.html',
   
  
-
-
 })
 
-//<hero-detail [hero]="selectedHero"></hero-detail>
+
 export class SistemaListar implements OnInit {
     //listar
-    clientes: ClienteModel[];
+    sistemas: SistemaModel[];
     values: string;
     errorMessage: string;
     //editar
-    clienteParaEditar: ClienteModel;
+    sistemaParaEditar: SistemaModel;
   
    
    
-    constructor(private clienteService: ClienteService, private router: Router){}
+    constructor(private sistemaService: SistemaService, private router: Router){}
     //name para ng model para filtro
      
     ngOnInit() {
-        this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes.slice(1,10), 
-        error => this.errorMessage = <any> error);
+      this.sistemaService.getSistemas().subscribe(sistemas => this.sistemas = sistemas)
        // clientes que vem do bd já vão estar nessa lista.
        
     }
-    delete(cliente: ClienteModel){
-        console.log(cliente._id);
-        this.clienteService.deleteCliente(cliente._id).subscribe(() => {this.clientes = this.clientes.filter(c => c !== cliente)});
+    delete(sistema: SistemaModel){
+        console.log(sistema._id);
+        this.sistemaService.deleteSistema(sistema._id).subscribe(() => {this.sistemas = this.sistemas.filter(s => s !== sistema)});
               
    //     this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
     }
 
-    editar(cliente:ClienteModel){
-        this.clienteParaEditar = cliente;
+    editar(sistema:SistemaModel){
+        this.sistemaParaEditar = sistema;
        
     }
 

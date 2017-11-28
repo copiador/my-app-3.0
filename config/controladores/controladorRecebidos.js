@@ -56,7 +56,7 @@ module.exports = function() {
 		shemaRecebido.find(function(err, recebidos) {
 			if (err) return console.error(err);
 			//envia via json os dados de todos os produtos
-			res.json(recebidos);
+			return res.json(recebidos);
 		})
 	
 		

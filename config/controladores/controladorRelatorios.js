@@ -14,7 +14,7 @@ module.exports = function() {
 	controller.listarVendasDoDia = function(req, res){
 
 		var valoresMomento = moment().format("DD-MM-YYYY");
-		console.log(valoresMomento);
+		
 		//pega as vendas do dia atual, usando a biblioteca moment, e retorna as vendas do dia,
 		//populando dos produtos e os clientes
 		ShemaVendasAvista.find({"data": {"$eq": valoresMomento}
@@ -82,7 +82,7 @@ module.exports = function() {
 	controller.deleteVenda = function(req, res){
 
 		var _idVenda = req.params.id;
-		console.log(_idVenda);
+		
 		//função para remover o cliente pelo id
 		ShemaVendasAvista.findByIdAndRemove(_idVenda, function(err, venda){
 			if(err){

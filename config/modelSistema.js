@@ -10,14 +10,14 @@ var schema = new mongoose.Schema({
     responsavel:{
         type: String,
     },
-    cpfReponsavel:{
+    cpfResponsavel:{
         type: String,
     },
     contatoResponsavel:{
         type: String,
     },
     informacoes:{
-
+        type: String,
     },
     //essa função serve para desativar o sistema quando ele entrar em desuso
     ativacao:{

@@ -43,26 +43,30 @@ modeloClienteSchema.find(function(err, clientes) {
 
 	controller.adicionarSistema = function (req, res){
 
-		var _idCliente = req.body._id;
+		var _idSistema = req.body._id;
 		
-		console.log(_idCliente);
+		console.log(_idSistema);
 		
 
-		if(_idCliente){
+		if(_idSistema){
 			console.log("atualizar");
-			ShemaSistema.findByIdAndUpdate(_idCliente,req.body,function(err,movie){
-				res.json("cliente atualizado")
+			ShemaSistema.findByIdAndUpdate(_idSistema,req.body,function(err,sistema){
+				if (err) return res.json(err);
+				res.json(sistema)
 			})
 		}else{
 			console.log("adicionar");
 			var valores = req.body;
 			valores._id = null;
 			
-			
+		
 			console.log(valores);
-			var cliente = new ShemaSistema(valores);
-			cliente.save();
-			res.json(cliente);
+			var sistema = new ShemaSistema(valores);
+			sistema.save(function(err, sistema){
+				if (err) return res.json(err);
+				return res.json(sistema);
+			})
+			
 			
 		}
 	
@@ -84,17 +88,14 @@ modeloClienteSchema.find(function(err, clientes) {
 	};
 	controller.deleteSistema = function (req, res) {
 		//pega o id do cliente
-		var _idCliente = req.params.id;
-		console.log(_idCliente);
+		var _idSistema = req.params.id;
+		
 		//função para remover o cliente pelo id
-		ShemaSistema.findByIdAndRemove(_idCliente, function(err, produto){
+		ShemaSistema.findByIdAndRemove(_idSistema, function(err, sistema){
 			if(err){
-				console.log(err);
 				return res.json(err);
-			}else{
-				
-				
-				return res.json(produto);
+			}else{			
+				return res.json(sistema);
 			} 
 		})
 	};

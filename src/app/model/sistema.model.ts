@@ -9,7 +9,7 @@ export class SistemaModel{
     _id?:number;
     responsavel:string;
     cpfResponsavel: string;
-    nomeSistema:string;
+    nomeSistema:string; 
     contatoResponsavel: string;
     informacoes: string;
     //essa parte é destinada aos recursos dos sistema
@@ -20,8 +20,4 @@ export class SistemaModel{
     recebidos: RecebidosModel[];
     vendas: VendasAvistaModel[];
 
-  
-    
-    
-    
 }
