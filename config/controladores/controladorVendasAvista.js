@@ -44,18 +44,19 @@ module.exports = function() {
 		var momento = moment().format("DD-MM-YYYY, HH:mm:ss");
 		var dataMomento = moment().format("DD-MM-YYYY");
 		var tempoMomento = moment().format("HH:mm:ss");
-		//var data = new Date();
-		//cria uma data
-		
-	//	valores.momento = moment().format("dddd, MMMM Do YYYY, hh:mm:ss a");
-		
+
+		//se há cliente na venda então á venda foi a prazo o debito do cliente é atualizado
 		if(valores.cliente){
 			
 		
-			var vendas = new ShemaVendasAvista({momento: momento, 
-				data: dataMomento,tempo: tempoMomento,
-			produtos: valores.produtos,
-			valorTotalVenda: valores.valorTotalVenda,cliente: valores.cliente});
+			var vendas = new ShemaVendasAvista({
+				momento: momento, 
+				data: dataMomento,
+				tempo: tempoMomento,
+				produtos: valores.produtos,
+				valorTotalVenda: valores.valorTotalVenda,
+				cliente: valores.cliente,
+				sistema: valores.sistema});
 
 			//função que atualiza do valor do debito do cliente, caso haja outra venda com ele
 			var idCliente = valores.cliente._id;
@@ -71,9 +72,14 @@ module.exports = function() {
 			
 		}else{
 		
-			var vendas = new ShemaVendasAvista({momento: momento, data: dataMomento,
-				tempo: tempoMomento, produtos: valores.produtos,
-			valorTotalVenda: valores.valorTotalVenda});
+			var vendas = new ShemaVendasAvista({
+				momento: momento, 
+				data: dataMomento,
+				tempo: tempoMomento, 
+				produtos: valores.produtos,
+				valorTotalVenda: valores.valorTotalVenda,
+				sistema: valores.sistema
+		});
 			vendas.save(function(err,vendas){
 				 if (err) return console.error(err);
 				  return res.json(vendas);

@@ -1,5 +1,5 @@
 import {ClienteModel} from './cliente.model';
-
+import {SistemaModel} from './sistema.model'
 export class RecebidosModel{
 
     _id?: number;
@@ -9,6 +9,7 @@ export class RecebidosModel{
     valor: number;
     data:String;
     tempo: String;
+    sistema: SistemaModel;
 
     
     

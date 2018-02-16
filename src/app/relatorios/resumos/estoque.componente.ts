@@ -3,6 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import {ProdutoService} from './../../service/produto.service';
 //
 import {ProdutoModel, constRelatorioProdutos} from './../../model/produto.model';
+import {UsuarioModel} from './../../model/usuario.model';
+import { LoginService } from 'app/service/login.service';
 
 @Component({
 
@@ -18,13 +20,17 @@ export class EstoqueComponente implements OnInit {
     arrayRelatorioProdutos = constRelatorioProdutos;
     //pega o valor o id do select
     valueSelect: any;
+    usuario : UsuarioModel;
 
-    constructor(private produtoService: ProdutoService){
+    constructor(
+        private produtoService: ProdutoService,
+        private loginService: LoginService){
 
     }
 
     ngOnInit(){
-        this.produtoService.getProdutos().subscribe(produtos => this.listaProdutos = produtos);
+        this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario);
+        this.produtoService.getProdutos(this.usuario.sistema._id).subscribe(produtos => this.listaProdutos = produtos);
 
     }
     

@@ -1,0 +1,47 @@
+<div class="col-md-9">
+   
+	    <form class="form-horizontal" [formGroup]="usuarioForm">
+		    <div class="form-group">
+				<input type="hidden" class="form-control" formControlName="_id"/>
+				<label class="col-sm-1">Email</label>
+					<div class="col-sm-4" [ngClass]="aplicaCssErro('email')">
+						<input type="text" class="form-control" formControlName="email" required  placeholder="Email" />
+						<campo-erro-componente [control]="usuarioForm.controls.email"></campo-erro-componente>
+					</div>
+					<label class="col-sm-1">Senha</label>
+					<div class="col-sm-3" [ngClass]="aplicaCssErro('senha')">
+						
+						<input formControlName="senha" required placeholder="Senha" class="form-control" type="text"/>
+						<campo-erro-componente [control]="usuarioForm.controls.senha"></campo-erro-componente>
+					</div>
+			</div>
+			<div class="form-group">
+					<label class="col-sm-1">Nome</label>
+					<div class="col-sm-5" [ngClass]="aplicaCssErro('nome')">
+							<input type="text" class="form-control" formControlName="nome" required  placeholder="Nome" />
+							<campo-erro-componente [control]="usuarioForm.controls.nome"></campo-erro-componente>
+					</div>
+					<label class="col-sm-1">Tipo</label>
+						<div class="col-sm-3" >
+							<select class="form-control" formControlName="tipo">
+								<option *ngFor="let tipo of arrayTipoUsuario">{{tipo.tipoUsuario}}</option>
+							</select>
+						</div>
+			</div>
+			<div class="form-group">
+					<label class="col-sm-1">Sistema Usuario</label>
+					<div class="col-sm-3" >
+						<select class="form-control" formControlName="sistema">
+							<option [ngValue]="sistema._id" *ngFor="let sistema of sistemas">{{sistema.nomeSistema}}</option>
+						</select>
+					</div>
+			</div>
+			<p class="text-right"> 
+				<button type="button" class="btn btn-default " (click)="onSubmit()">Salvar</button>
+				
+				
+			</p>
+		
+		</form>
+		
+</div>

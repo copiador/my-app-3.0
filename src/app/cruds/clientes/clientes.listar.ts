@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 //serviço
 import {ClienteService} from './../../service/cliente.service';
+import { LoginService } from 'app/service/login.service';
 //modelo
 import {ClienteModel} from './../../model/cliente.model';
+import {UsuarioModel} from './../../model/usuario.model';
 //rotas
 import {Router, ActivatedRoute, Params } from '@angular/router';
+
 
 
 
@@ -27,14 +30,16 @@ export class ClientesListar implements OnInit {
     errorMessage: string;
     //editar
     clienteParaEditar: ClienteModel;
-  
+    usuario: UsuarioModel;
    
    
-    constructor(private clienteService: ClienteService, private router: Router){}
+    constructor(private clienteService: ClienteService, private router: Router, 
+        private loginService: LoginService){}
     //name para ng model para filtro
      
     ngOnInit() {
-        this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes.slice(1,10), 
+        this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario)
+        this.clienteService.getClientes(this.usuario.sistema._id).subscribe(clientes => this.clientes = clientes.slice(1,10), 
         error => this.errorMessage = <any> error);
        // clientes que vem do bd já vão estar nessa lista.
        

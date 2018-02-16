@@ -1,0 +1,61 @@
+<div class="col-md-9">
+    <br>
+
+    <form class="form-horizontal" [formGroup]="usuarioForm">
+        <div class="form-group">
+            <input type="hidden" class="form-control" formControlName="_id" />
+            <label class="col-sm-2">Email</label>
+            <div class="col-sm-6" [ngClass]="aplicaCssErro('emailUsuario')">
+                <input type="text" class="form-control" formControlName="emailUsuario" required placeholder="email Usuario" />
+                <campo-erro-componente [control]="usuarioForm.controls.emailUsuario"></campo-erro-componente>
+            </div>
+            <div class="col-sm-3" [ngClass]="aplicaCssErro('senhaUsuario')">
+                <input formControlName="senhaUsuario" required placeholder="Senha Usuario" class="form-control" type="text" />
+                <campo-erro-componente [control]="usuarioForm.controls.senhaUsuario"></campo-erro-componente>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">Nome Usuario</label>
+            <div class="col-sm-6" [ngClass]="aplicaCssErro('nomeUsuario')">
+                <input type="text" class="form-control" formControlName="nomeUsuario" required placeholder="Nome Usuario" />
+                <campo-erro-componente [control]="usuarioForm.controls.nomeUsuario"></campo-erro-componente>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">Tipo</label>
+            <div class="col-sm-6" [ngClass]="aplicaCssErro('tipoUsuario')" >
+                
+                <select class="form-control" formControlName="tipoUsuario">
+                    <option *ngFor="let tipo of arrayTipoUsuario">{{tipo.tipoUsuario}}
+
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">Tipo</label>
+            <div class="col-sm-6" >
+                <label class="radio-inline">
+                    <input type="radio" formControlName="ativacaoUsuario"  value="true"> Ativado
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" formControlName="ativacaoUsuario"  value="false"> Desativado
+                </label>
+            </div>
+        </div>
+
+        <p class="text-right">
+            <button type="button" class="btn btn-default " (click)="onSubmit()">Salvar</button>
+
+        </p>
+    </form>
+
+
+
+
+    <p>Valores: {{ usuarioForm.value | json }} </p>
+    <p>Validation status: {{ usuarioForm.status }}</p>
+
+
+
+</div>

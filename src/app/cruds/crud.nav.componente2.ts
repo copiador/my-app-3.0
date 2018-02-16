@@ -14,6 +14,9 @@ import { Component } from '@angular/core';
 				<li role="presentation" routerLinkActive="active"\>
 					<a routerLink="sistema-listar">SISTEMA</a>
 				</li>
+				<li role="presentation" routerLinkActive="active"\>
+					<a routerLink="usuario-listar">USUARIO</a>
+				</li>
 			</ul>
     </div>
    <router-outlet></router-outlet>

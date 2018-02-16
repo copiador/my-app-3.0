@@ -15,19 +15,20 @@ export class ProdutoService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private produtosUrl = 'http://localhost:3000/api/produtos';  // URL to web api
+  private produtoUrl = 'http://localhost:3000/api/produto';  // URL to web api
 
   constructor(private http: Http) { console.log("produtos service inicializado")}
 
 
 
-  getProdutos(): Observable<ProdutoModel[]> {
-    
-    return this.http.get(this.produtosUrl).map(res => res.json()) ;
+  getProdutos(_idSistema: number): Observable<ProdutoModel[]> {
+    var url = this.produtosUrl + "/" + _idSistema;
+    return this.http.get(url).map(res => res.json()) ;
    
   }
 
   getProduto(_id: number | string): Observable<ProdutoModel>{
-    var url = this.produtosUrl + "/" + _id;
+    var url = this.produtoUrl + "/" + _id;
     return this.http.get(url).map(res => res.json());
   }
 

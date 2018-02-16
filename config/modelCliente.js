@@ -48,6 +48,11 @@ var schema = new mongoose.Schema({
 //
 	debitoDoCliente:{
         type: Number
+	},
+	//clinte possui um sistema viculado a ele
+	sistema:{
+        type:mongoose.Schema.ObjectId,
+        ref:'Sistema'
     },
  
 

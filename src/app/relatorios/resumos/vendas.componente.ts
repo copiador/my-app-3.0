@@ -6,11 +6,14 @@ import {ProdutoService} from './../../service/produto.service';
 import {RecebidosService} from './../../service/recebidos.services';
 import {VendasAvistaService} from './../../service/vendas-a-vista.service';
 import {ClienteService} from './../../service/cliente.service';
+import { LoginService } from 'app/service/login.service';
 //model
 import {VendasAvistaModel} from './../../model/vendas-a-vista.model';
 import {ProdutoModel} from './../../model/produto.model';
 import {RecebidosModel} from './../../model/recebidos.model';
 import {ClienteModel} from './../../model/cliente.model';
+
+import { UsuarioModel } from 'app/model/usuario.model';
 
 @Component({
 
@@ -44,26 +47,29 @@ export class VendasComponente implements OnInit {
      clientesRecebido: ClienteModel[] = [];
    //pega a data selecionada do calendário
     dataSelected: string;
+    //Usuario Service pega o usuario logado
+    usuario: UsuarioModel
 
    constructor(private relatoriosService : RelatoriosService, 
         private produtoService: ProdutoService,
         private recebidosService: RecebidosService,
         private vendasAvistaService: VendasAvistaService,
-        private clientesServices: ClienteService){
+        private clientesServices: ClienteService,
+        private loginService: LoginService){
     }
 
 
 
     ngOnInit(){
-        //pega a lista de vendas vinda do servidor
-       
+       //pega o usuario do servidor
+       this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario);
         //pega a lista de produtos do servidor
-        this.produtoService.getProdutos().subscribe(produtos => this.produtos = produtos);
+        this.produtoService.getProdutos(this.usuario.sistema._id).subscribe(produtos => this.produtos = produtos);
         this.recebidosService.getRecebidos().subscribe(recebidos => this.recebidos = recebidos,Error,
             ()=>{this.somaValoresDosRecebidos()});
         this.vendasAvistaService.getVendas().subscribe(vendas => this.vendasAvista = vendas,Error,
             ()=>{this.somaValoresDasVendas()});
-        this.clientesServices.getClientes().subscribe(clientes => this.clientes = clientes,
+        this.clientesServices.getClientes(this.usuario.sistema._id).subscribe(clientes => this.clientes = clientes,
             Error,()=>{this.listarNomesClientes()})
     }
 

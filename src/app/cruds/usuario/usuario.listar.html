@@ -1,0 +1,28 @@
+
+    <div class="col-md-10">
+    	<div class="responsive">
+			<table class="table table-striped">
+				<th>Email</th>
+				<th>Senha</th>
+				<th>Nome</th>
+				<th>Tipo</th>
+				<th>Sistema</th>
+				<th>procurar: <input type="text" (keyup)="onKey($event)"/>{{values}}</th>
+					<tr *ngFor="let usuario of usuarios | filter: values" class="success">
+						
+						<td>{{usuario.email}}</td>
+						<td>{{usuario.senha}}</td>
+						<td>{{usuario.nome}}</td>
+						<td>{{usuario.tipo}}</td>
+						<td>{{usuario.sistema.nomeSistema}}</td>
+						<td><a class="btn btn-warning" (click)="editar(usuario)">Editar</a>
+							<a class="btn btn-danger" (click)="delete(usuario)">Excluir</a>
+						</td>
+					</tr>
+			</table>
+		</div>
+	</div>
+
+
+
+

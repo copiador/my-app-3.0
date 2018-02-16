@@ -3,9 +3,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 //serviço
 import {SistemaService} from './../../service/sistema.service';
 //modelo
-import {SistemaModel} from './../../model/Sistema.model';
+import {SistemaModel} from './../../model/sistema.model';
 //rotas
 import {Router, ActivatedRoute, Params } from '@angular/router';
+
 
 
 
@@ -25,9 +26,10 @@ export class SistemaListar implements OnInit {
     errorMessage: string;
     //editar
     sistemaParaEditar: SistemaModel;
-    sistemaParaAdiconarUsuario: SistemaModel;
+    idSistemaSistema: number;
     sistemaParaEditarBollean = false;
-    sistemaParaAdicionarUsuarioBollean = false;
+    sistemaParaAdicionarSistemaBollean = false;
+    SistemaSistema = new SistemaModel(); // Sistema usado para se casatrado no sistema
   
    
    
@@ -47,16 +49,16 @@ export class SistemaListar implements OnInit {
     }
 
     editar(sistema:SistemaModel){
-        this.sistemaParaAdicionarUsuarioBollean = false;
+        this.sistemaParaAdicionarSistemaBollean = false;
         this.sistemaParaEditarBollean = true;
         this.sistemaParaEditar = sistema;
        
     }
 
-    adicionarUsuario(sistema:SistemaModel){
-        this.sistemaParaAdicionarUsuarioBollean = true;
+    adicionarSistema(sistema:SistemaModel){
+        this.sistemaParaAdicionarSistemaBollean = true;
         this.sistemaParaEditarBollean = false;
-        this.sistemaParaAdiconarUsuario = sistema;
+        this.idSistemaSistema = sistema._id;
 
     }
 

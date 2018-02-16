@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 //serviço
 import {ProdutoService} from './../../service/produto.service';
+import {LoginService} from './../../service/login.service';
 //modelo
 import {ProdutoModel} from './../../model/produto.model';
+import {UsuarioModel} from './../../model/usuario.model';
 //rotas
 import {Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-
-import 'rxjs/add/operator/switchMap';
-import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -26,13 +25,17 @@ produtos: ProdutoModel[];
 //produtos: Observable<ProdutoModel[]>;
 produtoParaEditar: ProdutoModel;
 produtoEditarBollean = false;
+usuario: UsuarioModel;
 
-constructor(private produtoservice: ProdutoService, private router: Router, private route: ActivatedRoute){};
+constructor(private produtoservice: ProdutoService, 
+    private router: Router, 
+    private route: ActivatedRoute,
+    private loginService: LoginService){};
 
 
 ngOnInit(){
-
-    this.produtoservice.getProdutos().subscribe(produtos => this.produtos = produtos);
+    this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario);
+    this.produtoservice.getProdutos(this.usuario.sistema._id).subscribe(produtos => this.produtos = produtos);
    
     
 }
@@ -45,7 +48,7 @@ delete(produto: ProdutoModel){
        //this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
     }
 
-    editar(produto:ProdutoModel){
+editar(produto:ProdutoModel){
         this.produtoEditarBollean = true;
         this.produtoParaEditar = produto;
      //  this.router.navigate(['/cruds-nav-module/crud-nav-listar/produto-editar', produto._id]);

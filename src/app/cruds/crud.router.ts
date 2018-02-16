@@ -16,6 +16,8 @@ import {SistemaCadastrar} from './sistema/sistema.cadastrar'
 import {SistemaListar} from './sistema/sistema.listar';
  
 import {ProdutoEditar} from './produtos/produto.editar';
+import { UsuarioListar } from 'app/cruds/usuario/usuario.listar';
+import { UsuarioCadastrar } from 'app/cruds/usuario/usuario.cadastrar';
 
 
 const CrudNav: Routes = [{
@@ -38,6 +40,9 @@ const CrudNav: Routes = [{
       },{
         path: 'sistema-listar',
         component: SistemaListar,
+      },{
+        path: 'usuario-listar',
+        component: UsuarioListar,
       }]
   },{
       path: 'crud-nav-cadastrar',
@@ -51,6 +56,9 @@ const CrudNav: Routes = [{
       },{
         path: 'sistema-cadastrar',
         component: SistemaCadastrar,
+      },{
+        path: 'usuario-cadastrar',
+        component: UsuarioCadastrar
       }]
   }]
 }]

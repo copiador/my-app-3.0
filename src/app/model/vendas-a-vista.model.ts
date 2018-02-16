@@ -1,5 +1,6 @@
 import {ProdutoModel} from './produto.model';
 import {ClienteModel} from './cliente.model';
+import {SistemaModel} from './sistema.model'
 
 export class VendasAvistaModel{
 
@@ -12,7 +13,9 @@ export class VendasAvistaModel{
     produtos: ProdutoModel[] = [];
     valorTotalVenda : number;
     cliente : ClienteModel;
-
+    sistema: SistemaModel;
+   
+   
     add(produto: ProdutoModel){
         let produto2 = new ProdutoModel();
         produto2 = produto;

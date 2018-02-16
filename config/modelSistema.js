@@ -23,27 +23,8 @@ var schema = new mongoose.Schema({
     ativacao:{
         type: Boolean,
     },
-    //usuarios do sistema
-    usuarios:[{
-        type:mongoose.Schema.ObjectId,
-        ref:'Usuario'
-    }],
-    clientes:[{
-        type:mongoose.Schema.ObjectId,
-        ref:'Cliente'
-    }],
-    produtos:[{
-        type:mongoose.Schema.ObjectId,
-        ref:'Produto'
-    }],
-    recebidos:[{
-        type:mongoose.Schema.ObjectId,
-        ref:'Recebido'
-    }],
-    vendas:[{
-        type:mongoose.Schema.ObjectId,
-        ref:'VendasAvista'
-    }],
+   
+
     		
 });
 

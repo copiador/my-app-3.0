@@ -31,6 +31,12 @@ var schema = new mongoose.Schema({
     valorTotalVenda:{
         type: Number
     },
+
+    //as vendas pussuem um sistema vinculado a ela
+    sistema:{
+        type:mongoose.Schema.ObjectId,
+        ref:'Sistema'
+    },
    
 
 	

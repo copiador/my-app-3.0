@@ -8,6 +8,8 @@ import 'rxjs/add/operator/map';
 
 //cliente model
 import {ClienteModel} from '../model/cliente.model';
+import {SistemaModel} from '../model/sistema.model';
+
 
 
 @Injectable()
@@ -15,6 +17,7 @@ export class ClienteService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private clientesUrl = 'http://localhost:3000/api/clientes';  // URL to web api
+  private clienteUrl = 'http://localhost:3000/api/cliente'; 
 
   constructor(private http: Http) { console.log("cliente service inicializado")}
 
@@ -26,14 +29,20 @@ export class ClienteService {
  // }
 
 
-  getClientes(): Observable<ClienteModel[]> {
+  getClientes(_idSistema: number): Observable<ClienteModel[]> {
 
+    var url = this.clientesUrl + "/" + _idSistema;
+    return this.http.get(url).map(res => res.json()) ;
+  
+  }
+  getClientes2(): Observable<ClienteModel[]> {
+    
     return this.http.get(this.clientesUrl).map(res => res.json()) ;
   
   }
 
   getCliente(_id: number): Observable<ClienteModel>{
-    var url = this.clientesUrl + "/" + _id;
+    var url = this.clienteUrl + "/" + _id;
     return this.http.get(url).map(res => res.json());
   }
 

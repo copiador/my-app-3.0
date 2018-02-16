@@ -29,9 +29,9 @@ export class RelatoriosService {
     }
 
 
-  getRelatorioVendasDoDia(): Observable<VendasAvistaModel[]> {
-    
-    return this.http.get(this.relatoriosVendasDoDiaUrl).map(res => res.json()) ;
+  getRelatorioVendasDoDia(_idSistema: number): Observable<VendasAvistaModel[]> {
+    var url = this.relatoriosVendasDoDiaUrl + "/" + _idSistema;
+    return this.http.get(url).map(res => res.json()) ;
    
   }
   getRelatorioRecebidosDoDia(): Observable<RecebidosModel[]> {

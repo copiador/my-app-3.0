@@ -23,7 +23,12 @@ var schema = new mongoose.Schema({
     },
     tempo:{
         type: String
-    }
+    },
+    //os recebidos pussuem um sistema vinculado a ele
+    sistema:{
+        type:mongoose.Schema.ObjectId,
+        ref:'Sistema'
+    },
 	
 		
 });

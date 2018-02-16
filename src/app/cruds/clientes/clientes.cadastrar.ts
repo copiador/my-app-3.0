@@ -8,6 +8,9 @@ import {ValidationService} from './../../service/validator.service';
 import {MaskServices} from './../../service/mask.services';
 //modelo
 import {ClienteModel} from './../../model/cliente.model';
+import {UsuarioModel} from './../../model/usuario.model';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { LoginService } from 'app/service/login.service';
 
 
 
@@ -26,7 +29,7 @@ import {ClienteModel} from './../../model/cliente.model';
 })
 
 
-export class ClientesCadastrar implements OnChanges {
+export class ClientesCadastrar implements OnChanges, OnInit {
 
 
     
@@ -40,11 +43,13 @@ export class ClientesCadastrar implements OnChanges {
     clienteForm : FormGroup;
     cliente = new ClienteModel(); // cliente para um novo cadastro
     @Input() clienteEditar : ClienteModel; // cliente para um cadastro para editar
+    //pega o usuario logado
+    usuario: UsuarioModel;
     
   
 
      constructor( private clienteService: ClienteService, private fb: FormBuilder, 
-        private maskServices: MaskServices) {
+        private maskServices: MaskServices,private loginService: LoginService) {
        
   
         this.maskCpf = this.maskServices.maskCpf();
@@ -60,7 +65,9 @@ export class ClientesCadastrar implements OnChanges {
 
 
 
-
+ngOnInit(){
+    this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario)
+}
 
 createFormBuild(){
 
@@ -101,8 +108,10 @@ prepararValores(): ClienteModel{
    cliente.telefoneFixo = this.clienteForm.controls.telefoneFixo.value;
    cliente.telefoneCelular = this.clienteForm.controls.telefoneCelular.value;
    cliente.informacoes = this.clienteForm.controls.informacoes.value;
-   
+   //o cliente quando é cadastrado cria um debito de 0 reais
    cliente.debitoDoCliente = 0;
+   //pega o usuario e do sistema e cadastra do sistema que ele pertense aos seus clientes
+   cliente.sistema = this.usuario.sistema;
 
    return cliente;
 };
@@ -133,6 +142,7 @@ ngOnChanges(){
         telefoneFixo:  this.clienteEditar.telefoneFixo,
         telefoneCelular:  this.clienteEditar.telefoneCelular,
         informacoes:  this.clienteEditar.informacoes
+
     })
 }
 

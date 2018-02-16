@@ -6,11 +6,11 @@ module.exports = function() {
 	var ShemaUsuario = modeloUsuarioSchema.model('Usuario');
 	
 	
-	var dados = {"nome":"vendedor",email:"vendedor", senha: "123", tipo: "vendedor"};
+	var dados = {"nome":"vendedor",email:"1", senha: "1", tipo: "administrador"};
 //	var dados = {codigo:2, nome: "guidinha", endereco: {rua: "chove pau", bairro: "beira rio", numero: 95,
 //	cidade: "taquaritinga",cep: 55790}};
 	var usuario = new ShemaUsuario(dados);
-	//usuario.save();
+	///usuario.save();
 //	var contato = new ShemaCliente({"nome":"guidinha"});
 	//contato2.save();
 	//contato2.nextCount()
@@ -34,16 +34,16 @@ module.exports = function() {
     //  return done(null, user);
     });
   
-*/
 
-/*
+
+
 
 	ShemaUsuario.find(function(err, usuarios) {
 		if (err)
 			return console.error(err);
 		console.log(usuarios);
 	});
-*/
+	*/
 //listar de funções
 	var controller = {};
 
@@ -87,12 +87,19 @@ module.exports = function() {
 	//função listar
 	controller.listarUsuarios = function(req, res) {
 		//função para listar
+		/*
 		ShemaUsuario.find(function(err, usuarios) {
 			if (err) return console.error(err);
-			//envia via json os dados de todos os clientes
+			console.log(usuarios)//envia via json os dados de todos os clientes
 			res.json(usuarios);
 		})
-	
+*/
+		ShemaUsuario.find().populate({path:'sistema'}).exec(function(err, usuarios) {
+			if (err) return console.error(err);
+			console.log(usuarios)//envia via json os dados de todos os clientes
+			res.json(usuarios);
+		})
+
 		
 	};
 
@@ -100,55 +107,54 @@ module.exports = function() {
 
 
 		var _idUsuario = req.params.id;
-		ShemaUsuario.findOne({ _id: _idUsuario  }, function(err, usuario) {
-			if (err) return console.log(err) ;
-			console.log(usuario);
-			return res.json(usuario);
+		ShemaUsuario.findOne({ _id: _idUsuario  }).populate({path: 'sistema'})
+		.exec(function(err, usuario){
 			
-		  });
-	}
+				if (err) return console.log(err) ;
+				console.log(usuario);
+				return res.json(usuario);
+		}) 
+			
+		 
+		}
 
-	controller.adicionarCliente = function (req, res){
+	controller.adicionarUsuario = function (req, res){
 
-		var _idCliente = req.body._id;
+		var _idUsuario = req.body._id;
 		
-		console.log(_idCliente);
+		console.log(_idUsuario);
 		
 
-		if(_idCliente){
+		if(_idUsuario){
 			console.log("atualizar");
-			ShemaCliente.findByIdAndUpdate(_idCliente,req.body,function(err,movie){
-				res.json("cliente atualizado")
+			ShemaUsuario.findByIdAndUpdate(_idUsuario,req.body,function(err,usuario){
+				res.json(usuario)
 			})
 		}else{
 			console.log("adicionar");
 			var valores = req.body;
-			valores._id = null;
-			console.log(valores);
-			var cliente = new ShemaCliente(valores);
-			cliente.save();
-			res.json(cliente);
 			
+			console.log(valores);
+			var usuario = new ShemaUsuario(valores);
+			usuario.save(function(err,usuario){
+				if (err) return res.json(err);
+				res.json(usuario);
+			});
+					
 		}
 	
-		}
+	}
 	
 				
 	
-	controller.deleteCliente = function (req, res) {
-		//pega o id do cliente
-		var _idCliente = req.params.id;
-		console.log(_idCliente);
-		//função para remover o cliente pelo id
-		ShemaCliente.findByIdAndRemove(_idCliente, function(err, movie){
-			if(err){
-				console.log(err);
-				return res.json(err);
-			}else{
-				
-				
-				return res.json("cliente removido com sucesso");
-			} 
+	controller.deleteUsuario = function (req, res) {
+		//pega o id do usuario
+		var _idUsuario = req.params.id;
+	
+		//função para remover o usuario  pelo id
+		ShemaUsuario.findByIdAndRemove(_idUsuario, function(err, usuario){
+			if (err) console.error(err);
+			res.json(usuario);
 		})
 	};
 

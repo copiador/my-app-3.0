@@ -17,6 +17,7 @@ import {ClientesCadastrar} from './clientes/clientes.cadastrar';
 import {ProdutosListar} from './produtos/produtos.listar';
 import {ProdutosCadastrar} from './produtos/produtos.cadastrar';
 import {ProdutoEditar} from './produtos/produto.editar';
+
 //crud sistema
 import {SistemaListar} from './sistema/sistema.listar'
 import {SistemaCadastrar} from './sistema/sistema.cadastrar'
@@ -24,11 +25,19 @@ import {SistemaCadastrar} from './sistema/sistema.cadastrar'
 import {ClienteService} from './../service/cliente.service';
 import {ProdutoService} from './../service/produto.service';
 import {MaskServices} from './../service/mask.services';
-import {SistemaService} from './../service/sistema.service'
+import {UsuarioService} from './../service/usuario.service'
+import { SistemaService } from 'app/service/sistema.service';
+//crud usuarios
+import { UsuarioListar } from 'app/cruds/usuario/usuario.listar';
+import { UsuarioCadastrar } from 'app/cruds/usuario/usuario.cadastrar';
 //pipe
 import {CrudFilterClientePipe} from './crud.filter.cliente.pipe';
+
 //boots trap
 import { TextMaskModule } from 'angular2-text-mask';
+
+
+
 
 
 
@@ -60,6 +69,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     CampoErroComponente,//
     SistemaCadastrar,// crud sistema
     SistemaListar,  // crud sistema
+    UsuarioListar,// listar usuarios crud
+    UsuarioCadastrar// crud usuario
  
     
   ],
@@ -68,7 +79,8 @@ import { TextMaskModule } from 'angular2-text-mask';
     ClienteService, 
     ProdutoService,
     MaskServices,
-    SistemaService
+    UsuarioService,
+    SistemaService,
   ]
 })
 

@@ -1,74 +1,27 @@
+<div class="col-md-10">
+	<div class="responsive">
+		<table class="table table-striped">
+			<th>NOME RESPONSAVEL</th>
+			<th>CPF RESPONSAVEL</th>
+			<th>NOME SISTEMA</th>
+			<th>CONTATO RESPONSAVEL</th>
+			<th>procurar:
+				<input type="text" (keyup)="onKey($event)" />{{values}}</th>
+			<tr *ngFor="let sistema of sistemas | filter: values" class="success">
 
-    <div class="col-md-10">
-    	<div class="responsive">
-			<table class="table table-striped">
-				<th>NOME RESPONSAVEL</th>
-				<th>CPF RESPONSAVEL</th>
-				<th>NOME SISTEMA</th>
-				<th>CONTATO RESPONSAVEL</th>
-				<th>procurar: <input type="text" (keyup)="onKey($event)"/>{{values}}</th>
-					<tr *ngFor="let sistema of sistemas | filter: values" class="success">
-						
-						<td>{{sistema.responsavel}}</td>
-						<td>{{sistema.cpfResponsavel}}</td>
-						<td>{{sistema.nomeSistema}}</td>
-						<td>{{sistema.contatoResponsavel}}</td>
-						<td><a class="btn btn-warning" (click)="editar(sistema)">Editar</a>
-							<a class="btn btn-danger" (click)="delete(sistema)">Excluir</a>
-							<a class="btn btn-warning" (click)="adicionarUsuario(sistema)">Adicionar Usuario</a></td>
-					</tr>
-			</table>
-		</div>
-		<div *ngIf="sistemaParaEditarBollean">
-  			<hr>
-  				<h4>Editar Sistema: {{sistemaParaEditar.nomeSistema}} </h4>
-				<h4>id: {{sistemaParaEditar._id}}</h4>
-  				<sistema-cadastrar [sistemaEditar]="sistemaParaEditar"></sistema-cadastrar>
-		</div>
-		<div *ngIf="sistemaParaAdicionarUsuarioBollean">
-			<hr>
-				<h4>Adicionar Usuario</h4>
-			<hr>
-			<div class="col-md-9">
-			<div class="form-group">
-			    <label class="col-sm-1">Email</label>
-					<div class="col-sm-4">
-						<input type="text" class="form-control" required  placeholder="Email" />
-					</div>
-				<label class="col-sm-1">Senha</label>
-					<div class="col-sm-4">
-						<input type="text" class="form-control" required  placeholder="Senha" />
-					</div>
-			</div>
-			</div>
-			
-			<div class="col-md-9">
-			<br>
-			<div class="form-group">
-			    <label class="col-sm-1">Nome Usuario</label>
-					<div class="col-sm-4">
-						<input type="text" class="form-control" required  placeholder="Nome Usuario" />
-					</div>
-				<label class="col-sm-1">Tipo</label>
-					<div class="col-sm-4">
-						<input type="text" class="form-control" required  placeholder="Nome Usuario" />
-					</div>
-				
-			</div>
-			
-			</div>
-			<div class="col-md-9">
-				<br>
-				<label class="col-sm-1">Estado</label>
-					<div class="col-sm-3">
-					<input type="text" class="form-control" required  placeholder="Senha" />
-				</div>
-			</div>
-			
-		</div>
+				<td>{{sistema.responsavel}}</td>
+				<td>{{sistema.cpfResponsavel}}</td>
+				<td>{{sistema.nomeSistema}}</td>
+				<td>{{sistema.contatoResponsavel}}</td>
+				<td>
+					<a class="btn btn-warning" (click)="editar(sistema)">Editar</a>
+					<a class="btn btn-danger" (click)="delete(sistema)">Excluir</a>
+					<a class="btn btn-warning" (click)="adicionarUsuario(sistema)">Adicionar Usuario</a>
+				</td>
+			</tr>
+		</table>
 
+	
+		
 	</div>
-
-
-
-
+</div>

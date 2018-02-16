@@ -13,17 +13,29 @@ module.exports = function() {
 
 	controller.listarVendasDoDia = function(req, res){
 
+
 		var valoresMomento = moment().format("DD-MM-YYYY");
-		
+		var _idSistema = req.params.id;
+		console.log("sistema id"+_idSistema)
 		//pega as vendas do dia atual, usando a biblioteca moment, e retorna as vendas do dia,
 		//populando dos produtos e os clientes
-		ShemaVendasAvista.find({"data": {"$eq": valoresMomento}
+		ShemaVendasAvista.where('data').eq(valoresMomento)
+		.where({sistema: _idSistema}).populate({path: 'cliente'}).populate({path: 'produtos'})
+		.exec(function(err, vendas){
+			if (err)return console.error(err);
+			return res.json(vendas);
+		})
+		
+		/*
+
+			
+			ShemaVendasAvista.find({"data": {"$eq": valoresMomento}
 	}).populate({path: 'produtos'}).populate({path: 'cliente'}).exec(function(err,vendas){
 			if (err)return console.error(err);
 			
 			return res.json(vendas);
 		})
-		/*
+		
 		ShemaVendasAvista.find({ "data" : { "$eq" : valoresMomento } },
 		  function(err, vendas) {
 			if (err)return console.error(err);

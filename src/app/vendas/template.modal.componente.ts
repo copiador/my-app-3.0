@@ -3,6 +3,9 @@ import {Component, OnInit, Output, EventEmitter,ViewChild} from '@angular/core';
 import {ProdutoService} from '../service/produto.service';
 import {ProdutoModel} from '../model/produto.model';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import {LoginService} from '../service/login.service'
+//usuario model
+import {UsuarioModel} from '../model/usuario.model'
 
 @Component({
  selector: 'modal-static',
@@ -15,15 +18,18 @@ export class TemplateModalComponente implements OnInit {
     @Output() codigoBarrasOutput = new EventEmitter();
     @ViewChild('lgModal') public lgModal:ModalDirective;
     public isModalShown:boolean = false;
-   
+    //pega o usuario logado
+    usuario: UsuarioModel
 
-    constructor(private produtoServices: ProdutoService){
+    constructor(
+        private produtoServices: ProdutoService,
+        private loginService: LoginService){
 
     }
 
 ngOnInit(){
-
-    this.produtoServices.getProdutos().subscribe(produtos => this.produtos = produtos);
+    this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario);
+    this.produtoServices.getProdutos(this.usuario.sistema._id).subscribe(produtos => this.produtos = produtos);
 
 }
 

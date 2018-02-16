@@ -6,8 +6,11 @@ import { FormsModule, FormBuilder, FormControl,FormGroup , Validators  }    from
 import {ProdutoService} from './../../service/produto.service';
 import {ValidationService} from './../../service/validator.service';
 import {MaskServices} from './../../service/mask.services';
+import {LoginService} from './../../service/login.service';
 //modelo
 import {ProdutoModel} from './../../model/produto.model';
+import {UsuarioModel} from './../../model/usuario.model';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -18,22 +21,25 @@ import {ProdutoModel} from './../../model/produto.model';
 
 })
 
-export class ProdutosCadastrar implements OnChanges {
+export class ProdutosCadastrar implements OnChanges, OnInit {
 
 
 
     produtoForm : FormGroup;
     produto = new ProdutoModel(); // cliente para um novo cadastro
     @Input() produtoEditar : ProdutoModel; // cliente para um cadastro para editar
-
-    constructor(private produtoService: ProdutoService, private fb: FormBuilder){
+    usuario: UsuarioModel;
+    constructor(private produtoService: ProdutoService, private fb: FormBuilder,
+    private loginService: LoginService){
         this.createFormBuild();
     
 
     }
    
 
-
+ngOnInit(){
+    this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario);
+}
 
 createFormBuild(){
     
@@ -51,7 +57,7 @@ createFormBuild(){
 
 
 prepararValores(): ProdutoModel{
-    let valores = this.produtoForm.value;
+  
     let produto = new ProdutoModel();
   //  this.cliente.nome = this.clienteForm.controls.nome.value;    
   //  this.cliente.cpf = this.clienteForm.controls.cpf.value;
@@ -60,6 +66,8 @@ prepararValores(): ProdutoModel{
    produto.nome = this.produtoForm.controls.nome.value;
    produto.valor = this.produtoForm.controls.valor.value;
    produto.quantidade = this.produtoForm.controls.quantidade.value;
+   produto.sistema = this.usuario.sistema;
+   
    return produto;
 };
 //submete os valores para o banco de dados depois de preparados

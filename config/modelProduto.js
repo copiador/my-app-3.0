@@ -17,7 +17,12 @@ var schema = new mongoose.Schema({
     },
     quantidade:{
         type: Number,
-    }
+    },
+    //produto possui um sistema vinculado a ele
+    sistema:{
+        type:mongoose.Schema.ObjectId,
+        ref:'Sistema'
+    },
 
 
 

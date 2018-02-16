@@ -17,6 +17,7 @@ var schema = new mongoose.Schema({
     tipo:{
         type: String,
     },
+    //essa função serve para logar o usuario
     estado:{
         type: Boolean,
     },
@@ -25,9 +26,10 @@ var schema = new mongoose.Schema({
         type: Boolean,
     },
     //o id o sistema que ele o usuario faz parte, é importane para fazer as consultas necessárias no sistema
-    _idSistema:{
-        type: String,
-    }
+    sistema:{
+        type:mongoose.Schema.ObjectId,
+        ref:'Sistema'
+    },
 	
 	
 	

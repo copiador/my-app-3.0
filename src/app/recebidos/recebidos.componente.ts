@@ -10,6 +10,8 @@ import {ClienteModel} from '../model/cliente.model';
 import {VendasAvistaModel} from '../model/vendas-a-vista.model';
 import {ProdutoModel} from '../model/produto.model';
 import {RecebidosModel} from '../model/recebidos.model';
+import { LoginService } from 'app/service/login.service';
+import { UsuarioModel } from 'app/model/usuario.model';
 
 
 @Component({
@@ -45,19 +47,21 @@ export class RecebidosComponente implements OnInit {
     recebidosCliente: RecebidosModel[];
    //recebido adicionado    
     recebido = new RecebidosModel();
-
+    // usuario logado
+     usuario: UsuarioModel;
 
     constructor(private serviceCliente:  ClienteService, 
         private vendasAVistaService: VendasAvistaService,
         private serviceProduto: ProdutoService,
-        private recebidosService: RecebidosService){
+        private recebidosService: RecebidosService,
+        private loginService : LoginService){
 
     }
 
     ngOnInit(){
-
-        this.serviceCliente.getClientes().subscribe(clientes => this.clientes = clientes);
-        this.serviceProduto.getProdutos().subscribe(produtos => this.produtos = produtos);
+        this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario);
+        this.serviceCliente.getClientes(this.usuario.sistema._id).subscribe(clientes => this.clientes = clientes);
+        this.serviceProduto.getProdutos(this.usuario.sistema._id).subscribe(produtos => this.produtos = produtos);
        
 
     }

@@ -56,13 +56,12 @@ export class VendasComponente implements OnInit {
     }
     //pega a lista do servidor
     ngOnInit(){
-        this.serviceVendas.getProdutos().subscribe(produtos => this.produtos = produtos);
+        this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario)
+        this.produtoService.getProdutos(this.usuario.sistema._id).subscribe(produtos => this.produtos = produtos);
       //  let id = this.activedRouter.snapshot.paramMap.get('id') 
         //console.log(id);
         //pega o usuario da tela do menu
-        this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario, Error,()=>{
-            console.log(this.usuario);
-        })
+        
     }
    //pega o valor tde todos os produtos da venda soma todos
     valorTotal(){
@@ -86,7 +85,7 @@ export class VendasComponente implements OnInit {
         
     this.validaProduto(codigoBarras);
     let produtoFilter = this.produtos.findIndex(produto => produto.codigoBarras == codigoBarras) ;
-    console.log(produtoFilter);
+   
         
      //pega a lista vinda do servidor, e filtra o produto de acordo com o codigo de barras  
      //essa variavel produtoFilter anexa o codigo de barras do produto vendido 
@@ -116,7 +115,7 @@ export class VendasComponente implements OnInit {
             
             let produtoVendido = this.produtos[produtoFilter];
             if(produtoFilter == -1){
-                console.log(this.validaVenda());
+               
                 return true;
             }else{
                 return false;
@@ -128,19 +127,25 @@ export class VendasComponente implements OnInit {
     validaVenda(){
        
         if(this.produtosVendidos.length > 0){
-            console.log(this.produtosVendidos.length);
-            console.log(this.produtosVendidos);
+          
             return false;
         }else{
             return true;
         }
     }
 
-
+    //finaliza a venda atualizando o valor total da venda e colocando o id do sistema
     finalizarVenda(){
        
+
         this.vendaAvista.valorTotalVenda = this.valorTotalFinal;
+        this.vendaAvista.sistema = this.usuario.sistema
         this.serviceVendas.adicionarVenda(this.vendaAvista).subscribe();
+        //zera a lista da venda
+        this.produtosVendidos.length = 0;
+        this.vendaAvista.produtos.length = 0;
+        // zera a venda efetuada
+        this.valorTotalFinal = 0;
        
     }
 
@@ -184,7 +189,7 @@ export class VendasComponente implements OnInit {
     onSelect(cliente: ClienteModel){
         this.clienteSelected = cliente;
         this.vendaAvista.cliente = this.clienteSelected;
-        console.log(this.vendaAvista.cliente);
+        
 
     }
     //detecta os valores digitados pelo usuario no campo cliente e filtra eles pelo pipe
@@ -195,7 +200,7 @@ export class VendasComponente implements OnInit {
 
     listarClientes(){
         this.listarClienteButton = !this.listarClienteButton;
-        this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
+        this.clienteService.getClientes(this.usuario.sistema._id).subscribe(clientes => this.clientes = clientes);
     }
     //copia codigo de barras vindo da lista de produtos  do tempalte modal
     copiarCodigoBarras(codigoBarras: number){

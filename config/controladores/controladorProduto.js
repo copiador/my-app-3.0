@@ -22,13 +22,19 @@ ShemaProdutos.find(function(err, produtos) {
 	var controller = {};
 	//função listar
 	controller.listarProdutos = function(req, res) {
+		var _idProduto = req.params.id;
+	
 		//função para listar
-		ShemaProdutos.find(function(err, produtos) {
+		ShemaProdutos.find({sistema: _idProduto},function(err,produtos){
+			if (err) return console.error(err);
+			res.json(produtos);
+		})
+		/*ShemaProdutos.find(function(err, produtos) {
 			if (err) return console.error(err);
 			//envia via json os dados de todos os produtos
 			res.json(produtos);
 		})
-	
+	*/
 		
 	};
     //adicionar e atualizar produto
@@ -36,13 +42,14 @@ ShemaProdutos.find(function(err, produtos) {
 
 		var _idProduto = req.body._id;
 		
-		console.log(_idProduto);
+		
 		
 
 		if(_idProduto){
 			console.log("atualizar");
-			ShemaProdutos.findByIdAndUpdate(_idProduto,req.body,function(err,movie){
-				return res.json("Produto atualizado")
+			ShemaProdutos.findByIdAndUpdate(_idProduto,req.body,function(err,produto){
+				if (err) return console.error(err);
+				return res.json(produto)
 			})
 		}else{
 			console.log("adicionar");
@@ -50,9 +57,11 @@ ShemaProdutos.find(function(err, produtos) {
 			valores._id = null;
 			console.log(valores);
 			var produto = new ShemaProdutos(valores);
-			produto.save();
-			return res.json(produto);
-			
+			produto.save(function(err,produto){
+				if (err) return console.error(err);
+				res.json(produto)
+			});
+					
 		}
 	
 		}

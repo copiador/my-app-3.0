@@ -7,7 +7,7 @@ import {SistemaService} from './../../service/sistema.service';
 import {ValidationService} from './../../service/validator.service';
 import {MaskServices} from './../../service/mask.services';
 //modelo
-import {SistemaModel} from './../../model/Sistema.model';
+import {SistemaModel} from './../../model/sistema.model';
 
 
 

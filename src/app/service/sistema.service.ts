@@ -10,11 +10,14 @@ import 'rxjs/add/operator/map';
 import {SistemaModel} from '../model/sistema.model';
 
 
+
 @Injectable()
 export class SistemaService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private sistemaUrl = 'http://localhost:3000/api/sistema';  // URL to web api
+
+  
 
   constructor(private http: Http) {}
 
@@ -48,6 +51,8 @@ export class SistemaService {
     
     return this.http.post(this.sistemaUrl, sistema, options ).map(this.extractData);
   }
+   
+
 
   deleteSistema(_id: number): Observable<SistemaModel>{
     

@@ -4,11 +4,13 @@ import { RelatoriosService } from './../../service/relatorios.services';
 import { ProdutoService } from './../../service/produto.service';
 import { RecebidosService } from './../../service/recebidos.services';
 import { ClienteService } from './../../service/cliente.service';
+import { LoginService} from './../../service/login.service';
 //model
 import { VendasAvistaModel } from './../../model/vendas-a-vista.model';
 import { ProdutoModel } from './../../model/produto.model';
 import { RecebidosModel } from './../../model/recebidos.model';
 import { ClienteModel } from './../../model/cliente.model';
+import {UsuarioModel} from './../../model/usuario.model';
 
 
 
@@ -44,21 +46,23 @@ export class ResumoDoDiaComponente implements OnInit {
     clientesRecebido: ClienteModel[] = [];
     //total dos valores recebidos
     totalDeRecebidos: number;
-
-
+    //pega o usuario logado
+    usuario: UsuarioModel
 
 
     constructor(private relatoriosService: RelatoriosService,
         private produtoService: ProdutoService,
         private recebidosService: RecebidosService,
-        private clienteService: ClienteService) {
+        private clienteService: ClienteService,
+        private loginService: LoginService) {
 
 
     }
 
     ngOnInit() {
         //pega a lista de vendas vinda do servidor
-        this.relatoriosService.getRelatorioVendasDoDia()
+        this.loginService.getUsuarioLogin().subscribe(usuario => this.usuario = usuario)
+        this.relatoriosService.getRelatorioVendasDoDia(this.usuario.sistema._id)
             .subscribe(vendasAVista => this.vendasAvista = vendasAVista, Error, () => {
                 //codigo que pega as vendas do db e posta a soma de todas as vendas
                 this.vendasAvista.forEach((venda) => {
@@ -67,7 +71,7 @@ export class ResumoDoDiaComponente implements OnInit {
                 })
             });
         //pega a lista de produtos do servidor
-        this.produtoService.getProdutos().subscribe(produtos => this.produtos = produtos);
+        this.produtoService.getProdutos(this.usuario.sistema._id).subscribe(produtos => this.produtos = produtos);
         //pega lista de recebidos do dia
         this.relatoriosService.getRelatorioRecebidosDoDia()
             .subscribe(recebidos => this.recebidosDoDia = recebidos, Error, () => this.somaValoresRecebidos());
@@ -78,14 +82,12 @@ export class ResumoDoDiaComponente implements OnInit {
     }
 
     onSelect(vendasAvista: VendasAvistaModel) {
-        //iniciaza as variaveis das lista com 0, para que quando o usuario clicar 2 vezes zerar tudo
-        this.produtosSelected.length = 0;
-        this.produtosFiltrados.length = 0;
-
-        //pega a lista de venda clica do usuario
+       //aparece na lista de produtos da venda
 
         this.vendasSelected = vendasAvista;
+        console.log(this.vendasSelected)
         this.produtosSelected2 = this.vendasSelected.produtos;
+        console.log(this.produtosSelected2);
 
     }
 
@@ -126,11 +128,11 @@ export class ResumoDoDiaComponente implements OnInit {
                 })
              })
          }
-    */
+   
     listarVendas2() {
         this.relatoriosService.getRelatorioVendasDoDia().subscribe(vendas => console.log(vendas));
     }
-
+ */
 
 }
 

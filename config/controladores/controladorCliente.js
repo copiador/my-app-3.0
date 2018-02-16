@@ -31,15 +31,27 @@ modeloClienteSchema.find(function(err, clientes) {
 	var controller = {};
 	//função listar
 	controller.listarClientes = function(req, res) {
-		//função para listar
+		//função para listar os clientes do sitema tal
+		var _idSistema = req.params.id;
+	
+		ShemaCliente.find({sistema: _idSistema},function(err, clientes){
+		if (err) return console.error(err);
+		
+		res.json(clientes);
+	})
+		/*
 		ShemaCliente.find(function(err, clientes) {
 			if (err) return console.error(err);
 			//envia via json os dados de todos os clientes
 			res.json(clientes);
 		})
+		
 	
+	*/
 		
 	};
+
+
 
 	controller.adicionarCliente = function (req, res){
 

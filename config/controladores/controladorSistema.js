@@ -32,10 +32,10 @@ modeloClienteSchema.find(function(err, clientes) {
 	//função listar
 	controller.listarSistema = function(req, res) {
 		//função para listar
-		ShemaSistema.find(function(err, clientes) {
+		ShemaSistema.find(function(err, sistemas) {
 			if (err) return console.error(err);
 			//envia via json os dados de todos os clientes
-			res.json(clientes);
+			res.json(sistemas);
 		})
 	
 		
@@ -52,7 +52,7 @@ modeloClienteSchema.find(function(err, clientes) {
 			console.log("atualizar");
 			ShemaSistema.findByIdAndUpdate(_idSistema,req.body,function(err,sistema){
 				if (err) return res.json(err);
-				res.json(sistema)
+				return res.json(sistema)
 			})
 		}else{
 			console.log("adicionar");
@@ -113,8 +113,15 @@ modeloClienteSchema.find(function(err, clientes) {
 		
 
 	}
-	
 
+	controller.atualizarSistemaUsuarios = function(req, res){
+	
+		
+
+	}
+	
 	return controller;
+}
+
 //fecha os dados
-};
+
