@@ -11,7 +11,7 @@
                         <div *ngFor="let vendas of vendasAvista" class="list-group">
                             <a class="list-group-item" 
                             (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
-                           
+                            <h4 class="list-group-item-heading">Cliente - {{vendas.tipo}} </h4>
                                 <p class="list-group-item-text">{{vendas.data}},{{vendas.tempo}},
                                 Total vendas: {{vendas.valorTotalVenda}}  </p>
 
@@ -49,7 +49,6 @@
                              
                           </table>
                           <div class="panel panel-primary"><h4>Total recebidos:{{totalDeRecebidos}}</h4></div>
-                          <button type="button"(click)="listarVendas2()" >Listar</button> 
                         </div>
                 </div>
             </div>

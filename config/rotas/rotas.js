@@ -31,7 +31,7 @@ module.exports = function(app) {
 	app.put('/api/produtos', controllerProduto.atualizarEstoque);
 
 	//vendas
-	app.get('/api/vendas', controllerVendasAvista.listarVendas);
+	app.get('/api/vendas/:id', controllerVendasAvista.listarVendas);
 	app.get('/api/vendas/cliente/:id', controllerVendasAvista.listarVendasClienteId);
 	app.get('/api/vendas/:id', controllerVendasAvista.buscarVendaId);
 	app.post('/api/vendas', controllerVendasAvista.adicionarVendas);
@@ -40,13 +40,13 @@ module.exports = function(app) {
 	app.get('/api/relatorios/listarVendasDoDia/:id', controllerRelatorios.listarVendasDoDia);
 	app.get('/api/relatorios/listarVendas', controllerRelatorios.listarVendas);	
 	app.delete('/api/relatorios/listarVendas/:id', controllerRelatorios.deleteVenda);
-	app.get('/api/relatorios/listarRecebidosDoDia', controllerRelatorios.listarRecebidosDoDia);	
+	app.get('/api/relatorios/listarRecebidosDoDia/:id', controllerRelatorios.listarRecebidosDoDia);	
 	app.get('/api/relatorios/listarVendasPelaData/:data', controllerRelatorios.listarVendasPelaData);
 	app.get('/api/relatorios/listarRecebidosPelaData/:data', controllerRelatorios.listarRecebidosPelaData);
 	//recebidos
 	app.post('/api/recebidos', controllerRecebidos.adicionarRecebidos);
 	app.get('/api/recebidos/clienteId/:id', controllerRecebidos.listarRecebidosClienteId);
-	app.get('/api/recebidos', controllerRecebidos.listarRecebidos);
+	app.get('/api/recebidos/:id', controllerRecebidos.listarRecebidos);
 	app.delete('/api/recebidos/:id', controllerRecebidos.deleteRecebido);
 	//sistema
 	app.get('/api/sistema', controllerSistema.listarSistema);

@@ -19,6 +19,10 @@ var schema = new mongoose.Schema({
         type:mongoose.Schema.ObjectId,
         ref:'Cliente'
     },
+    //tipo da venda, a vista a praso, cartão.
+    tipo:{
+        type: String
+    },
     momento:{
         type: String
     },

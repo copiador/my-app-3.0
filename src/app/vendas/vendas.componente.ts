@@ -137,8 +137,13 @@ export class VendasComponente implements OnInit {
     //finaliza a venda atualizando o valor total da venda e colocando o id do sistema
     finalizarVenda(){
        
-
+        //testa se a venda foi a vista  ou a praso;
+        if(this.vendaAvista.tipo === undefined || 
+            this.vendaAvista.tipo === ''){
+            this.vendaAvista.tipo = "Venda a vista"
+        }
         this.vendaAvista.valorTotalVenda = this.valorTotalFinal;
+        //pega o usuario do sitema.
         this.vendaAvista.sistema = this.usuario.sistema
         this.serviceVendas.adicionarVenda(this.vendaAvista).subscribe();
         //zera a lista da venda
@@ -189,6 +194,7 @@ export class VendasComponente implements OnInit {
     onSelect(cliente: ClienteModel){
         this.clienteSelected = cliente;
         this.vendaAvista.cliente = this.clienteSelected;
+        this.vendaAvista.tipo = "Venda a praso - Cliente: "+ this.clienteSelected.nome ;
         
 
     }

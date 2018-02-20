@@ -114,12 +114,12 @@ modeloClienteSchema.find(function(err, clientes) {
 	controller.atualizarCliente = function(req, res){
 		var _idCliente = req.body._id;
 		var valores = req.body;
-		console.log("valores atualizar",valores);
+		
 	
 		ShemaCliente.findByIdAndUpdate(_idCliente, valores,function(err,cliente){
 			if (err) return console.error(err);
 		
-				return res.json("cliente atualizado com sucesso");
+				return res.json(cliente);
 			});
 		
 

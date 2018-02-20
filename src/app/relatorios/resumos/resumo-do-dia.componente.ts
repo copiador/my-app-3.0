@@ -66,14 +66,15 @@ export class ResumoDoDiaComponente implements OnInit {
             .subscribe(vendasAVista => this.vendasAvista = vendasAVista, Error, () => {
                 //codigo que pega as vendas do db e posta a soma de todas as vendas
                 this.vendasAvista.forEach((venda) => {
+                    
                     this.valorTotalVendasDoDia += venda.valorTotalVenda;
 
                 })
             });
         //pega a lista de produtos do servidor
-        this.produtoService.getProdutos(this.usuario.sistema._id).subscribe(produtos => this.produtos = produtos);
+       // this.produtoService.getProdutos(this.usuario.sistema._id).subscribe(produtos => this.produtos = produtos);
         //pega lista de recebidos do dia
-        this.relatoriosService.getRelatorioRecebidosDoDia()
+        this.relatoriosService.getRelatorioRecebidosDoDia(this.usuario.sistema._id)
             .subscribe(recebidos => this.recebidosDoDia = recebidos, Error, () => this.somaValoresRecebidos());
 
 
@@ -85,9 +86,9 @@ export class ResumoDoDiaComponente implements OnInit {
        //aparece na lista de produtos da venda
 
         this.vendasSelected = vendasAvista;
-        console.log(this.vendasSelected)
+        
         this.produtosSelected2 = this.vendasSelected.produtos;
-        console.log(this.produtosSelected2);
+     
 
     }
 

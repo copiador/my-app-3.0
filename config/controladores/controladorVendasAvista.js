@@ -48,7 +48,7 @@ module.exports = function() {
 		//se há cliente na venda então á venda foi a prazo o debito do cliente é atualizado
 		if(valores.cliente){
 			
-		
+			console.log(valores.tipo);
 			var vendas = new ShemaVendasAvista({
 				momento: momento, 
 				data: dataMomento,
@@ -56,7 +56,9 @@ module.exports = function() {
 				produtos: valores.produtos,
 				valorTotalVenda: valores.valorTotalVenda,
 				cliente: valores.cliente,
-				sistema: valores.sistema});
+				sistema: valores.sistema,
+				//se a venda tiver um cliente então ela foi a praso
+				tipo: valores.tipo});
 
 			//função que atualiza do valor do debito do cliente, caso haja outra venda com ele
 			var idCliente = valores.cliente._id;
@@ -72,13 +74,16 @@ module.exports = function() {
 			
 		}else{
 		
+			console.log(valores.tipo);
 			var vendas = new ShemaVendasAvista({
 				momento: momento, 
 				data: dataMomento,
 				tempo: tempoMomento, 
 				produtos: valores.produtos,
 				valorTotalVenda: valores.valorTotalVenda,
-				sistema: valores.sistema
+				sistema: valores.sistema,
+				// se a venda não tiver um cliente então ela foi a vista
+				tipo: valores.tipo
 		});
 			vendas.save(function(err,vendas){
 				 if (err) return console.error(err);
@@ -93,20 +98,20 @@ module.exports = function() {
 	controller.listarVendas = function(req, res){
 		var data = moment().format("DD-MM-YYYY");
 		var tempo = moment().format("HH:mm:ss");
-		console.log(data);
-		console.log(tempo);
+		//recupera o id do sistema
+		var _idSistema = req.params.id;
+		console.log("id sistema" +_idSistema);
 		
-		ShemaVendasAvista.find(function(err, vendas) {
-			if (err)return console.error(err);
+	
+	ShemaVendasAvista.find({'sistema': _idSistema})
+	.populate({path: 'cliente'})
+	.populate({path: 'produtos'}).exec(function(err, vendas){
+		if (err) return console.error(err);
+		
 			return res.json(vendas);
-		});
-	ShemaVendasAvista.find().populate({path: 'cliente'}).exec(function(err,vendas){
-		if (err)return console.error(err);
-		return console.log(vendas);
 	})
 	
-	};
-
+	}
 	//listar venda do cliente desejado
 	controller.listarVendasClienteId = function(req, res){
 		var _id = req.params.id;
@@ -120,7 +125,7 @@ module.exports = function() {
 		ShemaVendasAvista.find({'cliente': _id}).populate({path: 'produtos'})
 		.populate({path: 'cliente'}).exec(function(err,vendas){
 			if (err)return console.error(err);
-			console.log(vendas);
+			
 			return res.json(vendas);
 		})
 
@@ -144,6 +149,7 @@ module.exports = function() {
 			if (err){
 				console.log(err);
 			}else{
+				//pega o debito do cliente pega o valor da venda, e soma os valor da venda com o debito
 				var debitoCliente = cliente.debitoDoCliente;
 				var valorVenda = valores.valorTotalVenda;
 				var somaVendaMaisDebito = 0;
@@ -167,3 +173,12 @@ module.exports = function() {
 
 
 };
+
+
+/*	
+		
+		ShemaVendasAvista.find().populate({path: 'cliente'}).exec(function(err,vendas){
+		if (err)return console.error(err);
+		return console.log(vendas);
+	})
+	*/

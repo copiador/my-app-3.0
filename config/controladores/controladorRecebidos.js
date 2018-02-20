@@ -24,8 +24,13 @@ module.exports = function() {
 		var dataMomento = moment().format("DD-MM-YYYY");
 		var tempoMomento = moment().format("HH:mm:ss");
 		
-		recebido = new shemaRecebido({cliente: valores.cliente, 
-			momento: momento,data: dataMomento,tempo: tempoMomento, valor: valores.valor })
+		recebido = new shemaRecebido(
+			{cliente: valores.cliente, 
+			momento: momento,
+			data: dataMomento,
+			tempo: tempoMomento, 
+			valor: valores.valor,
+			sistema: valores.sistema })
 
 		recebido.save(function(err,recebido){
 			if (err) return console.error(err);
@@ -53,13 +58,16 @@ module.exports = function() {
 
 	controller.listarRecebidos = function(req, res) {
 		//função para listar
-		shemaRecebido.find(function(err, recebidos) {
+		var _idSistema = req.params.id;
+		console.log(_idSistema);
+		shemaRecebido.find({'sistema': _idSistema})
+		.populate({path: 'cliente'})
+		.exec(function(err, recebidos) {
 			if (err) return console.error(err);
 			//envia via json os dados de todos os produtos
 			return res.json(recebidos);
 		})
 	
-		
 	};
 
 	controller.deleteRecebido = function (req, res) {

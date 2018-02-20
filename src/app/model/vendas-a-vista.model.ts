@@ -10,6 +10,8 @@ export class VendasAvistaModel{
     momento: String;
     data: String;
     tempo: String;
+   // Tipo da venda, a vista a praso ou cartão.
+    tipo: String;
     produtos: ProdutoModel[] = [];
     valorTotalVenda : number;
     cliente : ClienteModel;

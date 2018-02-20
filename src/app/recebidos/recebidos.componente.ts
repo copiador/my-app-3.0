@@ -100,11 +100,6 @@ export class RecebidosComponente implements OnInit {
         this.vendasAvistaSelected = venda;
         this.produtosSelected = venda.produtos;
      
-      
-       
-    
-        
-
     }
 
     //função que recebe o um valor;
@@ -115,14 +110,18 @@ export class RecebidosComponente implements OnInit {
         let recebido = new RecebidosModel();
         recebido.cliente = this.clienteSelected;
         recebido.valor = valorRecebido;
+        //a diciona um o id do sistema ao recebido
+        console.log(this.usuario.sistema._id);
+        recebido.sistema = this.usuario.sistema;
+
+        console.log(recebido.sistema._id);
         this.recebidosService.adicionarRecebido(recebido).subscribe();
         
-        //depois de acionar um recebido 
+        //atualiza do debito do cliente 
         let clienteAtualizado = new ClienteModel();
         clienteAtualizado = this.clienteSelected;
         clienteAtualizado.debitoDoCliente = clienteAtualizado.debitoDoCliente - valorRecebido;
-        this.serviceCliente.atualizarCliente(clienteAtualizado)
-        .subscribe();
+        this.serviceCliente.atualizarCliente(clienteAtualizado).subscribe();
         //atualizar lista recebidos
         this.pegaListaRecebidosPeloId(clienteAtualizado);
        

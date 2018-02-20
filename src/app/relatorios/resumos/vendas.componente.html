@@ -16,7 +16,7 @@
                         class="list-group">
                             <a class="list-group-item" 
                             (click)="onSelect(vendas)" [ngClass]="{'active': vendasSelected == vendas}" >
-                               <h4 class="list-group-item-heading">Cliente - {{vendas.cliente}} </h4>
+                               <h4 class="list-group-item-heading">{{vendas.tipo}} </h4>
                                     <div class="pull-right">
                                         <button class="btn btn-danger btn-xs" (click)="deleteVenda(vendas)">X</button>
                                     </div>
@@ -30,13 +30,13 @@
                         <div class="panel panel-primary"><h4>Total Vendas:{{ TotalValoresDasVendas}}</h4></div>
           	           
                     </div>
-                        <div *ngIf="produtosFiltrados" class="col-md-4">
+                        <div *ngIf="produtosSelected" class="col-md-4">
                             <table  class="table table-striped">
 				                <th>Nome</th>
 				                <th>Valor</th>
-				                    <tr  *ngFor="let produtoFiltrado of produtosFiltrados">
-                                        <td>{{produtoFiltrado.nome}}</td>
-                                        <td>{{produtoFiltrado.valor}}</td>
+				                    <tr  *ngFor="let produto of produtosSelected">
+                                        <td>{{produto.nome}}</td>
+                                        <td>{{produto.valor}}</td>
 						            </tr>
 			                </table>
                         </div>
@@ -52,7 +52,7 @@
                     <th>Data</th>
 				    <th>Valor</th>
 				        <tr *ngFor="let recebido of recebidos" class="success">
-                            <td>{{recebido.cliente}}</td>
+                            <td>{{recebido.cliente.nome}}</td>
                             <td>{{recebido.momento}}</td>
                             <td>{{recebido.valor}}</td>
                             <td><div class="pull-right">

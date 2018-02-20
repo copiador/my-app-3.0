@@ -2,6 +2,7 @@ import { Injectable }              from '@angular/core';
 import { Http, Response }          from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -24,6 +25,7 @@ export class RelatoriosService {
     private relatoriosListarVendasPelaDataUrl = 'http://localhost:3000/api/relatorios/listarVendasPelaData'
     private relatoriosListarRecebidosPelaDataUrl = 'http://localhost:3000/api/relatorios/listarRecebidosPelaData'
 
+    
     constructor(private vendasService: VendasAvistaService, private produtosService: ProdutoService, private http: Http){
 
     }
@@ -34,13 +36,15 @@ export class RelatoriosService {
     return this.http.get(url).map(res => res.json()) ;
    
   }
-  getRelatorioRecebidosDoDia(): Observable<RecebidosModel[]> {
+  getRelatorioRecebidosDoDia(_idSistema: number): Observable<RecebidosModel[]> {
     
-    return this.http.get(this.relatoriosRecebidosDoDiaUrl).map(res => res.json()) ;
+    var url = this.relatoriosRecebidosDoDiaUrl + "/" + _idSistema;
+    return this.http.get(url).map(res => res.json()) ;
    
   }
   getRelatorioVendasPelaData(data:any): Observable<VendasAvistaModel[]> {
 
+   
     var url = this.relatoriosListarVendasPelaDataUrl + "/" + data;
     
     
