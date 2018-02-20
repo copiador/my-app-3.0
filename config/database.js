@@ -4,7 +4,7 @@ module.exports = function(uri){
 
 
 	mongoose.connect(uri, {
-		useMongoClient: true
+	
 	})
 	
 

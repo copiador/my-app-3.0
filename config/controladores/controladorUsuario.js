@@ -10,7 +10,7 @@ module.exports = function() {
 //	var dados = {codigo:2, nome: "guidinha", endereco: {rua: "chove pau", bairro: "beira rio", numero: 95,
 //	cidade: "taquaritinga",cep: 55790}};
 	var usuario = new ShemaUsuario(dados);
-	///usuario.save();
+//	usuario.save();
 //	var contato = new ShemaCliente({"nome":"guidinha"});
 	//contato2.save();
 	//contato2.nextCount()
@@ -96,7 +96,7 @@ module.exports = function() {
 */
 		ShemaUsuario.find().populate({path:'sistema'}).exec(function(err, usuarios) {
 			if (err) return console.error(err);
-			console.log(usuarios)//envia via json os dados de todos os clientes
+			
 			res.json(usuarios);
 		})
 
@@ -111,7 +111,7 @@ module.exports = function() {
 		.exec(function(err, usuario){
 			
 				if (err) return console.log(err) ;
-				console.log(usuario);
+				
 				return res.json(usuario);
 		}) 
 			
